@@ -96,6 +96,10 @@ p-deck:not([mode="speaker"]) .full-media-no-padding {
 .two-columns {
   flex-wrap: wrap;
 
+  p-note {
+    max-height: 10em;
+  }
+
   > * {
     flex: 0 0 auto;
     width: calc(50% - 0.5em);
