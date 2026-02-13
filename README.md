@@ -1,8 +1,8 @@
-# Some beautiful title
+# Less Build, More Runtime: The Modern CSS Approach to Design Systems
 
-Slides for what?.
+Slides for my on building runtime-ready design systems with modern CSS.
 
-Originally conceived for the what?.
+Originally conceived for [CSSDay 2026](https://www.cssday.it/).
 
 Built on top of [P-Slides](https://github.com/MaxArt2501/p-slides)!
 

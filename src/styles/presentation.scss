@@ -53,8 +53,8 @@
   --brand-color-ant: #f60;
   --sketchy-arrow-width: 0.1em;
   --sketchy-arrow-tip-size: 20;
-  --starting-point-gradient: #fafafa;
-  --ending-point-gradient: #000000;
+  --starting-point-gradient: #98a4e8;
+  --ending-point-gradient: #26358b;
 }
 
 p-deck::after {
@@ -72,7 +72,8 @@ p-deck::after {
 p-fragment.landing {
   position: absolute;
   transform: scale(3);
-  transition: opacity var(--fragment-duration, 300ms),
+  transition:
+    opacity var(--fragment-duration, 300ms),
     transform var(--fragment-duration, 300ms);
 
   &[aria-hidden="false"],
@@ -227,9 +228,15 @@ pre {
 .cover {
   h1 {
     @extend .current-gradient;
-    font-size: 1.3em;
+    font-size: 1em;
     text-align: center;
     margin-block-start: 0;
+  }
+
+  h6 {
+    font-size: 0.5em;
+    text-align: center;
+    margin-block-end: 0;
   }
 
   a {
@@ -242,17 +249,6 @@ pre {
 
   figure {
     margin: 0;
-  }
-
-  img {
-    height: 4em;
-  }
-
-  > img {
-    filter: invert(1) hue-rotate(180deg);
-    height: 200%;
-    transform: translate(25%, -10%);
-    opacity: 0.5;
   }
 }
 
@@ -496,7 +492,7 @@ a {
 }
 
 .text-cover {
-  @include mixins.gradientText(#000, #a0a0a0);
+  @include mixins.gradientText(#26358b, #98a4e8);
 }
 
 .text-sub-section {
