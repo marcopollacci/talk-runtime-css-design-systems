@@ -1,6 +1,6 @@
 @mixin gradientText($color1, $color2) {
   background: linear-gradient(90deg, $color1, $color2);
-  font-family: var(--talk-marco-graphik-semibold);
+  font-family: var(--talk-marco-audio-wide-regular);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }

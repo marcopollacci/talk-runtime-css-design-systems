@@ -48,6 +48,20 @@ export default defineConfig({
           ],
         },
       },
+      {
+        provider: fontProviders.local(),
+        name: "Audio Wide Regular",
+        cssVariable: "--talk-marco-audio-wide-regular",
+        options: {
+          variants: [
+            {
+              src: ["./src/fonts/Audiowide-Regular.ttf"],
+              weight: 400,
+              style: "normal",
+            },
+          ],
+        },
+      },
     ],
   },
   vite: {

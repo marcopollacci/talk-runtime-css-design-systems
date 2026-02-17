@@ -45,7 +45,7 @@
 }
 
 :root {
-  font-family: var(--talk-marco-graphik-regular);
+  font-family: var(--talk-marco-audio-wide-regular);
   --slide-bg: white;
   --sliding-duration: 0ms;
   --fragment-duration: 300ms;
@@ -113,7 +113,7 @@ p-fragment.landing {
 
 .blockquote {
   b {
-    font-family: var(--talk-marco-graphik-medium);
+    font-family: var(--talk-marco-audio-wide-regular);
   }
 
   blockquote {
