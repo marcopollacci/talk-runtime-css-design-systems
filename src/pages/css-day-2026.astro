@@ -1,25 +1,36 @@
 ---
+import favicon from "../img/cssday-favicon.webp";
+import me2 from "../img/me2.png";
+import qrRating from "../img/qrrating_cssday2026.png";
+import qrslide from "../img/qrslide_cssday2026.png";
 import Layout from "../layouts/Layout.astro";
+import CoverCssday2026 from "../slides/cover-cssday-2026.astro";
 import Cover from "../slides/cover.astro";
+import Intro from "../slides/intro.astro";
 import Thanks from "../slides/thanks.astro";
-import favicon from '../img/cssday-favicon.webp';
-import CoverCssday2026 from '../slides/cover-cssday-2026.astro';
-import me2 from '../img/me2.png';
-import qrslide from '../img/qrslide_cssday2026.png';
-import qrRating from '../img/qrrating_cssday2026.png';
-import Intro from '../slides/intro.astro';
 const favIcon = favicon.src;
 const canRender = import.meta.env.DEV || new Date("2026-06-11") < new Date();
 const metaData = {
-  title: 'Less Build, More Runtime: The Modern CSS Approach to Design Systems',
-  description: 'Slides for building runtime-ready design systems with modern CSS.',
+  title: "Less Build, More Runtime: The Modern CSS Approach to Design Systems",
+  description:
+    "Slides for building runtime-ready design systems with modern CSS.",
 };
 ---
-<Layout canRender={canRender} favIcon={favIcon} metaData={metaData}>
+
+<Layout {canRender} {favIcon} {metaData}>
   <CoverCssday2026 />
-  {canRender && (
-    <Cover meReloaded={me2} />
-    <Intro />
-    <Thanks qrLinkRating={qrRating}  qrLink={qrslide} urlLink="https://talk-runtime-css-design-systems.marcotalk.dev/css-day-2026" meReloaded={me2} />
-  )}
+  {
+    canRender && (
+      <>
+        <Cover meReloaded={me2} />
+        <Intro />
+        <Thanks
+          qrLinkRating={qrRating}
+          qrLink={qrslide}
+          urlLink="https://talk-runtime-css-design-systems.marcotalk.dev/css-day-2026"
+          meReloaded={me2}
+        />
+      </>
+    )
+  }
 </Layout>
