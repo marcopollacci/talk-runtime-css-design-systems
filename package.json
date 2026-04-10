@@ -22,6 +22,6 @@
     "prettier": "^3.8.1",
     "prettier-plugin-astro": "^0.14.1",
     "sharp": "^0.34.5",
-    "vite-plugin-static-copy": "^3.3.0"
+    "vite-plugin-static-copy": "^4.0.1"
   }
 }
