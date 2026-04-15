@@ -81,6 +81,8 @@ export default defineConfig({
           {
             src: "node_modules/p-slides/css/deck.css",
             dest: "css",
+            // @ts-ignore
+            rename: { stripBase: 3 },
           },
         ],
       }),
