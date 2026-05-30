@@ -1,0 +1,346 @@
+---
+import { Image } from "astro:assets";
+import PNotes from "../components/PNotes.astro";
+import cascadeMeme from "../img/cascade-meme.jpeg";
+---
+
+<p-slide class="cover-internal center" autoplay>
+  <h1>Governing the cascade</h1>
+  <Image
+    p-effect="from above"
+    src={cascadeMeme}
+    alt="cascade meme"
+    class="alter-image-size"
+    style="--image-start-size: 8em; border-radius: 0.3em; --fragment-duration: 2.5s;"
+  />
+  <PNotes>
+    <p>This is the architectural heart of the talk — slow down here.</p>
+    <p>
+      Three at-rules, one idea: stop fighting the cascade, start governing it.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h2 class="main-gradient">The cascade is implicit</h2>
+  <ul style="">
+    <li>
+      🥊 <span>Specificity </span><span class="main-sub-gradient">wars</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🚨 <span class="main-sub-gradient">!important</span><span>
+        as a band-aid</span
+      >
+    </li>
+    <li p-fragment p-effect="from left">
+      🏷️ <span>Naming conventions to </span><span class="main-sub-gradient"
+        >fake isolation</span
+      >
+    </li>
+    <li p-fragment p-effect="zoom">
+      🎯 <span>What we actually want: </span><span class="main-sub-gradient"
+        >explicit control</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Everyone has lived these three pains. Get a nod from the room before
+      moving on.
+    </p>
+    <p>
+      The last bullet is the thread for the whole section — say it deliberately.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="cover-internal-sub-section">
+  <h2><span style="font-family: Arial;">@</span>layer</h2>
+
+  <PNotes>
+    <p>First lever: control WHERE a rule sits in the cascade.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Stratify specificity</h3>
+  <ul style="">
+    <li>
+      📚 <span>Declare the </span><span class="main-sub-gradient"
+        >layer order</span
+      ><span> once</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🏆 <span>Later layers </span><span class="main-sub-gradient">win</span
+      ><span> — regardless of specificity</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      🧱 <span class="main-sub-gradient">base → components → overrides</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      The mental model: priority follows declaration order, not specificity.
+    </p>
+    <p>
+      Gotcha to flag verbally: unlayered styles beat every layer. Keep almost
+      everything in a layer.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient"
+      ><span style="font-family: Arial;">@</span>layer — order is everything</span
+    > 📚
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="layers.css">
+    <code style="font-size: 0.7em;" is:raw class="language-scss">/* declare the order once — this is the whole stuff */
+    @layer reset, base, components, overrides;
+
+    @layer base {
+        a { color: blue; }
+    }
+
+    @layer components {
+        section a { color: white; } /* higher specificity… */
+    }</code><p-fragment>
+    <code style="font-size: 0.7em;" is:raw class="language-scss">
+    @layer overrides {
+        a { color: rebeccapurple; } /* …yet this one wins */
+    }</code>
+    </p-fragment>
+  </pre>
+
+  <PNotes>
+    <p>
+      Build the tension: components has a more specific selector, so people
+      expect it to win.
+    </p>
+    <p>
+      Reveal the overrides layer — point at it. Order beats specificity. Let it
+      land.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="cover-internal-sub-section">
+  <h2><span style="font-family: Arial;">@</span>scope</h2>
+
+  <PNotes>
+    <p>Second lever: control WHERE in the DOM a rule applies.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Isolation without naming</h3>
+  <ul style="">
+    <li>
+      🎯 <span>Styles apply </span><span class="main-sub-gradient"
+        >only inside a subtree</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      🚫 <span>No BEM, no </span><span class="main-sub-gradient"
+        >invented conventions</span
+      >
+    </li>
+    <li p-fragment p-effect="from left">
+      🍩 <span class="main-sub-gradient">Donut scope</span><span>
+        — set a lower boundary</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      This is the slide that replaces a thousand .card__title--active class
+      names.
+    </p>
+    <p>
+      Land the donut scope bullet last — it's the surprising one. "You can also
+      say where the scope stops." Sets up the code slide.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient"
+      ><span style="font-family: Arial;">@</span>scope — locality by design</span
+    > 🎯
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="card.css">
+    <code style="font-size: 0.7em;" is:raw class="language-scss">
+    /* applies only inside section — no section__title needed */
+    @scope (section) {
+        :scope { padding: 1rem; color: green; } /* the scope root itself */
+        h2 { color: red; } /* only h2 inside the section */
+    }</code>
+    <p-fragment>
+    <code style="font-size: 0.7em;" is:raw class="language-scss">
+    /* style the section, but stop before its footer */
+    @scope (section) to (footer) {
+        p {  margin: 0;  color: blue; } /* doesn't leak into footer */
+    }</code>
+</p-fragment>
+  </pre>
+
+  <PNotes>
+    <p>:scope is the scope root itself — explain it in one sentence.</p>
+    <p>
+      Donut scope (the "to" boundary) is the killer feature for slot-based
+      components.
+    </p>
+    <p>
+      If someone asks about overlapping scopes: proximity wins — the closer
+      scope root takes precedence. New cascade rule.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="cover-internal-sub-section">
+  <h2><span style="font-family: Arial;">@</span>property</h2>
+
+  <PNotes>
+    <p>Third lever: control WHAT a variable means and how it inherits.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Typed custom properties</h3>
+  <ul style="">
+    <li>
+      🏷️ <span>Give a variable a real </span><span class="main-sub-gradient"
+        >type</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      🎬 <span>Suddenly </span><span class="main-sub-gradient">animatable</span
+      ><span> gradients, angles</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      🛡️ <span>Invalid values </span><span class="main-sub-gradient"
+        >fall back</span
+      ><span>, don't break</span>
+    </li>
+    <li p-fragment p-effect="zoom">
+      🧬 <span>Explicit </span><span class="main-sub-gradient">inheritance</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      The "animatable" point is the wow moment — a plain --var can't be
+      transitioned, a typed one can.
+    </p>
+    <p>
+      "Fall back" is the safety net — invalid values don't silently break the
+      layout. Mention it as the boring but important bullet.
+    </p>
+    <p>
+      Explicit inheritance: you opt in, children don't inherit by accident.
+      Contrast with plain custom properties.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient"
+      ><span style="font-family: Arial;">@</span>property — variables with a
+      type</span
+    > 🏷️
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="property.css">
+    <code style="font-size: 0.7em;" is:raw class="language-scss">
+    @property --angle {
+        syntax: "&lt;angle&gt;";
+        inherits: false;
+        initial-value: 0deg;
+    }
+
+    [data-glow] {
+        background: conic-gradient(from var(--angle), #c850c0, #4158d0);
+        transition: --angle 0.4s; /* now this animates */
+    }
+
+    [data-glow]:hover {
+        --angle: 180deg;
+    }</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      Walk it top to bottom: syntax = the type, inherits + initial-value =
+      controlled propagation.
+    </p>
+    <p>
+      The transition line is the payoff — without @property the browser has no
+      idea how to interpolate an angle.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide cascade-recap>
+  <h2 class="main-gradient center">Explicit control over how CSS propagates</h2>
+  <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5em;">
+    <div p-effect="from left">
+      <h4>
+        <span class="main-sub-gradient"
+          ><span style="font-family: Arial;">@</span>layer</span>
+      </h4>
+      <p>where in the <strong>cascade</strong></p>
+    </div>
+    <div p-effect="zoom">
+      <h4>
+        <span class="main-sub-gradient"
+          ><span style="font-family: Arial;">@</span>scope</span>
+      </h4>
+      <p>where in the <strong>DOM</strong></p>
+    </div>
+    <div p-effect="from right">
+      <h4>
+        <span class="main-sub-gradient"
+          ><span style="font-family: Arial;">@</span>property</span>
+      </h4>
+      <p>what a <strong>variable</strong> means</p>
+    </div>
+  </div>
+
+  <PNotes>
+    <p>This is the slide they should photograph. Hold on it.</p>
+    <p>
+      Tie the bow: three at-rules, one principle — we decide how styles
+      propagate instead of discovering it at runtime.
+    </p>
+    <p>Transition into section 4 — modern color.</p>
+  </PNotes>
+</p-slide>
+
+<style lang="scss">
+  [cascade-recap] {
+    div {
+      text-align: center;
+      h4 {
+        margin-block: 0 0.3em;
+        font-size: 1.1em;
+      }
+      p {
+        font-size: 0.6em;
+        opacity: 0.85;
+        margin: 0;
+      }
+    }
+  }
+</style>

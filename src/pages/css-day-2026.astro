@@ -4,11 +4,11 @@ import me2 from "../img/me2.png";
 import qrRating from "../img/qrrating_cssday2026.png";
 import qrslide from "../img/qrslide_cssday2026.png";
 import Layout from "../layouts/Layout.astro";
+import Cascade from "../slides/cascade.astro";
 import CoverCssday2026 from "../slides/cover-cssday-2026.astro";
 import Cover from "../slides/cover.astro";
 import Intro from "../slides/intro.astro";
 import Thanks from "../slides/thanks.astro";
-import NewCssClasses from "../slides/new-css-classes.astro";
 const favIcon = favicon.src;
 const canRender = import.meta.env.DEV || new Date("2026-06-11") < new Date();
 const metaData = {
@@ -25,7 +25,7 @@ const metaData = {
       <>
         <Cover meReloaded={me2} />
         <Intro />
-        <NewCssClasses />
+        <Cascade />
         <Thanks
           qrLinkRating={qrRating}
           qrLink={qrslide}

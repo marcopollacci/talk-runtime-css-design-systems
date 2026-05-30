@@ -1,6 +1,7 @@
 @use "core/mixins" as mixins;
 @use "core/utility.scss";
 @use "core/scaffold.scss";
+@use "./effects.scss";
 
 @property --sketchy-arrow-width {
   syntax: "<length>";
@@ -617,28 +618,28 @@ pre[data-label-file]::after {
   }
   --color-border: #000000;
   span {
-    &[box] {
+    &[data-box] {
       padding: 0.5em;
       background: transparent;
       outline: none;
       border: 2px solid var(--color-border);
       border-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
     }
-    &[arrow] {
+    &[data-arrow] {
       font-size: 2.5em;
-      &[left]:before {
+      &[data-left]:before {
         content: "\27F5";
       }
-      &[right]:before {
+      &[data-right]:before {
         content: "\27F6";
       }
-      &[up]:before {
+      &[data-up]:before {
         content: "\2191";
       }
-      &[down]:before {
+      &[data-down]:before {
         content: "\2193";
       }
-      &[up-down]:before {
+      &[data-up-down]:before {
         content: "\21F5";
       }
     }
@@ -741,20 +742,20 @@ body.density-roomy {
   --leading: 1.35;
 }
 
-body.box-sharp .hand-drawing span[box],
-p-slide.box-sharp .hand-drawing span[box] {
+body.box-sharp .hand-drawing span[data-box],
+p-slide.box-sharp .hand-drawing span[data-box] {
   border-radius: 0;
   box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.5);
 }
 
-body.box-rounded .hand-drawing span[box],
-p-slide.box-rounded .hand-drawing span[box] {
+body.box-rounded .hand-drawing span[data-box],
+p-slide.box-rounded .hand-drawing span[data-box] {
   border-radius: 1.2em;
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
 }
 
 // Accent / sub-accent variants for boxes (useful with the new palettes).
-.hand-drawing span[box] {
+.hand-drawing span[data-box] {
   &.accent {
     border-color: transparent;
     background: linear-gradient(95deg, var(--main-from), var(--main-to));
@@ -903,4 +904,10 @@ p-slide.box-rounded .hand-drawing span[box] {
 }
 .tk-tag {
   color: oklch(0.78 0.16 350);
+}
+
+ul {
+  li {
+    margin-block-end: 0.6em;
+  }
 }

@@ -1,27 +1,235 @@
-<p-slide class="cover-internal">
-  <h4>There was a time...</h4>
+---
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide class="cover">
+  <h1>A long time ago...</h1>
 </p-slide>
+
+<p-slide arrow-time>
+  <h3 class="main-gradient">The classic design system</h3>
+  <div class="hand-drawing center mid-dimension">
+    <span data-box>🎨 Sources — Sass / JS</span>
+    <p-fragment>
+      <span data-arrow data-down></span>
+      <span data-box>⚙️ Build step — Sass, PostCSS, plugins</span>
+    </p-fragment>
+    <p-fragment>
+      <span data-arrow data-down></span>
+      <span data-box>🎟️ Generated CSS tokens</span>
+    </p-fragment>
+    <p-fragment>
+      <span data-arrow data-down></span>
+      <span data-box>📦 Shipped bundle</span>
+    </p-fragment>
+  </div>
+
+  <PNotes>
+    <p>
+      Walk the pipeline as it reveals — most people in this room live it every
+      day.
+    </p>
+    <p>
+      Land the key idea: tokens are a generated artifact, a Sass/JS source
+      compiled down to CSS variables.
+    </p>
+    <p>
+      Stay neutral here — don't bash the pipeline yet. The critique comes on the
+      next slide.
+    </p>
+  </PNotes>
+</p-slide>
+
 <p-slide>
-  <pre
-    class="small-line"
-    data-label-file="variables.scss">
- <code is:raw style="font-size: .8em" class="language-scss"> 
-    [data-theme="light"]{
-    --primary-100:#eef2ff; --primary-200:#dbeafe; /* ... */ --primary-900:#1e3a8a;
-    --primary-500-hover:#2563eb;
-    --primary-500-active:#1d4ed8;
-    --primary-500-disabled:#93c5fd;
-    }
+  <h2 class="main-gradient">The hidden cost</h2>
+  <ul style="">
+    <li>
+      🔁 <span>Every change = </span><span class="main-sub-gradient"
+        >a new build</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      🧱 <span
+        >Dependencies to maintain and <span class="main-sub-gradient"
+          >update</span
+        ></span
+      >
+    </li>
+    <li p-fragment p-effect="from left">
+      🔒 <span class="main-sub-gradient">Lock-in to</span><span>
+        tools and their conventions</span
+      >
+    </li>
+    <li p-fragment p-effect="zoom">
+      🧊 <span>Themes and variants </span><span class="main-sub-gradient"
+        >"frozen" at build time</span
+      >
+    </li>
+  </ul>
 
-    /* DARK */
-    [data-theme="dark"]{
-    --primary-100:#0b1220; --primary-200:#0f1b33; /* ... */ --primary-900:#93c5fd;
-    --primary-500-hover:#3b82f6;
-    --primary-500-active:#2563eb;
-    --primary-500-disabled:#1e3a8a;
-
-    }
-    /* ... */
-  </code>
-</pre>
+  <PNotes>
+    <p>
+      Turn the screws gently — each bullet is real friction, not a dealbreaker.
+    </p>
+    <p>
+      Emphasize "frozen at build time": that's the thread the whole talk pulls
+      on.
+    </p>
+    <p>
+      Transition: we accept all of this... but how much of it is actually
+      necessary today?
+    </p>
+  </PNotes>
 </p-slide>
+
+<p-slide class="center" autoplay timing="550">
+  <h2 class="main-gradient" style="margin-block-end: 0.5em">
+    What if the browser could do most of this work?
+  </h2>
+  <p-fragment>
+    <span style="font-size: 1.5em;">( ๑‾̀◡‾́)✨</span>
+  </p-fragment>
+
+  <PNotes>
+    <p>Pause. Let the question sit before the emoji lands.</p>
+    <p>This is the hinge of the talk — say it slowly.</p>
+    <p>
+      Be honest about the answer: "a lot, but not all" — which is exactly the
+      next section.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="cover-internal">
+  <h1 style="font-size: 1.5em">Build-time vs Runtime</h1>
+
+  <PNotes>
+    <p>Short breath. Just announce the section.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="center">
+  <h4 class="main-gradient" style="margin-block-end: 0.5em">
+    It's not about throwing the tools away
+  </h4>
+  <p
+    p-effect="from below"
+    style="font-size: 0.8em; opacity: 0.8; margin-block-start: 1em"
+  >
+    It's a shift in mindset
+  </p>
+
+  <PNotes>
+    <p>
+      Pre-empt the defensive reaction — half the room ships with Vite/PostCSS
+      and I'm not attacking them.
+    </p>
+    <p>
+      Frame it: the question isn't "tools or no tools", it's "what runs when".
+    </p>
+  </PNotes>
+</p-slide>
+<p-slide class="center">
+  <h2 class="main-gradient center">What belongs to the browser?</h2>
+</p-slide>
+<p-slide b-v-r>
+  <div
+    style="display: grid; text-align: center; grid-template-columns: 1fr 1fr; gap: 1.5em;"
+  >
+    <div p-effect="from left">
+      <h4 style="margin-block: 0.3em 0.6em;">
+        ⚙️ <span class="main-sub-gradient">Build-time</span>
+      </h4>
+      <p style="font-size: 0.5em; margin-block: 0 0.4em; opacity: 0.8;">
+        still useful
+      </p>
+      <ul style="font-size: 0.7em;">
+        <li>Bundling &amp; minification</li>
+        <li>Asset optimization</li>
+        <li>Type-checking</li>
+        <li>Legacy browser fallbacks</li>
+      </ul>
+    </div>
+
+    <div p-effect="from right">
+      <h4 style="margin-block: 0.3em 0.6em;">
+        🌐 <span class="main-sub-gradient">Runtime</span>
+      </h4>
+      <p style="font-size: 0.5em; margin-block: 0 0.4em; opacity: 0.8;">
+        the browser handles it today
+      </p>
+      <ul style="font-size: 0.7em;">
+        <li>Theming &amp; dark mode</li>
+        <li>Shade generation</li>
+        <li>Fluid scales without breakpoints</li>
+        <li>Scoping &amp; layering</li>
+      </ul>
+    </div>
+  </div>
+
+  <PNotes>
+    <p>
+      Left column first: these genuinely stay at build time — don't undersell
+      them.
+    </p>
+    <p>
+      Right column: these used to need a build, now the browser does them
+      natively. That's the whole point.
+    </p>
+    <p>
+      Anticipated question: someone will ask about browser support — say we'll
+      be honest about it at the end (section 9).
+    </p>
+    <p>
+      If short on time, skip reading every bullet — the contrast is the message.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h2 class="main-gradient">From "frozen" to "live"</h2>
+  <ul class="more-margin">
+    <li p-fragment p-effect="from left">
+      Before: every shade and theme <span class="main-sub-gradient"
+        >generated at build time</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      Today: CSS computes them <span class="main-sub-gradient">at runtime</span
+      >, in the browser
+    </li>
+    <li p-fragment p-effect="zoom">
+      <code>@layer</code>, <code>@scope</code>, <code>color-mix()</code>,
+      <code>light-dark()</code>, <code>clamp()</code>…
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      This is the teaser — read the function names out loud, they're the table
+      of contents for the rest of the talk.
+    </p>
+    <p>Don't explain them yet: "we'll see each of these in action".</p>
+    <p>Transition into section 3 — governing the cascade.</p>
+  </PNotes>
+</p-slide>
+<style lang="scss">
+  ul.more-margin {
+    font-size: 0.8em;
+  }
+  [arrow-time] {
+    span {
+      &[data-arrow] {
+        font-size: 1em;
+      }
+    }
+  }
+  [b-v-r] {
+    ul {
+      margin-block-start: 1.3em;
+      li {
+        margin-block-end: 0.4em;
+      }
+    }
+  }
+</style>
