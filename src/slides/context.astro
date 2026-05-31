@@ -1,0 +1,360 @@
+---
+import PNotes from "../components/PNotes.astro";
+---
+
+{
+  /* ============================================================
+   SECTION 6 — CONTEXT-AWARE COMPONENTS (~5 min)
+   Container Queries · :has()
+   Red thread: components react to their context, not the viewport —
+   and carry their own conditional logic, no modifier classes.
+   ============================================================ */
+}
+
+{/* 6.1 — Section divider */}
+<p-slide class="cover-internal">
+  <h1>Context-aware components</h1>
+
+  <PNotes>
+    <p>
+      The shift: a component shouldn't care about the viewport — it should care
+      about the space it's actually given.
+    </p>
+    <p>
+      Two tools: container queries for outer context, and :has() for inner
+      structure and state.
+    </p>
+  </PNotes>
+</p-slide>
+
+{/* ---------- Container Queries ---------- */}
+
+{/* 6.2 — divider */}
+<p-slide class="cover-internal-sub-section">
+  <h2>Container Queries</h2>
+
+  <PNotes>
+    <p>React to the parent, not the screen.</p>
+    <p>
+      This is the component version of responsive design: not page-aware,
+      context-aware.
+    </p>
+  </PNotes>
+</p-slide>
+
+{/* 6.3 — the problem with media queries */}
+<p-slide>
+  <h3 class="main-gradient">The viewport is the wrong question</h3>
+  <ul>
+    <li>
+      📺 <span>Media queries ask about the </span><span
+        class="main-sub-gradient">screen</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      🧩 <span>But content lives in a </span><span class="main-sub-gradient"
+        >sidebar, a grid, a modal…</span
+      >
+    </li>
+    <li p-fragment p-effect="zoom">
+      📦 <span>Ask about the </span><span class="main-sub-gradient"
+        >container</span
+      ><span> instead</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Same content, three different widths depending on where it's dropped.
+      Media queries can only see the viewport.
+    </p>
+    <p>
+      The point is not that media queries are bad. The point is that they ask
+      the wrong question for reusable components.
+    </p>
+    <p>This is the slide that reframes the whole problem.</p>
+  </PNotes>
+</p-slide>
+
+{/* 6.4 — before container queries */}
+<p-slide b-a>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Components</span> — viewport pretending to be context
+    📺
+  </h5>
+
+  <div class="cols">
+    <div p-effect="from left">
+      <p class="tag">
+        Before — <span class="main-sub-gradient">viewport breakpoints</span>
+      </p>
+      <pre
+        class="small-line"
+        data-label-file="article.css">
+        <code style="font-size: 0.55em" is:raw class="language-scss">
+        article {
+          display: grid;
+          gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+          article {
+            grid-template-columns: 8rem 1fr;
+          }
+        }</code>
+      </pre>
+    </div>
+  </div>
+
+  <PNotes>
+    <p>
+      Before, the component asked the only question CSS could easily ask: how
+      wide is the viewport?
+    </p>
+    <p>
+      But the same article can live in a sidebar, a grid column, or a modal. The
+      viewport does not tell us how much space the component actually has.
+    </p>
+    <p>
+      Then move to container queries: ask the container instead of the screen.
+    </p>
+  </PNotes>
+</p-slide>
+
+{/* 6.5 — container query code */}
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Query the container, not the viewport</span> 📦
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="article.css">
+<code style="font-size: 0.6em" is:raw class="language-scss">    /* 1. make the parent a query container */
+    section {
+        container: content / inline-size;
+    }
+    /* 2. the article adapts to the nearest "content" container */
+    article {
+        display: grid;
+        gap: 1rem;
+    }
+
+    @container content (min-width: 30rem) {
+        article {
+            grid-template-columns: 8rem 1fr;
+        }
+    }</code></pre>
+  <PNotes>
+    <p>Two steps: declare the container, then query it.</p>
+    <p>
+      container: content / inline-size is the shorthand for container-name and
+      container-type.
+    </p>
+    <p>
+      inline-size means we query the container's inline dimension — usually its
+      width in horizontal writing modes.
+    </p>
+    <p>
+      The payoff: drop this article in a narrow sidebar or a wide main column —
+      it lays itself out correctly, no viewport breakpoint involved.
+    </p>
+  </PNotes>
+</p-slide>
+
+{/* 6.6 — container query units */}
+<p-slide>
+  <h3 class="main-gradient">Bonus: container units</h3>
+  <ul>
+    <li>
+      📐 <span class="main-sub-gradient">cqi / cqb</span><span>
+        — logical container units</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      🔤 <span>Type that scales to the </span><span class="main-sub-gradient"
+        >component</span
+      ><span>, not the page</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      <code>font-size: clamp(1rem, 5cqi, 2rem)</code>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      cqi is 1% of the container's inline size. cqb is 1% of the container's
+      block size.
+    </p>
+    <p>
+      This connects back to section 5: clamp() gives us a safe range, and cqi
+      makes the preferred value relative to the component itself.
+    </p>
+    <p>Keep this one quick, it's a bonus beat.</p>
+  </PNotes>
+</p-slide>
+
+{/* ---------- :has() ---------- */}
+
+{/* 6.7 — divider */}
+<p-slide class="cover-internal-sub-section">
+  <h2>:has()</h2>
+
+  <PNotes>
+    <p>The long-awaited parent selector — conditional logic in pure CSS.</p>
+    <p>
+      Container queries read the outside. :has() lets the component react to
+      what is inside.
+    </p>
+  </PNotes>
+</p-slide>
+
+{/* 6.8 — what :has() unlocks */}
+<p-slide>
+  <h3 class="main-gradient">Conditional logic, no modifier classes</h3>
+  <ul>
+    <li>
+      ⬆️ <span>Style a parent </span><span class="main-sub-gradient"
+        >based on its children</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      🏷️ <span>No more </span><span class="main-sub-gradient"
+        >modifier classes</span
+      ><span> toggling in JS</span>
+    </li>
+    <li p-fragment p-effect="zoom">
+      🧠 <span>The DOM </span><span class="main-sub-gradient">is</span><span>
+        the state</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      For years CSS could easily style down the tree. :has() gives us a way to
+      react to descendants, siblings and state.
+    </p>
+    <p>
+      The killer point: state we used to sync with JS classes can now be read
+      straight from the markup.
+    </p>
+  </PNotes>
+</p-slide>
+
+{/* 6.9 — before :has() */}
+<p-slide b-a>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Component state</span> — synced with attributes 🏷️
+  </h5>
+
+  <div class="cols">
+    <div p-effect="from left">
+      <p class="tag">
+        Before — <span class="main-sub-gradient">manual state hooks</span>
+      </p>
+      <pre
+        class="small-line"
+        data-label-file="article.html">
+        <code style="font-size: 0.55em" is:raw class="language-scss">
+        &lt;article data-has-image>
+          &lt;img src="cover.jpg" alt="" />
+          &lt;h2>Article title&lt;/h2>
+        &lt;/article></code>
+      </pre>
+    </div>
+  </div>
+
+  <PNotes>
+    <p>
+      Before, if the article contained an image, we often mirrored that fact
+      into a class or attribute.
+    </p>
+    <p>
+      That means the DOM already had the information, but CSS needed us to copy
+      it somewhere else.
+    </p>
+    <p>Then move to :has(): CSS can read that structure directly.</p>
+  </PNotes>
+</p-slide>
+
+{/* 6.10 — :has() code */}
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">:has() — the parent reacts</span> 🧠
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="has.css">
+    <code style="font-size: 0.7em" is:raw class="language-scss">
+    /* an article that contains an image gets a media layout */
+    article:has(img) {
+        grid-template-columns: 8rem 1fr;
+    }
+
+    /* a fieldset whose input is invalid */
+    fieldset:has(input:invalid) {
+        border-color: var(--danger);
+    }
+
+    /* 4 or more items → tighten the gap */
+    ul:has(> :nth-child(4)) {
+        gap: 0.5rem;
+    }</code>
+  </pre>
+
+  <PNotes>
+    <p>Three flavors: structural, state and quantity.</p>
+    <p>Structural: the article reacts to the presence of an image.</p>
+    <p>
+      State: the fieldset reacts to an invalid input — live form validation
+      styling with zero JS.
+    </p>
+    <p>
+      Quantity: if a fourth direct child exists, we know there are at least four
+      items.
+    </p>
+    <p>
+      If asked about performance: modern browsers optimize it well, but keep
+      selectors intentional — don't use :has() as a global catch-all.
+    </p>
+  </PNotes>
+</p-slide>
+
+{/* 6.11 — combine the two */}
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Together — context + state</span> 🤝
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="combined.css">
+    <code style="font-size: 0.7em" is:raw class="language-scss">
+    section {
+        container: content / inline-size;
+    }
+
+    /* wide container AND has an image → full media layout */
+    @container content (min-width: 30rem) {
+        article:has(img) {
+            grid-template-columns: 12rem 1fr;
+        }
+    }</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      This is the synthesis: the component reads both its outer space and its
+      inner content.
+    </p>
+    <p>Container queries answer: where am I and how much room do I have?</p>
+    <p>
+      :has() answers: what do I contain, and what state is my markup already
+      exposing?
+    </p>
+    <p>
+      Together, CSS starts behaving like component logic — without pushing that
+      logic into modifier classes or viewport breakpoints.
+    </p>
+    <p>Tie the bow on the section before moving to the near future.</p>
+  </PNotes>
+</p-slide>
