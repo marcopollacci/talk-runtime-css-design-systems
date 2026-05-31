@@ -1,0 +1,245 @@
+---
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide class="cover-internal">
+  <h1>Modern color</h1>
+
+  <PNotes>
+    <p>This is where "runtime" gets visceral — colors people can see.</p>
+    <p>Frame: we used to precompute every shade. Now the browser does it.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Beyond hsl</h3>
+  <ul style="line-height: 1.8em">
+    <li>
+      🌀 <span>hsl lightness </span><span class="main-sub-gradient">lies</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      👁️ <span class="main-sub-gradient">oklch</span><span>
+        is perceptually uniform</span
+      >
+    </li>
+    <li p-fragment p-effect="from left">
+      🎚️ <span>Same L = </span><span class="main-sub-gradient"
+        >same perceived lightness</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      The concrete example: hsl(60 100% 50%) yellow and hsl(240 100% 50%) blue
+      have the same "lightness" number but look wildly different.
+    </p>
+    <p>oklch fixes that — L actually maps to what the eye sees.</p>
+    <p>
+      If asked: oklab is the cartesian form, oklch the polar one. Same space.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">oklch — lightness, chroma, hue</span> 🎨
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="oklch.css">
+    <code is:raw class="language-scss">
+    .brand {
+        /* L: 0-1 · C: intensity · H: 0-360 */
+        color: oklch(0.7 0.15 250);
+    }
+ 
+    /* a consistent ramp — only L changes */
+    --c-100: oklch(0.95 0.05 250);
+    --c-500: oklch(0.70 0.15 250);
+    --c-900: oklch(0.40 0.15 250);</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      Point at the ramp: only the L channel moves, hue and chroma are stable.
+    </p>
+    <p>That's why oklch ramps look even — impossible to do reliably in hsl.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide b-a>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Shades</span> — compiled at build 🧪
+  </h5>
+  <div class="cols">
+    <div p-effect="from left">
+      <p class="tag">
+        Before — <span class="main-sub-gradient">compiled at build</span>
+      </p>
+      <pre
+        class="small-line"
+        data-label-file="button.scss">
+        <code style="font-size: 0.55em" is:raw class="language-scss">
+        $brand: #4060d0;
+
+        .btn        { background: $brand; }
+        .btn:hover  { background: darken($brand, 15%); }
+        .btn-subtle { background: lighten($brand, 40%); }</code>
+      </pre>
+    </div>
+  </div>
+
+  <PNotes>
+    <p>
+      Before, shade generation usually happened before the CSS reached the
+      browser.
+    </p>
+    <p>
+      darken() and lighten() run once, at build time. The result is frozen in
+      the shipped CSS.
+    </p>
+    <p>
+      The intent is dynamic — derive a hover shade from the brand color — but
+      the output is static.
+    </p>
+    <p>
+      Then move to color-mix(): same intent, but computed live from one token.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">color-mix() — shades at runtime</span> 🧪
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="color-mix.css">
+    <code is:raw class="language-scss">
+    :root {
+        --brand: oklch(0.7 0.15 250);
+    }
+ 
+    /* generate the ramp from ONE token, in the browser */
+    .btn        { background: var(--brand); }
+    .btn:hover  { background: color-mix(in oklch, var(--brand), black 15%); }
+    .btn-subtle { background: color-mix(in oklch, var(--brand), white 80%); }</code>
+  </pre>
+
+  <PNotes>
+    <p>This is the slide that kills the Sass color functions.</p>
+    <p>
+      One source token, every shade derived live. Change --brand and the whole
+      ramp follows — no rebuild.
+    </p>
+    <p>
+      Mention the interpolation space matters: "in oklch" keeps mixes clean.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide b-a>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Dark mode</span> — duplicated blocks 🌗
+  </h5>
+  <div class="cols">
+    <div p-effect="from left">
+      <p class="tag">
+        Before — <span class="main-sub-gradient">duplicated block</span>
+      </p>
+      <pre
+        class="small-line"
+        data-label-file="theme.css">
+        <code style="font-size: 0.55em" is:raw class="language-scss">
+        .card {
+          background: white;
+          color: black;
+        }
+
+        @media (prefers-color-scheme: dark) {
+          .card {
+            background: #1a1a1a;
+            color: white;
+          }
+        }</code>
+      </pre>
+    </div>
+  </div>
+
+  <PNotes>
+    <p>
+      Before, dark mode often meant duplicating the same selector inside a media
+      query.
+    </p>
+    <p>
+      This works, but it scales badly: every themed property has to be declared
+      twice.
+    </p>
+    <p>
+      Miss one property and you can easily end up with a half-broken dark mode.
+    </p>
+    <p>Then move to light-dark(): one property, two values, declared inline.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">light-dark() — dark mode in one line</span> 🌗
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="light-dark.css">
+    <code is:raw class="language-scss">
+    :root {
+        color-scheme: light dark;
+    }
+ 
+    .card {
+        background: light-dark(white, oklch(0.2 0 0));
+        color:      light-dark(black, white);
+    }</code>
+  </pre>
+
+  <PNotes>
+    <p>color-scheme is the gotcha — without it, light-dark() does nothing.</p>
+    <p>
+      No media query, no duplicated theme block, no JS toggle wiring for the OS
+      preference.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Relative color — derive from a base</span> ♻️
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="relative-color.css">
+    <code is:raw class="language-scss">
+    :root {
+        --brand: oklch(0.7 0.15 250);
+    }
+ 
+    /* take --brand apart and rebuild it, channel by channel */
+    .muted   { color: oklch(from var(--brand) l c h / 0.5); }
+
+    .lighter { color: oklch(from var(--brand) 
+                      clamp(0, calc(l + 0.2), 1) c h); }
+
+    .neutral    { color: oklch(from var(--brand) l 0 h); }</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      "from var(--brand)" destructures the color into l / c / h you can reuse.
+    </p>
+    <p>Walk the three: alpha, lighter via calc on L, desaturated via C = 0.</p>
+    <p>
+      This + color-mix is a full palette system with zero build-time color
+      tooling.
+    </p>
+    <p>We need clamp L in lighter, because calc(l + 0.2) can go over 1.</p>
+  </PNotes>
+</p-slide>

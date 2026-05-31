@@ -5,9 +5,11 @@ import qrRating from "../img/qrrating_cssday2026.png";
 import qrslide from "../img/qrslide_cssday2026.png";
 import Layout from "../layouts/Layout.astro";
 import Cascade from "../slides/cascade.astro";
+import Colors from "../slides/colors.astro";
 import CoverCssday2026 from "../slides/cover-cssday-2026.astro";
 import Cover from "../slides/cover.astro";
 import Intro from "../slides/intro.astro";
+import Space from "../slides/space.astro";
 import Thanks from "../slides/thanks.astro";
 const favIcon = favicon.src;
 const canRender = import.meta.env.DEV || new Date("2026-06-11") < new Date();
@@ -26,6 +28,8 @@ const metaData = {
         <Cover meReloaded={me2} />
         <Intro />
         <Cascade />
+        <Colors />
+        <Space />
         <Thanks
           qrLinkRating={qrRating}
           qrLink={qrslide}

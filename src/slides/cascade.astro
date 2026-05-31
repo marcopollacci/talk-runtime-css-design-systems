@@ -169,6 +169,40 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   </PNotes>
 </p-slide>
 
+<p-slide b-a>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Scoping</span> — naming vs the platform 🎯
+  </h5>
+  <div class="cols">
+    <div p-effect="from left">
+      <p class="tag">
+        Before — <span class="main-sub-gradient">faked with naming</span>
+      </p>
+      <pre
+        class="small-line"
+        data-label-file="card.scss">
+        <code style="font-size: 0.55em" is:raw class="language-scss">
+        /* the convention IS the isolation */
+        .card {}
+        .card__title {}
+        .card__title--active {}
+        .card__media {}</code>
+      </pre>
+    </div>
+  </div>
+  <PNotes>
+    <p>
+      Left: we invented a grammar of double-underscores and dashes to fake
+      isolation. Everyone recognizes it.
+    </p>
+    <p>
+      Right: the browser scopes by structure, not by name. Naming becomes less
+      responsible for isolation.
+    </p>
+    <p>Then move to the full @scope slide with the boundary example.</p>
+  </PNotes>
+</p-slide>
+
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
     <span class="main-gradient"
@@ -298,21 +332,24 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
     <div p-effect="from left">
       <h4>
         <span class="main-sub-gradient"
-          ><span style="font-family: Arial;">@</span>layer</span>
+          ><span style="font-family: Arial;">@</span>layer</span
+        >
       </h4>
       <p>where in the <strong>cascade</strong></p>
     </div>
     <div p-effect="zoom">
       <h4>
         <span class="main-sub-gradient"
-          ><span style="font-family: Arial;">@</span>scope</span>
+          ><span style="font-family: Arial;">@</span>scope</span
+        >
       </h4>
       <p>where in the <strong>DOM</strong></p>
     </div>
     <div p-effect="from right">
       <h4>
         <span class="main-sub-gradient"
-          ><span style="font-family: Arial;">@</span>property</span>
+          ><span style="font-family: Arial;">@</span>property</span
+        >
       </h4>
       <p>what a <strong>variable</strong> means</p>
     </div>
