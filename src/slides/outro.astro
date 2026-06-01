@@ -1,0 +1,143 @@
+---
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide class="cover-internal">
+  <h1>Limits</h1>
+
+  <PNotes>
+    <p>Credibility close — never oversell. Name the trade-offs plainly.</p>
+    <p>
+      The goal is not to pretend build-time disappears. The goal is to show
+      which decisions can now move closer to the browser.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Support &amp; progressive enhancement</h3>
+  <ul>
+    <li>
+      📊 <span>A lot of this is </span><span class="main-sub-gradient"
+        >usable today</span
+      ><span> — some parts still need care</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🛟 <span>Lean on </span><span class="main-sub-gradient">@supports</span
+      ><span> — enhance, don't require</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      🧱 <span>Sensible </span><span class="main-sub-gradient">fallbacks</span
+      ><span> first, modern layer on top</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Tie back to the honest-support slides in section 7. The pattern is always
+      the same: fallback first, modern CSS as enhancement.
+    </p>
+    <p>
+      Say it: a design system can't blindly assume the newest browser — but it
+      can reward it.
+    </p>
+    <p>
+      This is how we get the benefits without making the baseline experience
+      fragile.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Enhance, don't require</span> 🛟
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="enhance.css">
+    <code style="font-size: 0.7em" is:raw class="language-scss">
+    /* sensible baseline everyone gets */
+    article {
+        background: #f4f4f4;
+        color: #1a1a1a;
+    }
+
+    /* reward modern browsers */
+    @supports (background: light-dark(white, black)) {
+        article {
+            background: light-dark(white, oklch(0.2 0 0));
+            color: light-dark(oklch(0.2 0 0), white);
+        }
+    }</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      One concrete example beats a paragraph. The baseline is never broken; the
+      modern path is additive.
+    </p>
+    <p>
+      This is the responsible way to use newer CSS in a design system: not as a
+      cliff, but as a layer.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">When build-time still wins</h3>
+  <ul>
+    <li>
+      📦 <span class="main-sub-gradient">Bundling &amp; minification</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🖼️ <span class="main-sub-gradient">Asset optimization</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      🧪 <span class="main-sub-gradient">Type-checking</span><span>
+        &amp; linting tokens</span
+      >
+    </li>
+    <li p-fragment p-effect="zoom">
+      🕰️ <span>Heavy </span><span class="main-sub-gradient">legacy support</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Callback to the build-time column from the beginning of the talk — close
+      the loop we opened.
+    </p>
+    <p>
+      The message is not "delete your build". It's "stop using the build step
+      for things the browser can now do better at runtime".
+    </p>
+    <p>
+      Build-time is still excellent for packaging, safety checks and legacy
+      constraints. Runtime CSS is excellent for values that depend on context.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="center" autoplay timing="550">
+  <h2 class="main-gradient" style="margin-block-end: 0.3em">
+    The browser is part of the build tool now
+  </h2>
+  <p-fragment>
+    <p style="font-size: 0.7em; opacity: 0.8;">
+      Less precomputed CSS. More runtime CSS.
+    </p>
+  </p-fragment>
+
+  <PNotes>
+    <p>
+      Full circle to the opening question: "what if the browser could do most of
+      this?" — now it can do a lot more than it used to.
+    </p>
+    <p>
+      I slightly soften the original line here: not "the browser replaces the
+      build tool", but "the browser becomes part of the system".
+    </p>
+    <p>This is the line they leave with. Don't rush it.</p>
+  </PNotes>
+</p-slide>

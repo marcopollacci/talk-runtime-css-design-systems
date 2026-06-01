@@ -1,0 +1,176 @@
+---
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide class="cover-internal">
+  <h1>All together now</h1>
+
+  <PNotes>
+    <p>
+      The payoff slide. Everything we saw, in one component we actually ship.
+    </p>
+    <p>
+      Don't re-teach each feature — point at them as a chord, not single notes.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide follow-fragments>
+  <h5 style="margin-block-end: 0.8em" class="center">
+    <span class="main-gradient">One component. Everything at runtime.</span> 🎴
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="article.css">
+    <code style="font-size: 0.52em" is:raw class="language-scss">
+    @layer components {
+        @property --accent {
+            syntax: "<color>";
+            inherits: true;
+            initial-value: oklch(0.7 0.15 250);
+        }
+
+        :root {
+            color-scheme: light dark;
+        }
+
+        section {
+            container: content / inline-size;
+        }</code><code p-fragment style="font-size: 0.52em" is:raw class="language-scss">
+        article {
+            display: grid;
+            gap: clamp(0.5rem, 2cqi, 1rem);
+            padding-inline: clamp(1rem, 4cqi, 2rem);
+            padding-block: clamp(0.75rem, 3cqi, 1.5rem);
+
+            background: light-dark(white, oklch(0.2 0 0));
+            color: light-dark(oklch(0.2 0 0), white);
+            border-block-start: 4px solid var(--accent);
+        }
+
+        /* wide enough AND has an image -> media layout */
+        @container content (min-width: 30rem) {
+            article:has(img) {
+                grid-template-columns: 10rem 1fr;
+            }
+        }</code><code p-fragment style="font-size: 0.52em" is:raw class="language-scss">
+        article:hover {
+            background: color-mix(
+                in oklch,
+                light-dark(white, oklch(0.2 0 0)),
+                var(--accent) 8%
+            );
+        }
+    }</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      Let it land for a second before talking — the room should feel the
+      density. "This is the whole talk in 25 lines."
+    </p>
+    <p>
+      Walk it once, top to bottom: layer, typed token, color scheme, container,
+      fluid spacing, logical properties, light-dark, container query, :has(),
+      color-mix.
+    </p>
+    <p>
+      Important detail: the section is the query container, the article reacts.
+      A container query styles descendants, not the container itself.
+    </p>
+    <p>
+      The honest caveat out loud: these are modern features, so in a real DS we
+      layer them as progressive enhancement.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide all-map autoplay timing-fragments="1700">
+  <h3 style="margin-block-end: 1rem;" class="main-gradient center">
+    No build step touched this component
+  </h3>
+
+  <dl>
+    <div timing-start="500" p-fragment p-effect="from left">
+      <dt>@layer</dt>
+      <dd>predictable cascade</dd>
+    </div>
+
+    <div timing-start="500" p-fragment p-effect="from right">
+      <dt>@property</dt>
+      <dd>typed, inheritable token</dd>
+    </div>
+
+    <div timing-start="800" p-fragment p-effect="from left">
+      <dt>oklch + color-mix</dt>
+      <dd>palette computed live</dd>
+    </div>
+
+    <div timing-start="800" p-fragment p-effect="from right">
+      <dt>light-dark()</dt>
+      <dd>dark mode, one line</dd>
+    </div>
+
+    <div timing-start="1100" p-fragment p-effect="from left">
+      <dt>clamp + cqi</dt>
+      <dd>fluid spacing, no breakpoints</dd>
+    </div>
+
+    <div timing-start="1100" p-fragment p-effect="from right">
+      <dt>logical props</dt>
+      <dd>writing-mode aware</dd>
+    </div>
+
+    <div timing-start="1300" p-fragment p-effect="from left">
+      <dt>@container</dt>
+      <dd>reacts to its container</dd>
+    </div>
+
+    <div timing-start="1300" p-fragment p-effect="from right">
+      <dt>:has()</dt>
+      <dd>reacts to its content</dd>
+    </div>
+  </dl>
+
+  <PNotes>
+    <p>
+      This is the photographable summary. Reveal pairs as you name them, or all
+      at once if time is tight.
+    </p>
+    <p>
+      Land the headline: not one of these needed a compile step. The browser is
+      doing the runtime work.
+    </p>
+    <p>Transition into section 9 — the honest limits and the close.</p>
+  </PNotes>
+</p-slide>
+
+<style lang="scss">
+  [all-map] {
+    dl {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6em 1.5em;
+      margin-block-start: 1em;
+    }
+
+    dl > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15em;
+    }
+
+    dt {
+      font-family: var(--talk-marco-graphik-medium, monospace);
+      font-size: 0.7em;
+      color: var(--main-sub-gradient-fallback, currentColor);
+    }
+
+    dd {
+      font-size: 0.5em;
+      opacity: 0.8;
+      margin: 0;
+    }
+  }
+</style>

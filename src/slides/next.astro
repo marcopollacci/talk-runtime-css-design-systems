@@ -1,0 +1,258 @@
+---
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide class="cover-internal">
+  <h1>The near future</h1>
+
+  <PNotes>
+    <p>This section is honest speculation, not "use this Monday".</p>
+    <p>
+      The point is not production readiness. The point is direction: CSS is
+      moving conditional logic closer to values and components.
+    </p>
+    <p>
+      Set expectations up front — these are real ideas, some shipping or nearly
+      shipping, but always check support before building on them.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="cover-internal-sub-section">
+  <h2>Style queries</h2>
+
+  <PNotes>
+    <p>Container queries, but querying a custom property instead of size.</p>
+    <p>
+      Size queries ask: how much room do I have? Style queries ask: what state
+      or tone did my container expose?
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Variants without extra classes</h3>
+  <ul>
+    <li>
+      🎛️ <span>Query a </span><span class="main-sub-gradient"
+        >custom property</span
+      ><span>, not a size</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🚫 <span>No </span><span class="main-sub-gradient">modifier class</span
+      ><span> just to express a variant</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      🌗 <span>The container's </span><span class="main-sub-gradient"
+        >state</span
+      ><span> drives the styling</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      The idea: the container exposes a value, like --tone: loud, and its
+      children react to it.
+    </p>
+    <p>
+      The variant becomes data in CSS, not another naming convention to keep in
+      sync.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Query a custom property</span> 🎛️
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="style-query.css">
+  <code style="font-size: 0.6em" is:raw class="language-scss">section {
+        --tone: muted; /* just data on the container */
+    }
+    /* children react to the container's property */
+    @container style(--tone: muted) {
+        article {
+            background: oklch(0.95 0.02 250);
+        }
+    }
+    @container style(--tone: loud) {
+        article {
+            background: oklch(0.7 0.2 250);
+            color: white;
+        }
+    }</code></pre>
+
+  <PNotes>
+    <p>
+      Every element is implicitly a style container — no container-type needed
+      for style queries, unlike size queries. Worth saying.
+    </p>
+    <p>
+      Gotcha to flag: today style queries work on custom properties, not regular
+      CSS properties. Don't oversell it.
+    </p>
+    <p>
+      This is still progressive-enhancement territory: useful, interesting, but
+      check the support table before relying on it as your only styling path.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide support>
+  <h3 class="main-gradient">About support</h3>
+  <ul>
+    <li>
+      ✅ <span class="main-sub-gradient">Chrome, Edge, Safari</span><span>
+        — shipping for custom properties</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      🦊 <span>Firefox support </span><span class="main-sub-gradient"
+        >is moving</span
+      ><span> — verify the table</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      ⚠️ <span>Custom properties </span><span class="main-sub-gradient"
+        >only</span
+      ><span> — not regular properties yet</span>
+    </li>
+    <li p-fragment p-effect="zoom">
+      🛟 <span>Wrap in </span><span class="main-sub-gradient">@supports</span
+      ><span>, enhance progressively</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Be precise here. Credibility comes from saying what works, what does not,
+      and where the edges are.
+    </p>
+    <p>
+      The progressive-enhancement line is the responsible takeaway: it's a bonus
+      layer, not a foundation for every project yet.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="cover-internal-sub-section">
+  <h2>if()</h2>
+
+  <PNotes>
+    <p>
+      Be precise: this is the if() function, inline in a value — not a block
+      @if.
+    </p>
+    <p>
+      @when/@else are further out: spec-level ideas, no browser ships them as a
+      practical authoring tool today.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Inline conditional values</h3>
+  <ul>
+    <li>
+      🔀 <span>Pick a value </span><span class="main-sub-gradient">inline</span
+      ><span>, inside one declaration</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🧪 <span>Test a </span><span class="main-sub-gradient"
+        >style / media / feature</span
+      ><span> query</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      📏 <span>One </span><span class="main-sub-gradient">property value</span
+      ><span> at a time — not whole blocks</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Frame the difference vs @container: if() sets a single value; @container
+      applies a whole rule set.
+    </p>
+    <p>
+      They are complementary, not rivals: one is inline value selection, the
+      other is conditional rule application.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">if() — a value, conditionally</span> 🔀
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="if-function.css">
+    <code style="font-size: 0.7em" is:raw class="language-scss">
+    section {
+        --tone: loud;
+    }
+
+    article {
+        background: if(
+            style(--tone: loud): oklch(0.7 0.2 250);
+            else: oklch(0.95 0.02 250)
+        );
+    }</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      Read it as: if the container exposes --tone: loud, use the loud
+      background; otherwise use the muted background.
+    </p>
+    <p>
+      Same idea as the style query slide, but now the conditional choice happens
+      inside one property value.
+    </p>
+    <p>
+      This is genuinely young syntax — say it. It's the most forward-looking
+      thing in the talk.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide support>
+  <h3 class="main-gradient">About support</h3>
+  <ul>
+    <li>
+      🧪 <span class="main-sub-gradient">if()</span><span>
+        — young support, Chromium 137+</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      📏 <span>Inline </span><span class="main-sub-gradient">values only</span
+      ><span> — not rule blocks</span>
+    </li>
+    <li p-fragment p-effect="zoom">
+      🌱 <span>Worth </span><span class="main-sub-gradient">watching</span><span
+        >, not betting on</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      The third bullet pre-empts the audience member who saw an @if or @when
+      proposal somewhere. Set the record straight kindly.
+    </p>
+    <p>
+      Close honestly: this is where CSS is heading — bookmark it, don't bet a
+      production design system on it yet.
+    </p>
+    <p>Transition into section 8 — the real component that uses it all.</p>
+  </PNotes>
+</p-slide>
+
+<style lang="scss">
+  [support] {
+    li {
+      margin-block-end: 0.3em;
+    }
+  }
+</style>
