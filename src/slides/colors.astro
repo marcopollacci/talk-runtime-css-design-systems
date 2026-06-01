@@ -54,7 +54,7 @@ import PNotes from "../components/PNotes.astro";
         color: oklch(0.7 0.15 250);
     }
  
-    /* a consistent ramp — only L changes */
+    /* a balanced ramp — L changes, C is softened at the edges */
     --c-100: oklch(0.95 0.05 250);
     --c-500: oklch(0.70 0.15 250);
     --c-900: oklch(0.40 0.15 250);</code>
@@ -65,6 +65,41 @@ import PNotes from "../components/PNotes.astro";
       Point at the ramp: only the L channel moves, hue and chroma are stable.
     </p>
     <p>That's why oklch ramps look even — impossible to do reliably in hsl.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="center" feature-support>
+  <h4 class="main-gradient" style="margin-block-end: 0.8em">
+    oklch — browser support
+  </h4>
+  <div
+    class="hand-drawing-horizontal center"
+    style="gap: 2rem; width: 100%; justify-content: space-evenly"
+  >
+    <p-fragment p-effect="from left">
+      <span data-box>
+        <span class="bname">Chrome · Edge</span>
+        <span class="bver ok">✅ 111</span>
+      </span>
+    </p-fragment>
+    <p-fragment p-effect="zoom">
+      <span data-box>
+        <span class="bname">Firefox</span>
+        <span class="bver ok">✅ 113</span>
+      </span>
+    </p-fragment>
+    <p-fragment p-effect="from right">
+      <span data-box>
+        <span class="bname">Safari</span>
+        <span class="bver ok">✅ 15.4</span>
+      </span>
+    </p-fragment>
+  </div>
+  <p-fragment>
+    <p class="bs-badge">All evergreen browsers</p>
+  </p-fragment>
+  <PNotes>
+    <p>Ship it. All major engines support it.</p>
   </PNotes>
 </p-slide>
 
@@ -139,6 +174,41 @@ import PNotes from "../components/PNotes.astro";
   </PNotes>
 </p-slide>
 
+<p-slide class="center" feature-support>
+  <h4 class="main-gradient" style="margin-block-end: 0.8em">
+    color-mix() — browser support
+  </h4>
+  <div
+    class="hand-drawing-horizontal center"
+    style="gap: 2rem; width: 100%; justify-content: space-evenly"
+  >
+    <p-fragment p-effect="from left">
+      <span data-box>
+        <span class="bname">Chrome · Edge</span>
+        <span class="bver ok">✅ 111</span>
+      </span>
+    </p-fragment>
+    <p-fragment p-effect="zoom">
+      <span data-box>
+        <span class="bname">Firefox</span>
+        <span class="bver ok">✅ 113</span>
+      </span>
+    </p-fragment>
+    <p-fragment p-effect="from right">
+      <span data-box>
+        <span class="bname">Safari</span>
+        <span class="bver ok">✅ 16.2</span>
+      </span>
+    </p-fragment>
+  </div>
+  <p-fragment>
+    <p class="bs-badge">All evergreen browsers</p>
+  </p-fragment>
+  <PNotes>
+    <p>Ship it. All major engines support it.</p>
+  </PNotes>
+</p-slide>
+
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">
     <span class="main-gradient">Dark mode</span> — duplicated blocks 🌗
@@ -210,6 +280,41 @@ import PNotes from "../components/PNotes.astro";
   </PNotes>
 </p-slide>
 
+<p-slide class="center" feature-support>
+  <h4 class="main-gradient" style="margin-block-end: 0.8em">
+    light-dark() — browser support
+  </h4>
+  <div
+    class="hand-drawing-horizontal center"
+    style="gap: 2rem; width: 100%; justify-content: space-evenly"
+  >
+    <p-fragment p-effect="from left">
+      <span data-box>
+        <span class="bname">Chrome · Edge</span>
+        <span class="bver ok">✅ 123</span>
+      </span>
+    </p-fragment>
+    <p-fragment p-effect="zoom">
+      <span data-box>
+        <span class="bname">Firefox</span>
+        <span class="bver ok">✅ 120</span>
+      </span>
+    </p-fragment>
+    <p-fragment p-effect="from right">
+      <span data-box>
+        <span class="bname">Safari</span>
+        <span class="bver ok">✅ 17.5</span>
+      </span>
+    </p-fragment>
+  </div>
+  <p-fragment>
+    <p class="bs-badge">All evergreen browsers</p>
+  </p-fragment>
+  <PNotes>
+    <p>Ship it. All major engines support it.</p>
+  </PNotes>
+</p-slide>
+
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
     <span class="main-gradient">Relative color — derive from a base</span> ♻️
@@ -243,3 +348,79 @@ import PNotes from "../components/PNotes.astro";
     <p>We need clamp L in lighter, because calc(l + 0.2) can go over 1.</p>
   </PNotes>
 </p-slide>
+
+<p-slide class="center" feature-support>
+  <h4 class="main-gradient" style="margin-block-end: 0.8em">
+    Relative color — browser support
+  </h4>
+  <div
+    class="hand-drawing-horizontal center"
+    style="gap: 2rem; width: 100%; justify-content: space-evenly"
+  >
+    <p-fragment p-effect="from left">
+      <span data-box>
+        <span class="bname">Chrome · Edge</span>
+        <span class="bver ok">✅ 131</span>
+      </span>
+    </p-fragment>
+    <p-fragment p-effect="zoom">
+      <span data-box>
+        <span class="bname">Firefox</span>
+        <span class="bver ok">✅ 133</span>
+      </span>
+    </p-fragment>
+    <p-fragment p-effect="from right">
+      <span data-box>
+        <span class="bname">Safari</span>
+        <span class="bver ok">✅ 18</span>
+      </span>
+    </p-fragment>
+  </div>
+  <p-fragment>
+    <p class="bs-badge">~90% global coverage</p>
+  </p-fragment>
+  <PNotes>
+    <p>Ship it. All major engines support it.</p>
+  </PNotes>
+</p-slide>
+
+<style lang="scss">
+  [feature-support] {
+    [data-box] {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4em;
+      padding: 1em 1.8em;
+      min-width: 6em;
+      width: 28%;
+    }
+    .bname {
+      font-size: 0.55em;
+      opacity: 0.65;
+      font-family: var(--talk-marco-graphik-medium, sans-serif);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .bver {
+      font-size: 1.1em;
+      font-family: var(--font-mono, ui-monospace, monospace);
+      white-space: nowrap;
+      &.ok {
+        color: light-dark(oklch(0.42 0.2 145), oklch(0.78 0.2 145));
+      }
+      &.warn {
+        color: light-dark(oklch(0.55 0.2 75), oklch(0.82 0.18 75));
+      }
+      &.no {
+        color: light-dark(oklch(0.5 0.22 25), oklch(0.72 0.22 25));
+        opacity: 0.75;
+      }
+    }
+    .bs-badge {
+      font-size: 0.45em;
+      opacity: 0.55;
+      margin-block-start: 1.5em;
+    }
+  }
+</style>
