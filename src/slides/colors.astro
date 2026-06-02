@@ -209,6 +209,75 @@ import PNotes from "../components/PNotes.astro";
   </PNotes>
 </p-slide>
 
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Relative color — derive from a base</span> ♻️
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="relative-color.css">
+    <code is:raw class="language-scss">
+    :root {
+        --brand: oklch(0.7 0.15 250);
+    }
+ 
+    /* take --brand apart and rebuild it, channel by channel */
+    .muted   { color: oklch(from var(--brand) l c h / 0.5); }
+
+    .lighter { color: oklch(from var(--brand) 
+                      clamp(0, calc(l + 0.2), 1) c h); }
+
+    .neutral    { color: oklch(from var(--brand) l 0 h); }</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      "from var(--brand)" destructures the color into l / c / h you can reuse.
+    </p>
+    <p>Walk the three: alpha, lighter via calc on L, desaturated via C = 0.</p>
+    <p>
+      This + color-mix is a full palette system with zero build-time color
+      tooling.
+    </p>
+    <p>We need clamp L in lighter, because calc(l + 0.2) can go over 1.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="center" feature-support>
+  <h4 class="main-gradient" style="margin-block-end: 0.8em">
+    Relative color — browser support
+  </h4>
+  <div
+    class="hand-drawing-horizontal center"
+    style="gap: 2rem; width: 100%; justify-content: space-evenly"
+  >
+    <p-fragment p-effect="from left">
+      <span data-box>
+        <span class="bname">Chrome · Edge</span>
+        <span class="bver ok">✅ 131</span>
+      </span>
+    </p-fragment>
+    <p-fragment p-effect="zoom">
+      <span data-box>
+        <span class="bname">Firefox</span>
+        <span class="bver ok">✅ 133</span>
+      </span>
+    </p-fragment>
+    <p-fragment p-effect="from right">
+      <span data-box>
+        <span class="bname">Safari</span>
+        <span class="bver ok">✅ 18</span>
+      </span>
+    </p-fragment>
+  </div>
+  <p-fragment>
+    <p class="bs-badge">~90% global coverage</p>
+  </p-fragment>
+  <PNotes>
+    <p>Ship it. All major engines support it.</p>
+  </PNotes>
+</p-slide>
+
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">
     <span class="main-gradient">Dark mode</span> — duplicated blocks 🌗
@@ -309,75 +378,6 @@ import PNotes from "../components/PNotes.astro";
   </div>
   <p-fragment>
     <p class="bs-badge">All evergreen browsers</p>
-  </p-fragment>
-  <PNotes>
-    <p>Ship it. All major engines support it.</p>
-  </PNotes>
-</p-slide>
-
-<p-slide>
-  <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">Relative color — derive from a base</span> ♻️
-  </h5>
-  <pre
-    class="small-line"
-    data-label-file="relative-color.css">
-    <code is:raw class="language-scss">
-    :root {
-        --brand: oklch(0.7 0.15 250);
-    }
- 
-    /* take --brand apart and rebuild it, channel by channel */
-    .muted   { color: oklch(from var(--brand) l c h / 0.5); }
-
-    .lighter { color: oklch(from var(--brand) 
-                      clamp(0, calc(l + 0.2), 1) c h); }
-
-    .neutral    { color: oklch(from var(--brand) l 0 h); }</code>
-  </pre>
-
-  <PNotes>
-    <p>
-      "from var(--brand)" destructures the color into l / c / h you can reuse.
-    </p>
-    <p>Walk the three: alpha, lighter via calc on L, desaturated via C = 0.</p>
-    <p>
-      This + color-mix is a full palette system with zero build-time color
-      tooling.
-    </p>
-    <p>We need clamp L in lighter, because calc(l + 0.2) can go over 1.</p>
-  </PNotes>
-</p-slide>
-
-<p-slide class="center" feature-support>
-  <h4 class="main-gradient" style="margin-block-end: 0.8em">
-    Relative color — browser support
-  </h4>
-  <div
-    class="hand-drawing-horizontal center"
-    style="gap: 2rem; width: 100%; justify-content: space-evenly"
-  >
-    <p-fragment p-effect="from left">
-      <span data-box>
-        <span class="bname">Chrome · Edge</span>
-        <span class="bver ok">✅ 131</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="zoom">
-      <span data-box>
-        <span class="bname">Firefox</span>
-        <span class="bver ok">✅ 133</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="from right">
-      <span data-box>
-        <span class="bname">Safari</span>
-        <span class="bver ok">✅ 18</span>
-      </span>
-    </p-fragment>
-  </div>
-  <p-fragment>
-    <p class="bs-badge">~90% global coverage</p>
   </p-fragment>
   <PNotes>
     <p>Ship it. All major engines support it.</p>
