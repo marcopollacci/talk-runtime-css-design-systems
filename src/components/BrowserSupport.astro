@@ -30,7 +30,16 @@ const featureSlug = atRule ? feature.slice(1) : feature;
 
 <p-slide class="center" data-browser-support>
   <h4 class="main-gradient">
-    {atRule ? <><span data-at-char>@</span>{featureSlug}</> : feature} — browser support
+    {
+      atRule ? (
+        <>
+          <span data-at-char>@</span>
+          {featureSlug}
+        </>
+      ) : (
+        feature
+      )
+    } — browser support
   </h4>
 
   <div data-browser-grid>
@@ -98,9 +107,15 @@ const featureSlug = atRule ? feature.slice(1) : feature;
     border-radius: 0.8em;
     background: rgba(255, 255, 255, 0.03);
 
-    &[data-browser="chrome"]  { border-top-color: #4285f4; }
-    &[data-browser="firefox"] { border-top-color: #ff7139; }
-    &[data-browser="safari"]  { border-top-color: #1194d8; }
+    &[data-browser="chrome"] {
+      border-top-color: #4285f4;
+    }
+    &[data-browser="firefox"] {
+      border-top-color: #ff7139;
+    }
+    &[data-browser="safari"] {
+      border-top-color: #1194d8;
+    }
 
     span {
       font-size: 0.5em;
@@ -117,9 +132,13 @@ const featureSlug = atRule ? feature.slice(1) : feature;
       font-weight: 600;
     }
 
-    &[data-status="ok"]   data { color: light-dark(oklch(0.42 0.2 145), oklch(0.78 0.2 145)); }
-    &[data-status="warn"] data { color: light-dark(oklch(0.55 0.2 75),  oklch(0.82 0.18 75)); }
-    &[data-status="no"]   data {
+    &[data-status="ok"] data {
+      color: light-dark(oklch(0.42 0.2 145), oklch(0.78 0.2 145));
+    }
+    &[data-status="warn"] data {
+      color: light-dark(oklch(0.55 0.2 75), oklch(0.82 0.18 75));
+    }
+    &[data-status="no"] data {
       color: light-dark(oklch(0.5 0.22 25), oklch(0.72 0.22 25));
       opacity: 0.75;
     }
@@ -127,7 +146,6 @@ const featureSlug = atRule ? feature.slice(1) : feature;
 
   [data-baseline] {
     font-size: 0.45em;
-    opacity: 0.5;
     margin-block-start: 1.5em;
   }
 </style>
