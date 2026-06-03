@@ -1,6 +1,6 @@
 ---
-import PNotes from "../components/PNotes.astro";
 import BrowserSupport from "../components/BrowserSupport.astro";
+import PNotes from "../components/PNotes.astro";
 ---
 
 <p-slide class="cover-internal">
@@ -50,12 +50,15 @@ import BrowserSupport from "../components/BrowserSupport.astro";
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag">Before — <span class="main-sub-gradient">media query steps</span></span>
+        <span class="tag"
+          >Before — <span class="main-sub-gradient">media query steps</span
+          ></span
+        >
       </p>
       <pre
         class="small-line"
         data-label-file="type.css">
-        <code style="font-size: 0.55em" is:raw class="language-scss">
+        <code style="font-size: 0.85em" is:raw class="language-scss">
         p { font-size: 2rem; }
 
         @media (min-width: 768px) {
@@ -129,7 +132,7 @@ import BrowserSupport from "../components/BrowserSupport.astro";
   <pre
     class="small-line"
     data-label-file="scale.css">
-    <code is:raw class="language-scss">
+    <code style="font-size: 0.90em" is:raw class="language-scss">
     :root {
         --ratio: 1.25;
         --step-0: clamp(1rem, calc(0.9rem + 0.5vw), 1.25rem);

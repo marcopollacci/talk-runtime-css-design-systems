@@ -1,6 +1,6 @@
 ---
-import PNotes from "../components/PNotes.astro";
 import BrowserSupport from "../components/BrowserSupport.astro";
+import PNotes from "../components/PNotes.astro";
 ---
 
 <p-slide class="cover-internal">
@@ -65,19 +65,21 @@ import BrowserSupport from "../components/BrowserSupport.astro";
 
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">Components</span> — viewport pretending to be context
-    📺
+    <span class="main-gradient">Viewport</span> pretending to be context 📺
   </h5>
 
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag">Before — <span class="main-sub-gradient">viewport breakpoints</span></span>
+        <span class="tag"
+          >Before — <span class="main-sub-gradient">viewport breakpoints</span
+          ></span
+        >
       </p>
       <pre
         class="small-line"
         data-label-file="article.css">
-        <code style="font-size: 0.55em" is:raw class="language-scss">
+        <code style="font-size: 0.75em" is:raw class="language-scss">
         article {
           display: grid;
           gap: 1rem;
@@ -268,7 +270,7 @@ import BrowserSupport from "../components/BrowserSupport.astro";
   <pre
     class="small-line"
     data-label-file="has.css">
-    <code style="font-size: 0.7em" is:raw class="language-scss">
+    <code style="font-size: 0.65em" is:raw class="language-scss">
     /* an article that contains an image gets a media layout */
     article:has(img) {
         grid-template-columns: 8rem 1fr;
@@ -310,4 +312,3 @@ import BrowserSupport from "../components/BrowserSupport.astro";
   safari="15.4"
   status="All evergreen browsers"
 />
-

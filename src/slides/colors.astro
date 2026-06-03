@@ -84,7 +84,10 @@ import PNotes from "../components/PNotes.astro";
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag">Before — <span class="main-sub-gradient">compiled at build</span></span>
+        <span class="tag"
+          >Before — <span class="main-sub-gradient">compiled at build</span
+          ></span
+        >
       </p>
       <pre
         class="small-line"
@@ -125,7 +128,7 @@ import PNotes from "../components/PNotes.astro";
   <pre
     class="small-line"
     data-label-file="color-mix.css">
-    <code is:raw class="language-scss">
+    <code style="font-size: 0.85em" is:raw class="language-scss">
     :root {
         --brand: oklch(0.7 0.15 250);
     }
@@ -163,7 +166,7 @@ import PNotes from "../components/PNotes.astro";
   <pre
     class="small-line"
     data-label-file="relative-color.css">
-    <code is:raw class="language-scss">
+    <code style="font-size: 0.90em" is:raw class="language-scss">
     :root {
         --brand: oklch(0.7 0.15 250);
     }
@@ -205,12 +208,15 @@ import PNotes from "../components/PNotes.astro";
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag">Before — <span class="main-sub-gradient">duplicated block</span></span>
+        <span class="tag"
+          >Before — <span class="main-sub-gradient">duplicated block</span
+          ></span
+        >
       </p>
       <pre
         class="small-line"
         data-label-file="theme.css">
-        <code style="font-size: 0.55em" is:raw class="language-scss">
+        <code style="font-size: 0.75em" is:raw class="language-scss">
         article {
           background: white;
           color: black;
