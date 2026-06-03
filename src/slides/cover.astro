@@ -1,8 +1,8 @@
 ---
 import { Image } from "astro:assets";
+import fourtyFactory from "../img/40factory.svg";
 import me from "../img/me.png";
 import qrLink from "../img/qr_link.svg";
-import fourtyFactory from "../img/40factory.svg";
 const { meReloaded } = Astro.props;
 ---
 
@@ -21,7 +21,7 @@ const { meReloaded } = Astro.props;
     <span>Marco Pollacci</span>
     <span>Senior Frontend Developer</span>
     <div role="generic">
-      <span>@</span>
+      <span style="font-family: Arial;font-size: 0.55em;">@</span>
       <Image
         src={fourtyFactory}
         alt="40factory logo"

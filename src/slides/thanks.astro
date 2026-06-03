@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import me from "../img/me.png";
 import fourtyFactory from "../img/40factory.svg";
+import me from "../img/me.png";
 const { qrLink, urlLink, qrLinkRating, QuestionsSlide, meReloaded } =
   Astro.props;
 ---
@@ -53,7 +53,7 @@ const { qrLink, urlLink, qrLinkRating, QuestionsSlide, meReloaded } =
     <span>Marco Pollacci</span>
     <span>Senior Frontend Developer</span>
     <div role="generic">
-      <span>@</span>
+      <span style="font-family: Arial;font-size: 0.55em;">@</span>
       <Image
         src={fourtyFactory}
         alt="40factory logo"
