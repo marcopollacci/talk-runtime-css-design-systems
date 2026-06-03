@@ -1,6 +1,6 @@
 ---
-import PNotes from "../components/PNotes.astro";
 import BrowserSupport from "../components/BrowserSupport.astro";
+import PNotes from "../components/PNotes.astro";
 ---
 
 <p-slide class="cover-internal">
@@ -89,12 +89,12 @@ import BrowserSupport from "../components/BrowserSupport.astro";
       <pre
         class="small-line"
         data-label-file="button.scss">
-        <code style="font-size: 0.55em" is:raw class="language-scss">
-        $brand: #4060d0;
+        <code is:raw class="language-scss">
+  $brand: #4060d0;
 
-        button               { background: $brand; }
-        button:hover         { background: darken($brand, 15%); }
-        button[data-subtle]  { background: lighten($brand, 40%); }</code>
+  button               { background: $brand; }
+  button:hover         { background: darken($brand, 15%); }
+  button[data-subtle]  { background: lighten($brand, 40%); } </code>
       </pre>
     </div>
   </div>
@@ -276,4 +276,3 @@ import BrowserSupport from "../components/BrowserSupport.astro";
   safari="17.5"
   status="All evergreen browsers"
 />
-
