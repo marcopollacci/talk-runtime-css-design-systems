@@ -1,0 +1,320 @@
+---
+const canRender = import.meta.env.DEV || new Date("2026-06-11") < new Date();
+---
+{canRender && <>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@layer components — live demo</title>
+    <style>
+      @layer base, components;
+
+      @layer base {
+        *,
+        *::before,
+        *::after {
+          box-sizing: border-box;
+          margin: 0;
+        }
+
+        html {
+          color-scheme: light dark;
+        }
+
+        body {
+          font-family: system-ui, sans-serif;
+          background: light-dark(#f0f0f0, oklch(0.12 0 0));
+          color: light-dark(oklch(0.2 0 0), white);
+          padding: 2rem;
+          min-height: 100dvh;
+          transition:
+            background 0.3s,
+            color 0.3s;
+        }
+
+        header {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          margin-block-end: 2.5rem;
+        }
+
+        header > p {
+          font-size: 0.75rem;
+          font-weight: 600;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          opacity: 0.45;
+        }
+
+        fieldset {
+          display: flex;
+          align-items: center;
+          gap: 1.25rem;
+          width: fit-content;
+          padding: 0.75rem 1rem;
+          border: 1px solid light-dark(oklch(0.88 0 0), oklch(0.28 0 0));
+          border-radius: 0.5rem;
+          background: light-dark(white, oklch(0.18 0 0));
+        }
+
+        legend {
+          font-size: 0.7rem;
+          font-weight: 600;
+          letter-spacing: 0.06em;
+          text-transform: uppercase;
+          opacity: 0.5;
+          padding-inline: 0.25rem;
+        }
+
+        label {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-size: 0.8rem;
+          font-weight: 500;
+        }
+
+        input[type="color"] {
+          width: 2rem;
+          height: 1.5rem;
+          border: none;
+          border-radius: 0.25rem;
+          cursor: pointer;
+          padding: 0;
+          background: none;
+        }
+
+        button {
+          font-size: 0.8rem;
+          font-weight: 500;
+          padding: 0.35rem 0.75rem;
+          border-radius: 0.35rem;
+          border: 1px solid light-dark(oklch(0.78 0 0), oklch(0.38 0 0));
+          background: light-dark(oklch(0.96 0 0), oklch(0.25 0 0));
+          color: inherit;
+          cursor: pointer;
+        }
+
+        button:hover {
+          background: light-dark(oklch(0.9 0 0), oklch(0.32 0 0));
+        }
+
+        main > h2 {
+          font-size: 0.7rem;
+          font-weight: 600;
+          letter-spacing: 0.07em;
+          text-transform: uppercase;
+          opacity: 0.5;
+          margin-block-start: 2rem;
+          margin-block-end: 0.75rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        main > h2::after {
+          content: "";
+          flex: 1;
+          height: 1px;
+          background: currentColor;
+          opacity: 0.2;
+        }
+
+        main > h2 small {
+          font-weight: 400;
+          opacity: 0.75;
+          text-transform: none;
+          letter-spacing: 0;
+        }
+
+        article h3 {
+          font-size: 0.95em;
+          font-weight: 600;
+          margin-block-end: 0.25em;
+        }
+
+        article p {
+          font-size: 0.82em;
+          opacity: 0.7;
+          line-height: 1.5;
+        }
+
+        article code {
+          font-size: 0.9em;
+          font-family: ui-monospace, monospace;
+        }
+
+        article img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 0.2rem;
+          display: block;
+        }
+      }
+
+      @layer components {
+        @property --accent {
+          syntax: "<color>";
+          inherits: true;
+          initial-value: oklch(0.7 0.15 250);
+        }
+
+        :root {
+          color-scheme: light dark;
+        }
+
+        section {
+          container: content / inline-size;
+          display: flex;
+          flex-direction: column;
+          gap: 0.75rem;
+        }
+
+        article {
+          display: grid;
+          gap: clamp(0.5rem, 2cqi, 1rem);
+          padding-inline: clamp(1rem, 4cqi, 2rem);
+          padding-block: clamp(0.75rem, 3cqi, 1.5rem);
+
+          background: light-dark(white, oklch(0.2 0 0));
+          color: light-dark(oklch(0.2 0 0), white);
+          border-block-start: 4px solid var(--accent);
+          border-radius: 0 0 0.35rem 0.35rem;
+          transition: background 0.2s;
+        }
+
+        /* wide enough AND has an image -> media layout */
+        @container content (min-width: 30rem) {
+          article:has(img) {
+            grid-template-columns: 10rem 1fr;
+          }
+        }
+
+        article:hover {
+          background: color-mix(
+            in oklch,
+            light-dark(white, oklch(0.2 0 0)),
+            var(--accent) 8%
+          );
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <p>@layer components — runtime CSS design systems</p>
+      <fieldset>
+        <legend>Demo controls</legend>
+        <label for="accent-picker">
+          Accent
+          <input type="color" id="accent-picker" value="#6b9fe4" />
+        </label>
+        <button type="button" id="theme-toggle">Toggle dark / light</button>
+      </fieldset>
+    </header>
+
+    <main>
+      <h2 id="narrow-h">
+        Narrow container
+        <small>(max-width: 26rem — container query inactive)</small>
+      </h2>
+      <section style="max-width: 26rem" aria-labelledby="narrow-h">
+        <article>
+          <div>
+            <h3>Text-only card</h3>
+            <p>
+              No image. Grid has a single implicit column. Padding and gap scale
+              with <code>cqi</code>.
+            </p>
+          </div>
+        </article>
+
+        <article>
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120' viewBox='0 0 160 120'%3E%3Crect width='160' height='120' fill='%23a0b4d0' rx='4'/%3E%3Ccircle cx='60' cy='50' r='20' fill='%23fff' opacity='.5'/%3E%3Cpath d='M0 80 Q40 55 80 75 T160 65 V120 H0Z' fill='%23fff' opacity='.2'/%3E%3C/svg%3E"
+            alt="Abstract blue landscape placeholder"
+            width="160"
+            height="120"
+          />
+          <div>
+            <h3>Card with image</h3>
+            <p>
+              Container too narrow —
+              <code>@container content (min-width: 30rem)</code>
+              doesn't fire. Image stays stacked above the text.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <h2 id="wide-h">
+        Wide container
+        <small>(full width — container query active)</small>
+      </h2>
+      <section aria-labelledby="wide-h">
+        <article>
+          <div>
+            <h3>Text-only card</h3>
+            <p>
+              No <code>img</code> child — <code>:has(img)</code> doesn't match.
+              Single column even in a wide container.
+            </p>
+          </div>
+        </article>
+
+        <article>
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120' viewBox='0 0 160 120'%3E%3Crect width='160' height='120' fill='%23a0b4d0' rx='4'/%3E%3Ccircle cx='60' cy='50' r='20' fill='%23fff' opacity='.5'/%3E%3Cpath d='M0 80 Q40 55 80 75 T160 65 V120 H0Z' fill='%23fff' opacity='.2'/%3E%3C/svg%3E"
+            alt="Abstract blue landscape placeholder"
+            width="160"
+            height="120"
+          />
+          <div>
+            <h3>Card with image</h3>
+            <p>
+              Container ≥ 30rem <em>and</em> <code>:has(img)</code> matches —
+              <code>grid-template-columns: 10rem 1fr</code> kicks in.
+            </p>
+          </div>
+        </article>
+
+        <article>
+          <img
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120' viewBox='0 0 160 120'%3E%3Crect width='160' height='120' fill='%23b4a0d0' rx='4'/%3E%3Crect x='30' y='30' width='100' height='60' rx='6' fill='%23fff' opacity='.3'/%3E%3Ccircle cx='80' cy='60' r='18' fill='%23fff' opacity='.5'/%3E%3C/svg%3E"
+            alt="Abstract purple shapes placeholder"
+            width="160"
+            height="120"
+          />
+          <div>
+            <h3>Hover me</h3>
+            <p>
+              <code>color-mix(in oklch, …, var(--accent) 8%)</code> tints the
+              background on hover. Change the accent color above to see it
+              shift.
+            </p>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <script>
+      const picker = document.getElementById("accent-picker");
+      const toggleBtn = document.getElementById("theme-toggle");
+
+      picker!.addEventListener("input", (e) => {
+        document.documentElement.style.setProperty("--accent", (e.target as HTMLInputElement).value);
+      });
+
+      toggleBtn!.addEventListener("click", () => {
+        const cs = document.documentElement.style.colorScheme;
+        document.documentElement.style.colorScheme =
+          cs === "dark" ? "light" : "dark";
+      });
+    </script>
+  </body>
+</html>
+</>}
