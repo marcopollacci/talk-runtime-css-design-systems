@@ -50,7 +50,7 @@ import BrowserSupport from "../components/BrowserSupport.astro";
     class="small-line"
     data-label-file="oklch.css">
     <code is:raw class="language-scss">
-    .brand {
+    button {
         /* L: 0-1 · C: intensity · H: 0-360 */
         color: oklch(0.7 0.15 250);
     }
@@ -92,9 +92,9 @@ import BrowserSupport from "../components/BrowserSupport.astro";
         <code style="font-size: 0.55em" is:raw class="language-scss">
         $brand: #4060d0;
 
-        .btn        { background: $brand; }
-        .btn:hover  { background: darken($brand, 15%); }
-        .btn-subtle { background: lighten($brand, 40%); }</code>
+        button               { background: $brand; }
+        button:hover         { background: darken($brand, 15%); }
+        button[data-subtle]  { background: lighten($brand, 40%); }</code>
       </pre>
     </div>
   </div>
@@ -131,9 +131,9 @@ import BrowserSupport from "../components/BrowserSupport.astro";
     }
  
     /* generate the ramp from ONE token, in the browser */
-    .btn        { background: var(--brand); }
-    .btn:hover  { background: color-mix(in oklch, var(--brand), black 15%); }
-    .btn-subtle { background: color-mix(in oklch, var(--brand), white 80%); }</code>
+    button              { background: var(--brand); }
+    button:hover        { background: color-mix(in oklch, var(--brand), black 15%); }
+    button[data-subtle] { background: color-mix(in oklch, var(--brand), white 80%); }</code>
   </pre>
 
   <PNotes>
@@ -169,12 +169,12 @@ import BrowserSupport from "../components/BrowserSupport.astro";
     }
  
     /* take --brand apart and rebuild it, channel by channel */
-    .muted   { color: oklch(from var(--brand) l c h / 0.5); }
+    [data-muted]   { color: oklch(from var(--brand) l c h / 0.5); }
 
-    .lighter { color: oklch(from var(--brand) 
+    [data-lighter] { color: oklch(from var(--brand)
                       clamp(0, calc(l + 0.2), 1) c h); }
 
-    .neutral    { color: oklch(from var(--brand) l 0 h); }</code>
+    [data-neutral] { color: oklch(from var(--brand) l 0 h); }</code>
   </pre>
 
   <PNotes>
@@ -211,13 +211,13 @@ import BrowserSupport from "../components/BrowserSupport.astro";
         class="small-line"
         data-label-file="theme.css">
         <code style="font-size: 0.55em" is:raw class="language-scss">
-        .card {
+        article {
           background: white;
           color: black;
         }
 
         @media (prefers-color-scheme: dark) {
-          .card {
+          article {
             background: #1a1a1a;
             color: white;
           }
@@ -254,7 +254,7 @@ import BrowserSupport from "../components/BrowserSupport.astro";
         color-scheme: light dark;
     }
  
-    .card {
+    article {
         background: light-dark(white, oklch(0.2 0 0));
         color:      light-dark(black, white);
     }</code>
