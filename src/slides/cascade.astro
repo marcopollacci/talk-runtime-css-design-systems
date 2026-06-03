@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import PNotes from "../components/PNotes.astro";
+import BrowserSupport from "../components/BrowserSupport.astro";
 import cascadeMeme from "../img/cascade-meme.jpeg";
 ---
 
@@ -129,40 +130,14 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   </PNotes>
 </p-slide>
 
-<p-slide class="center" feature-support>
-  <h4 class="main-gradient" style="margin-block-end: 0.8em">
-    <span style="font-family: Arial;">@</span>layer — browser support
-  </h4>
-  <div
-    class="hand-drawing-horizontal center"
-    style="gap: 2rem; width: 100%; justify-content: space-evenly"
-  >
-    <p-fragment p-effect="from left">
-      <span data-box>
-        <span class="bname">Chrome · Edge</span>
-        <span class="bver ok">✅ 99</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="zoom">
-      <span data-box>
-        <span class="bname">Firefox</span>
-        <span class="bver ok">✅ 97</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="from right">
-      <span data-box>
-        <span class="bname">Safari</span>
-        <span class="bver ok">✅ 15.4</span>
-      </span>
-    </p-fragment>
-  </div>
-  <p-fragment>
-    <p class="bs-badge">Baseline — widely available</p>
-  </p-fragment>
-  <PNotes>
-    <p>Ship it. All major engines support it.</p>
-  </PNotes>
-</p-slide>
+<BrowserSupport
+  feature="@layer"
+  atRule
+  chrome="99"
+  firefox="97"
+  safari="15.4"
+  status="Baseline — widely available"
+/>
 
 <p-slide class="cover-internal-sub-section">
   <h2><span style="font-family: Arial;">@</span>scope</h2>
@@ -288,40 +263,14 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   </PNotes>
 </p-slide>
 
-<p-slide class="center" feature-support>
-  <h4 class="main-gradient" style="margin-block-end: 0.8em">
-    <span style="font-family: Arial;">@</span>scope — browser support
-  </h4>
-  <div
-    class="hand-drawing-horizontal center"
-    style="gap: 2rem; width: 100%; justify-content: space-evenly"
-  >
-    <p-fragment p-effect="from left">
-      <span data-box>
-        <span class="bname">Chrome · Edge</span>
-        <span class="bver ok">✅ 118</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="zoom">
-      <span data-box>
-        <span class="bname">Firefox</span>
-        <span class="bver ok">✅ 146</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="from right">
-      <span data-box>
-        <span class="bname">Safari</span>
-        <span class="bver ok">✅ 17.4</span>
-      </span>
-    </p-fragment>
-  </div>
-  <p-fragment>
-    <p class="bs-badge">Baseline — newly available</p>
-  </p-fragment>
-  <PNotes>
-    <p>Ship it. All major engines support it.</p>
-  </PNotes>
-</p-slide>
+<BrowserSupport
+  feature="@scope"
+  atRule
+  chrome="118"
+  firefox="146"
+  safari="17.4"
+  status="Baseline — newly available"
+/>
 
 <p-slide class="cover-internal-sub-section">
   <h2><span style="font-family: Arial;">@</span>property</h2>
@@ -409,40 +358,14 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   </PNotes>
 </p-slide>
 
-<p-slide class="center" feature-support>
-  <h4 class="main-gradient" style="margin-block-end: 0.8em">
-    <span style="font-family: Arial;">@</span>property — browser support
-  </h4>
-  <div
-    class="hand-drawing-horizontal center"
-    style="gap: 2rem; width: 100%; justify-content: space-evenly"
-  >
-    <p-fragment p-effect="from left">
-      <span data-box>
-        <span class="bname">Chrome · Edge</span>
-        <span class="bver ok">✅ 85</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="zoom">
-      <span data-box>
-        <span class="bname">Firefox</span>
-        <span class="bver ok">✅ 128</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="from right">
-      <span data-box>
-        <span class="bname">Safari</span>
-        <span class="bver ok">✅ 16.4</span>
-      </span>
-    </p-fragment>
-  </div>
-  <p-fragment>
-    <p class="bs-badge">Baseline — widely available</p>
-  </p-fragment>
-  <PNotes>
-    <p>Ship it. All major engines support it.</p>
-  </PNotes>
-</p-slide>
+<BrowserSupport
+  feature="@property"
+  atRule
+  chrome="85"
+  firefox="128"
+  safari="16.4"
+  status="Baseline — widely available"
+/>
 
 <p-slide cascade-recap>
   <h2 class="main-gradient center">Explicit control over how CSS propagates</h2>
@@ -496,44 +419,6 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
         opacity: 0.85;
         margin: 0;
       }
-    }
-  }
-  [feature-support] {
-    [data-box] {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4em;
-      padding: 1em 1.8em;
-      min-width: 6em;
-      width: 28%;
-    }
-    .bname {
-      font-size: 0.55em;
-      opacity: 0.65;
-      font-family: var(--talk-marco-graphik-medium, sans-serif);
-      text-align: center;
-      white-space: nowrap;
-    }
-    .bver {
-      font-size: 1.1em;
-      font-family: var(--font-mono, ui-monospace, monospace);
-      white-space: nowrap;
-      &.ok {
-        color: light-dark(oklch(0.42 0.2 145), oklch(0.78 0.2 145));
-      }
-      &.warn {
-        color: light-dark(oklch(0.55 0.2 75), oklch(0.82 0.18 75));
-      }
-      &.no {
-        color: light-dark(oklch(0.5 0.22 25), oklch(0.72 0.22 25));
-        opacity: 0.75;
-      }
-    }
-    .bs-badge {
-      font-size: 0.45em;
-      opacity: 0.55;
-      margin-block-start: 1.5em;
     }
   }
 </style>

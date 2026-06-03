@@ -1,0 +1,133 @@
+---
+import PNotes from "./PNotes.astro";
+
+interface Props {
+  feature: string;
+  chrome: string;
+  firefox: string;
+  safari: string;
+  status?: string;
+  atRule?: boolean;
+  chromeStatus?: "ok" | "warn" | "no";
+  firefoxStatus?: "ok" | "warn" | "no";
+  safariStatus?: "ok" | "warn" | "no";
+}
+
+const {
+  feature,
+  chrome,
+  firefox,
+  safari,
+  status,
+  atRule = false,
+  chromeStatus = "ok",
+  firefoxStatus = "ok",
+  safariStatus = "ok",
+} = Astro.props;
+
+const featureSlug = atRule ? feature.slice(1) : feature;
+---
+
+<p-slide class="center" data-browser-support>
+  <h4 class="main-gradient">
+    {atRule ? <><span data-at-char>@</span>{featureSlug}</> : feature} — browser support
+  </h4>
+
+  <div data-browser-grid>
+    <p-fragment p-effect="from left">
+      <div data-browser="chrome" data-status={chromeStatus}>
+        <span>Chrome · Edge</span>
+        <data value={chrome}>{chrome}</data>
+      </div>
+    </p-fragment>
+
+    <p-fragment p-effect="zoom">
+      <div data-browser="firefox" data-status={firefoxStatus}>
+        <span>Firefox</span>
+        <data value={firefox}>{firefox}</data>
+      </div>
+    </p-fragment>
+
+    <p-fragment p-effect="from right">
+      <div data-browser="safari" data-status={safariStatus}>
+        <span>Safari</span>
+        <data value={safari}>{safari}</data>
+      </div>
+    </p-fragment>
+  </div>
+
+  {
+    status && (
+      <p-fragment>
+        <p data-baseline>{status}</p>
+      </p-fragment>
+    )
+  }
+
+  <PNotes>
+    <p>Ship it. All major engines support it.</p>
+  </PNotes>
+</p-slide>
+
+<style lang="scss">
+  [data-at-char] {
+    font-family: Arial, sans-serif;
+  }
+
+  h4 {
+    margin-block-end: 1em;
+  }
+
+  [data-browser-grid] {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2em;
+    width: 100%;
+  }
+
+  [data-browser] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6em;
+    padding: 1em 1.8em;
+    width: 6em;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-top-width: 3px;
+    border-radius: 0.8em;
+    background: rgba(255, 255, 255, 0.03);
+
+    &[data-browser="chrome"]  { border-top-color: #4285f4; }
+    &[data-browser="firefox"] { border-top-color: #ff7139; }
+    &[data-browser="safari"]  { border-top-color: #1194d8; }
+
+    span {
+      font-size: 0.5em;
+      opacity: 0.6;
+      font-family: var(--talk-marco-graphik-medium, sans-serif);
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    data {
+      font-size: 1.2em;
+      font-family: var(--font-mono, ui-monospace, monospace);
+      white-space: nowrap;
+      font-weight: 600;
+    }
+
+    &[data-status="ok"]   data { color: light-dark(oklch(0.42 0.2 145), oklch(0.78 0.2 145)); }
+    &[data-status="warn"] data { color: light-dark(oklch(0.55 0.2 75),  oklch(0.82 0.18 75)); }
+    &[data-status="no"]   data {
+      color: light-dark(oklch(0.5 0.22 25), oklch(0.72 0.22 25));
+      opacity: 0.75;
+    }
+  }
+
+  [data-baseline] {
+    font-size: 0.45em;
+    opacity: 0.5;
+    margin-block-start: 1.5em;
+  }
+</style>

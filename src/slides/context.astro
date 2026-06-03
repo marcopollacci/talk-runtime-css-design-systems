@@ -1,5 +1,6 @@
 ---
 import PNotes from "../components/PNotes.astro";
+import BrowserSupport from "../components/BrowserSupport.astro";
 ---
 
 <p-slide class="cover-internal">
@@ -145,40 +146,13 @@ import PNotes from "../components/PNotes.astro";
   </PNotes>
 </p-slide>
 
-<p-slide class="center" feature-support>
-  <h4 class="main-gradient" style="margin-block-end: 0.8em">
-    Container queries — browser support
-  </h4>
-  <div
-    class="hand-drawing-horizontal center"
-    style="gap: 2rem; width: 100%; justify-content: space-evenly"
-  >
-    <p-fragment p-effect="from left">
-      <span data-box>
-        <span class="bname">Chrome · Edge</span>
-        <span class="bver ok">✅ 106</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="zoom">
-      <span data-box>
-        <span class="bname">Firefox</span>
-        <span class="bver ok">✅ 110</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="from right">
-      <span data-box>
-        <span class="bname">Safari</span>
-        <span class="bver ok">✅ 16</span>
-      </span>
-    </p-fragment>
-  </div>
-  <p-fragment>
-    <p class="bs-badge">Baseline 2023</p>
-  </p-fragment>
-  <PNotes>
-    <p>Ship it. All major engines support it.</p>
-  </PNotes>
-</p-slide>
+<BrowserSupport
+  feature="Container queries"
+  chrome="106"
+  firefox="110"
+  safari="16"
+  status="Baseline 2023"
+/>
 
 <p-slide>
   <h3 class="main-gradient">Bonus: container units</h3>
@@ -329,78 +303,11 @@ import PNotes from "../components/PNotes.astro";
   </PNotes>
 </p-slide>
 
-<p-slide class="center" feature-support>
-  <h4 class="main-gradient" style="margin-block-end: 0.8em">
-    :has() — browser support
-  </h4>
-  <div
-    class="hand-drawing-horizontal center"
-    style="gap: 2rem; width: 100%; justify-content: space-evenly"
-  >
-    <p-fragment p-effect="from left">
-      <span data-box>
-        <span class="bname">Chrome · Edge</span>
-        <span class="bver ok">✅ 105</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="zoom">
-      <span data-box>
-        <span class="bname">Firefox</span>
-        <span class="bver ok">✅ 121</span>
-      </span>
-    </p-fragment>
-    <p-fragment p-effect="from right">
-      <span data-box>
-        <span class="bname">Safari</span>
-        <span class="bver ok">✅ 15.4</span>
-      </span>
-    </p-fragment>
-  </div>
-  <p-fragment>
-    <p class="bs-badge">All evergreen browsers</p>
-  </p-fragment>
-  <PNotes>
-    <p>Ship it. All major engines support it.</p>
-  </PNotes>
-</p-slide>
+<BrowserSupport
+  feature=":has()"
+  chrome="105"
+  firefox="121"
+  safari="15.4"
+  status="All evergreen browsers"
+/>
 
-<style lang="scss">
-  [feature-support] {
-    [data-box] {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.4em;
-      padding: 1em 1.8em;
-      min-width: 6em;
-      width: 28%;
-    }
-    .bname {
-      font-size: 0.55em;
-      opacity: 0.65;
-      font-family: var(--talk-marco-graphik-medium, sans-serif);
-      text-align: center;
-      white-space: nowrap;
-    }
-    .bver {
-      font-size: 1.1em;
-      font-family: var(--font-mono, ui-monospace, monospace);
-      white-space: nowrap;
-      &.ok {
-        color: light-dark(oklch(0.42 0.2 145), oklch(0.78 0.2 145));
-      }
-      &.warn {
-        color: light-dark(oklch(0.55 0.2 75), oklch(0.82 0.18 75));
-      }
-      &.no {
-        color: light-dark(oklch(0.5 0.22 25), oklch(0.72 0.22 25));
-        opacity: 0.75;
-      }
-    }
-    .bs-badge {
-      font-size: 0.45em;
-      opacity: 0.55;
-      margin-block-start: 1.5em;
-    }
-  }
-</style>
