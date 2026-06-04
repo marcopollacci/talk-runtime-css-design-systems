@@ -9,6 +9,12 @@ import PNotes from "../components/PNotes.astro";
   <PNotes>
     <p>This is where "runtime" gets visceral — colors people can see.</p>
     <p>Frame: we used to precompute every shade. Now the browser does it.</p>
+    <p>
+      Before diving in: everyone uses #hex or rgb() — that's sRGB. Not wrong,
+      but when you do math on top of it (mixes, scales, shades) sRGB doesn't
+      behave like the human eye. oklch was designed for this: the numbers you
+      write correspond to what you actually see.
+    </p>
   </PNotes>
 </p-slide>
 
