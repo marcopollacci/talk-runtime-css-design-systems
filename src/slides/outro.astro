@@ -83,42 +83,6 @@ import PNotes from "../components/PNotes.astro";
   </PNotes>
 </p-slide>
 
-<p-slide>
-  <h3 class="main-gradient">When build-time still wins</h3>
-  <ul>
-    <li>
-      📦 <span class="main-sub-gradient">Bundling &amp; minification</span>
-    </li>
-    <li p-fragment p-effect="from right">
-      🖼️ <span class="main-sub-gradient">Asset optimization</span>
-    </li>
-    <li p-fragment p-effect="from left">
-      🧪 <span class="main-sub-gradient">Type-checking</span><span>
-        &amp; linting tokens</span
-      >
-    </li>
-    <li p-fragment p-effect="zoom">
-      🕰️ <span>Heavy </span><span class="main-sub-gradient">legacy support</span
-      >
-    </li>
-  </ul>
-
-  <PNotes>
-    <p>
-      Callback to the build-time column from the beginning of the talk — close
-      the loop we opened.
-    </p>
-    <p>
-      The message is not "delete your build". It's "stop using the build step
-      for things the browser can now do better at runtime".
-    </p>
-    <p>
-      Build-time is still excellent for packaging, safety checks and legacy
-      constraints. Runtime CSS is excellent for values that depend on context.
-    </p>
-  </PNotes>
-</p-slide>
-
 <p-slide class="center" autoplay timing="550">
   <h2 class="main-gradient" style="margin-block-end: 0.3em">
     The browser is part of the build tool now

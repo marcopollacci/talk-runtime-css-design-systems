@@ -156,37 +156,6 @@ import PNotes from "../components/PNotes.astro";
   status="Baseline 2023"
 />
 
-<p-slide>
-  <h3 class="main-gradient">Bonus: container units</h3>
-  <ul>
-    <li>
-      📐 <span class="main-sub-gradient">cqi / cqb</span><span>
-        — logical container units</span
-      >
-    </li>
-    <li p-fragment p-effect="from right">
-      🔤 <span>Type that scales to the </span><span class="main-sub-gradient"
-        >component</span
-      ><span>, not the page</span>
-    </li>
-    <li p-fragment p-effect="from left">
-      <code>font-size: clamp(1rem, 5cqi, 2rem)</code>
-    </li>
-  </ul>
-
-  <PNotes>
-    <p>
-      cqi is 1% of the container's inline size. cqb is 1% of the container's
-      block size.
-    </p>
-    <p>
-      This connects back to section 5: clamp() gives us a safe range, and cqi
-      makes the preferred value relative to the component itself.
-    </p>
-    <p>Keep this one quick, it's a bonus beat.</p>
-  </PNotes>
-</p-slide>
-
 <p-slide class="cover-internal-sub-section">
   <h2>:has()</h2>
 
