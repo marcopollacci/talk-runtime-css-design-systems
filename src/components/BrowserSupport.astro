@@ -28,7 +28,7 @@ const {
 const featureSlug = (atRule ? feature.slice(1) : feature).trim();
 ---
 
-<p-slide class="center" data-browser-support>
+<p-slide autoplay class="center" data-browser-support>
   <h4 class="main-gradient">
     {
       atRule ? (
@@ -43,21 +43,21 @@ const featureSlug = (atRule ? feature.slice(1) : feature).trim();
   </h4>
 
   <div data-browser-grid>
-    <p-fragment p-effect="from left">
+    <p-fragment timing-start="500" p-effect="from left">
       <div data-browser="chrome" data-status={chromeStatus}>
         <span>Chrome · Edge</span>
         <data value={chrome}>{chrome}</data>
       </div>
     </p-fragment>
 
-    <p-fragment p-effect="zoom">
+    <p-fragment timing-start="800" p-effect="zoom">
       <div data-browser="firefox" data-status={firefoxStatus}>
         <span>Firefox</span>
         <data value={firefox}>{firefox}</data>
       </div>
     </p-fragment>
 
-    <p-fragment p-effect="from right">
+    <p-fragment timing-start="1100" p-effect="from right">
       <div data-browser="safari" data-status={safariStatus}>
         <span>Safari</span>
         <data value={safari}>{safari}</data>
@@ -67,7 +67,7 @@ const featureSlug = (atRule ? feature.slice(1) : feature).trim();
 
   {
     status && (
-      <p-fragment>
+      <p-fragment timing-start="1500" p-effect="from below">
         <p data-baseline>{status}</p>
       </p-fragment>
     )
