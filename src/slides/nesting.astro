@@ -1,0 +1,142 @@
+---
+import BrowserSupport from "../components/BrowserSupport.astro";
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide class="cover-internal">
+  <h1>Native CSS nesting</h1>
+
+  <PNotes>
+    <p>
+      This is the most obvious Sass feature that is now native — everyone in the
+      room has written &:hover or &__modifier.
+    </p>
+    <p>The sell is simple: same syntax, no compiler, no build step.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h2 class="main-gradient">Sass syntax, without the Sass</h2>
+  <ul>
+    <li>
+      🪆 <span>Collocate rules </span><span class="main-sub-gradient"
+        >with their context</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      ✂️ <span>No more </span><span class="main-sub-gradient"
+        >selector repetition</span
+      ><span> with <code>&</code></span>
+    </li>
+    <li p-fragment p-effect="from left">
+      📦 <span><code>@media</code> and <code>@layer</code> </span><span
+        class="main-sub-gradient">nested inside</span
+      ><span> a rule</span>
+    </li>
+    <li p-fragment p-effect="zoom">
+      🚫 <span>No build step, </span><span class="main-sub-gradient"
+        >no preprocessor</span
+      ><span> dependency</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Ask the room: who uses nesting as the main reason they still reach for
+      Sass? Almost everyone will raise a hand.
+    </p>
+    <p>
+      The point: not only can you remove the preprocessor, you keep the same
+      authoring experience.
+    </p>
+    <p>
+      The nested @media bullet is underrated — co-location of responsive rules
+      was one of the hardest things to give up when writing plain CSS.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide b-a>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Nesting</span> — Sass feature, compiler required 🪆
+  </h5>
+  <div class="cols">
+    <div p-effect="from left">
+      <p class="center">
+        <span class="tag"
+          >Before — <span class="main-sub-gradient">build-time only</span></span
+        >
+      </p>
+      <pre
+        class="small-line"
+        data-label-file="nav.scss">
+        <code style="font-size: 0.7em" is:raw class="language-scss">
+    nav {
+        display: flex;
+        gap: 1rem;
+
+        a {
+            color: $brand;
+
+            &:hover { color: darken($brand, 15%); }
+            &[aria-current="page"] { font-weight: 700; }  
+        }
+    }</code></pre>
+    </div>
+  </div>
+
+  <PNotes>
+    <p>
+      Everyone recognises this. It's the Sass every design system is built on.
+    </p>
+    <p>
+      The problem is invisible: the browser never sees this file. It sees a
+      flat, compiled output — nesting gone, variables resolved, @media lifted
+      out and the selector repeated.
+    </p>
+    <p>
+      Point at the @media block at the bottom: that duplication is the tell.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Nesting — native, zero build</span> 🌐
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="nav.css">
+    <code style="font-size: 0.7em" is:raw class="language-css">
+    nav {
+        display: flex;
+        gap: 1rem;
+
+        a {
+            color: var(--brand);
+
+            &:hover { color: color-mix(in oklch, var(--brand), black 15%); }
+            &[aria-current="page"] { font-weight: 700; }
+        }
+    }</code></pre>
+
+  <PNotes>
+    <p>Same structure as the Sass version — the browser parses it directly.</p>
+    <p>
+      The @media is now inside the rule: no repeated selector, no lifting out.
+      That's the co-location benefit that was Sass-only until recently.
+    </p>
+    <p>
+      color-mix replaces darken() — same idea we covered in the colors section.
+      One less reason to reach for a preprocessor.
+    </p>
+  </PNotes>
+</p-slide>
+
+<BrowserSupport
+  feature="CSS nesting"
+  chrome="120"
+  firefox="117"
+  safari="17.2"
+  status="All evergreen browsers"
+/>
