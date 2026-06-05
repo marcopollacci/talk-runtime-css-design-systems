@@ -239,19 +239,19 @@ import PNotes from "../components/PNotes.astro";
   <pre
     class="small-line"
     data-label-file="has.css">
-    <code style="font-size: 0.65em" is:raw class="language-scss">
-    /* an article that contains an image gets a media layout */
+  <code style="font-size: 0.6em" is:raw class="language-scss">/* an article that contains an image gets a media layout */
     article:has(img) {
+        display: grid;
         grid-template-columns: 8rem 1fr;
     }
-
     /* a fieldset whose input is invalid */
     fieldset:has(input:invalid) {
         border-color: var(--danger);
     }
-
     /* 4 or more items → tighten the gap */
     ul:has(> :nth-child(4)) {
+        display: flex;
+        flex-wrap: wrap;
         gap: 0.5rem;
     }</code>
   </pre>

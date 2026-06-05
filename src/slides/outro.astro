@@ -64,6 +64,7 @@ import PNotes from "../components/PNotes.astro";
 
     /* reward modern browsers */
     @supports (background: light-dark(white, black)) {
+        :root { color-scheme: light dark; }
         article {
             background: light-dark(white, oklch(0.2 0 0));
             color: light-dark(oklch(0.2 0 0), white);
