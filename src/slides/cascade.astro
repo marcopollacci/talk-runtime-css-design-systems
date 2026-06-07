@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
-import PNotes from "../components/PNotes.astro";
 import BrowserSupport from "../components/BrowserSupport.astro";
+import PNotes from "../components/PNotes.astro";
 import cascadeMeme from "../img/cascade-meme.jpeg";
 ---
 
@@ -187,7 +187,10 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag">Before — <span class="main-sub-gradient">simulated via naming</span></span>
+        <span class="tag"
+          >Before — <span class="main-sub-gradient">simulated via naming</span
+          ></span
+        >
       </p>
       <pre
         class="small-line"
@@ -329,22 +332,22 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   <pre
     class="small-line"
     data-label-file="property.css">
-    <code style="font-size: 0.7em;" is:raw class="language-scss">
-    @property --angle {
-        syntax: "&lt;angle&gt;";
+  <code style="font-size: 0.55em;" is:raw class="language-scss">@property --num {
+        syntax: "&lt;integer&gt;";
+        initial-value: 0;
         inherits: false;
-        initial-value: 0deg;
     }
+    @keyframes count { from { --num: 0; } to   { --num: 100; } }
 
-    [data-glow] {
-        background: conic-gradient(from var(--angle), #c850c0, #4158d0);
-        transition: --angle 0.4s; /* now this animates */
-    }
-
-    [data-glow]:hover {
-        --angle: 180deg;
-    }</code>
-  </pre>
+    [animated-number] {
+      animation: count 3s linear forwards;
+      counter-reset: num var(--num);
+      display: block;
+      &::before {
+        content: counter(num);
+        color: red;
+      }
+    }</code></pre>
 
   <PNotes>
     <p>

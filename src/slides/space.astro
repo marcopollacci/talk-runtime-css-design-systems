@@ -105,14 +105,20 @@ import PNotes from "../components/PNotes.astro";
   </pre>
 
   <PNotes>
-    <p>Read the three args out loud: floor, ideal, ceiling.</p>
     <p>
-      The middle value is the fluid one: it reacts to the viewport, but it can
-      never go below the minimum or above the maximum.
+      The first example tells the browser: the font must never be smaller than
+      2rem, try to grow it fluidly using 5vw + 1rem, but never exceed 4rem.
     </p>
     <p>
-      Avoid pure vw for text. Mixing vw with rem keeps the type fluid but still
-      connected to the user's font settings.
+      The middle argument is the fluid part — it uses the viewport. As the
+      screen grows, the text grows. As the screen shrinks, the text shrinks.
+      But it always stays within the defined limits.
+    </p>
+    <p>
+      This is why we don't use a bare vw value: text could become too small on
+      narrow screens or too large on wide ones, and it would lose its connection
+      to the user's base font preference. Mixing vw with rem keeps the fluid
+      behaviour while staying grounded in the user's settings.
     </p>
   </PNotes>
 </p-slide>
