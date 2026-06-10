@@ -126,10 +126,19 @@ import PNotes from "../components/PNotes.astro";
   </div>
 
   <PNotes>
-    <p>Before, deriving tonal variants meant Sass functions or hardcoded hex values.</p>
-    <p>rgba(), lighten(), desaturate() — all computed at build time, all frozen in the output.</p>
+    <p>
+      Before, deriving tonal variants meant Sass functions or hardcoded hex
+      values.
+    </p>
+    <p>
+      rgba(), lighten(), desaturate() — all computed at build time, all frozen
+      in the output.
+    </p>
     <p>Change the brand token at runtime and none of the variants follow.</p>
-    <p>Then move to relative color: same intent, but the browser does the math live.</p>
+    <p>
+      Then move to relative color: same intent, but the browser does the math
+      live.
+    </p>
   </PNotes>
 </p-slide>
 
@@ -169,10 +178,10 @@ import PNotes from "../components/PNotes.astro";
 
 <BrowserSupport
   feature="Relative color"
-  chrome="131"
-  firefox="133"
+  chrome="122"
+  firefox="128"
   safari="18"
-  status="~90% global coverage"
+  status="All evergreen browsers"
 />
 
 <p-slide b-a>

@@ -45,8 +45,9 @@ import PNotes from "../components/PNotes.astro";
       authoring experience.
     </p>
     <p>
-      The nested @media bullet is underrated — co-location of responsive rules
-      was one of the hardest things to give up when writing plain CSS.
+      Bonus worth mentioning: you can also nest @media and @container inside a
+      rule — co-location of responsive rules was one of the hardest things to
+      give up when writing plain CSS.
     </p>
   </PNotes>
 </p-slide>
@@ -114,12 +115,12 @@ import PNotes from "../components/PNotes.astro";
   <PNotes>
     <p>Same structure as the Sass version — the browser parses it directly.</p>
     <p>
-      The @media is now inside the rule: no repeated selector, no lifting out.
-      That's the co-location benefit that was Sass-only until recently.
+      No repeated selector, no lifting out: the co-location benefit that was
+      Sass-only until recently. @media and @container nest the same way.
     </p>
     <p>
-      color-mix replaces darken() — same idea we covered in the colors section.
-      One less reason to reach for a preprocessor.
+      color-mix replaces darken() — we'll dig into it in the colors section,
+      coming next. One less reason to reach for a preprocessor.
     </p>
   </PNotes>
 </p-slide>
