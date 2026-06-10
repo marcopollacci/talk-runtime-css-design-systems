@@ -84,6 +84,101 @@ import PNotes from "../components/PNotes.astro";
   </PNotes>
 </p-slide>
 
+<p-slide class="cover-internal-sub-section">
+  <h2>What about AI?</h2>
+
+  <PNotes>
+    <p>
+      Everyone expects the AI moment — make it serve the talk's thesis instead.
+    </p>
+    <p>
+      Two sides in two slides: the risk (unsteered, AI gives you the average of
+      the web) and the opportunity (AI as an accelerator once you know where
+      you're going).
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">How modern is your AI's CSS?</h3>
+  <ul>
+    <li>
+      ✨ <span>Newer models </span><span class="main-sub-gradient"
+        >can speak modern CSS</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      🧲 <span>Vague prompts get </span><span class="main-sub-gradient"
+        >the average of the web</span
+      ><span> — still build-time</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      📅 <span>Browser support moves </span><span class="main-sub-gradient"
+        >faster than training cutoffs</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Be fair to the models: recent ones know color-mix(), light-dark() and
+      friends perfectly well. The problem isn't knowledge.
+    </p>
+    <p>
+      It's gravity: with a vague prompt you get the average of the published web
+      — and that average is still build-time pipelines and precomputed shades.
+      Modern CSS is in there, but it's not the default unless you ask.
+    </p>
+    <p>
+      Second gap: support tables move faster than training data — if() in
+      Chromium 137+ is younger than most cutoffs. "What's usable today" is still
+      your call.
+    </p>
+    <p>
+      Which is the talk's thesis from another angle: knowing what the browser
+      does natively is exactly how you steer AI toward runtime CSS.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">AI as an accelerator</h3>
+  <ul>
+    <li>
+      🔁 <span>Migrating </span><span class="main-sub-gradient"
+        >Sass → modern CSS</span
+      ><span> is mechanical work AI is good at</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🛟 <span>Generating </span><span class="main-sub-gradient"
+        ><code>@supports</code> fallbacks</span
+      ><span> &amp; support checks</span>
+    </li>
+    <li p-fragment p-effect="zoom">
+      👀 <span>You stay the </span><span class="main-sub-gradient"
+        >reviewer</span
+      ><span> — the browser is the judge</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Flip side: once you know where you're going, AI is a great pair of hands.
+      Translating Sass loops into color-mix() and clamp() is mechanical work it
+      does well.
+    </p>
+    <p>
+      Same for the boring-but-vital parts: @supports fallbacks, checking support
+      tables, porting a theme to light-dark().
+    </p>
+    <p>
+      Declarative, toolchain-free CSS is easier to generate and easier to verify
+      — you review it, the browser judges it. Which leads straight into the
+      closing line.
+    </p>
+  </PNotes>
+</p-slide>
+
 <p-slide class="center" autoplay timing="550">
   <h2 class="main-gradient" style="margin-block-end: 0.3em">
     The browser is part of the build tool now
