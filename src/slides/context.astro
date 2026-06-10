@@ -83,6 +83,7 @@ import PNotes from "../components/PNotes.astro";
         article {
           display: grid;
           gap: 1rem;
+          grid-template-columns: 1fr;
         }
 
         @media (min-width: 768px) {
@@ -124,6 +125,7 @@ import PNotes from "../components/PNotes.astro";
     article {
         display: grid;
         gap: 1rem;
+        grid-template-columns: 1fr;
     }
 
     @container content (min-width: 30rem) {
@@ -202,13 +204,16 @@ import PNotes from "../components/PNotes.astro";
 
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">Component state</span> — synced with attributes 🏷️
+    <span class="main-gradient">:has() — the parent reacts</span> 🧠
   </h5>
 
-  <div class="cols">
-    <div p-effect="from left">
+  <div style="display: flex; gap: 1.5rem; align-items: stretch;">
+    <div
+      p-effect="from left"
+      style="flex: 1; display: flex; flex-direction: column;"
+    >
       <pre
-        style="width: 32em;"
+        style="flex: 1;"
         class="small-line"
         data-label-file="article.html">
         <code style="font-size: 0.55em" is:raw class="language-scss">
@@ -229,17 +234,14 @@ import PNotes from "../components/PNotes.astro";
         &lt;/ul></code>
       </pre>
     </div>
-  </div>
-</p-slide>
 
-<p-slide>
-  <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">:has() — the parent reacts</span> 🧠
-  </h5>
-  <pre
-    class="small-line"
-    data-label-file="has.css">
-  <code style="font-size: 0.6em" is:raw class="language-scss">/* an article that contains an image gets a media layout */
+    <p-fragment style="flex: 1; display: flex; flex-direction: column;">
+      <pre
+        style="flex: 1;"
+        class="small-line"
+        data-label-file="has.css">
+      <code style="font-size: 0.6em" is:raw class="language-scss">
+    /* an article that contains an image gets media layout */
     article:has(img) {
         display: grid;
         grid-template-columns: 8rem 1fr;
@@ -254,7 +256,9 @@ import PNotes from "../components/PNotes.astro";
         flex-wrap: wrap;
         gap: 0.5rem;
     }</code>
-  </pre>
+      </pre>
+    </p-fragment>
+  </div>
 
   <PNotes>
     <p>Three flavors: structural, state and quantity.</p>
