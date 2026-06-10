@@ -197,17 +197,16 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
         data-label-file="section.scss">
         <code style="font-size: 0.55em" is:raw class="language-scss">
         /* the convention IS the isolation */
-        .section {
+        section {
           padding: 1rem;
-        }
-        .section__title {
-          padding: 0;
-        }
-        .section__content p {
-          color: blue;
-        }
-        .section__footer p {
-          color: red;
+          color: green;
+
+          h2 { color: red; }
+
+          p { margin: 0; color: blue; }
+
+          /* footer paragraphs must manually opt out */
+          footer p { margin: revert; color: revert; }
         }</code>
       </pre>
     </div>
@@ -237,7 +236,7 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   </h5>
   <pre
     class="small-line"
-    data-label-file="card.css">
+    data-label-file="section.css">
     <code style="font-size: 0.7em;" is:raw class="language-scss">
     /* applies only inside section — no section__title needed */
     @scope (section) {
