@@ -1,0 +1,63 @@
+<!-- ---
+import favicon from "../img/cssday-favicon.webp";
+import me2 from "../img/me2.png";
+import qrRating from "../img/qrrating_cssday2026_grusp.png";
+import qrslide from "../img/qrslide_cssday2026.png";
+import Layout from "../layouts/Layout.astro";
+import Cascade from "../slides/cascade.astro";
+import Colors from "../slides/colors.astro";
+import Context from "../slides/context.astro";
+import CoverCssday2026 from "../slides/cover-cssday-2026.astro";
+import Cover from "../slides/cover.astro";
+import CardBridge from "../slides/card-bridge.astro";
+import Example from "../slides/example.astro";
+import Intro from "../slides/intro.astro";
+import LiveDemo from "../slides/live-demo.astro";
+import Nesting from "../slides/nesting.astro";
+import Next from "../slides/next.astro";
+import Outro from "../slides/outro.astro";
+import Space from "../slides/space.astro";
+import Thanks from "../slides/thanks.astro";
+import ThreadIntro from "../slides/thread-intro.astro";
+const favIcon = favicon.src;
+const canRender = import.meta.env.DEV || new Date("2026-06-11") < new Date();
+const metaData = {
+  title: "Less Build, More Runtime: The Modern CSS Approach to Design Systems",
+  description:
+    "Slides for building runtime-ready design systems with modern CSS.",
+  image: "og-image.png",
+  site: "https://talk-runtime-css-design-systems.marcotalk.dev/css-day-2026/",
+};
+---
+
+<Layout {canRender} {favIcon} {metaData}>
+  <CoverCssday2026 />
+  {
+    canRender && (
+      <>
+        <Cover meReloaded={me2} />
+        <Intro />
+        <ThreadIntro />
+        <Cascade />
+        <CardBridge section="cascade" />
+        <Nesting />
+        <Colors />
+        <CardBridge section="colors" />
+        <Space />
+        <CardBridge section="space" />
+        <Context />
+        <CardBridge section="context" />
+        <LiveDemo />
+        <Next />
+        <Example />
+        <Outro />
+        <Thanks
+          qrLinkRating={qrRating}
+          qrLink={qrslide}
+          urlLink={metaData.site}
+          meReloaded={me2}
+        />
+      </>
+    )
+  }
+</Layout> -->

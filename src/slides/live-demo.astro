@@ -1,0 +1,122 @@
+---
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide class="cover-internal center">
+  <h2 class="main-gradient">Let's see it assembled</h2>
+  <p p-effect="from below" style="font-size: 0.7em; opacity: 0.8; margin-block-start: 0.8em;">
+    All layers. Running in the browser. Right now.
+  </p>
+
+  <PNotes>
+    <p>This is the killer moment. Switch focus to the browser window with /demo open (or use the next slide's iframe).</p>
+    <p>The talk title pays off here: "Less Build, More Runtime — The Modern CSS Approach to Design Systems".</p>
+    <p>Everything we've seen so far leads to this.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="demo-live-slide">
+  <iframe
+    src="/demo"
+    style="width: 100%; height: 88%; border: none; border-radius: 0.4rem;"
+    title="Runtime CSS Design System — live demo"
+  ></iframe>
+
+  <PNotes>
+    <p>SCRIPT — run IN ORDER:</p>
+    <p>1. "Look at the left column — narrow container. Cards are stacked."</p>
+    <p>2. "On the right the container is wide. :has(img) + @container trigger the two-column layout — zero modifier classes."</p>
+    <p>3. "Hover a card. See the tint? That's color-mix() in oklch — the browser computes the tint from --accent live."</p>
+    <p>4. "KILLER MOVE: change the Accent with the color picker. Border, hover tint — everything follows. ONE token. No rebuild."</p>
+    <p>5. "Toggle dark/light. No duplicated media query — light-dark() does it in one line."</p>
+    <p>6. "This is the flexible design system the title promised."</p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="demo-what-ran" autoplay timing-fragments="900">
+  <h3 class="main-gradient center" style="margin-block-end: 1rem;">
+    What just ran in the browser
+  </h3>
+
+  <dl>
+    <div p-fragment p-effect="from left" timing-start="200">
+      <dt><code>@layer</code></dt>
+      <dd>cascade governata</dd>
+    </div>
+
+    <div p-fragment p-effect="from right" timing-start="200">
+      <dt><code>@property --accent</code></dt>
+      <dd>token tipizzato</dd>
+    </div>
+
+    <div p-fragment p-effect="from left" timing-start="500">
+      <dt><code>color-mix()</code></dt>
+      <dd>palette derivata live</dd>
+    </div>
+
+    <div p-fragment p-effect="from right" timing-start="500">
+      <dt><code>light-dark()</code></dt>
+      <dd>dark mode, una riga</dd>
+    </div>
+
+    <div p-fragment p-effect="from left" timing-start="800">
+      <dt><code>clamp()</code></dt>
+      <dd>spacing fluido</dd>
+    </div>
+
+    <div p-fragment p-effect="from right" timing-start="800">
+      <dt><code>@container</code></dt>
+      <dd>layout context-aware</dd>
+    </div>
+
+    <div p-fragment p-effect="zoom" timing-start="1100">
+      <dt><code>:has(img)</code></dt>
+      <dd>struttura come stato</dd>
+    </div>
+  </dl>
+
+  <PNotes>
+    <p>Seven features. No build step for the dynamic part.</p>
+    <p>Let them reveal one by one — the audience recognises them, they've seen them in action.</p>
+    <p>Last note: this is not a prototype. This is how browsers work today.</p>
+  </PNotes>
+</p-slide>
+
+<style lang="scss">
+  .demo-live-slide {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 0.5rem !important;
+  }
+
+  .demo-what-ran {
+    dl {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.55em 1.5em;
+      margin-block-start: 0.5em;
+    }
+
+    dl > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.12em;
+    }
+
+    dt {
+      font-size: 0.65em;
+      code {
+        font-family: var(--talk-marco-graphik-medium, monospace);
+        color: var(--main-sub-gradient-fallback, currentColor);
+      }
+    }
+
+    dd {
+      font-size: 0.48em;
+      opacity: 0.8;
+      margin: 0;
+    }
+  }
+</style>

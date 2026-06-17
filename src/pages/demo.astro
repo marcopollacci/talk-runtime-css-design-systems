@@ -87,6 +87,10 @@ const canRender = import.meta.env.DEV || new Date("2026-06-11") < new Date();
           background: none;
         }
 
+        section {
+          transition: max-width 0.8s ease;
+        }
+
         button {
           font-size: 0.8rem;
           font-weight: 500;
@@ -214,6 +218,7 @@ const canRender = import.meta.env.DEV || new Date("2026-06-11") < new Date();
           <input type="color" id="accent-picker" value="#6b9fe4" />
         </label>
         <button type="button" id="theme-toggle">Toggle dark / light</button>
+        <button type="button" id="autoplay-toggle">▶ Autoplay</button>
       </fieldset>
     </header>
 
@@ -251,69 +256,76 @@ const canRender = import.meta.env.DEV || new Date("2026-06-11") < new Date();
         </article>
       </section>
 
-      <h2 id="wide-h">
-        Wide container
-        <small>(full width — container query active)</small>
-      </h2>
-      <section aria-labelledby="wide-h">
-        <article>
-          <div>
-            <h3>Text-only card</h3>
-            <p>
-              No <code>img</code> child — <code>:has(img)</code> doesn't match.
-              Single column even in a wide container.
-            </p>
-          </div>
-        </article>
 
-        <article>
-          <img
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120' viewBox='0 0 160 120'%3E%3Crect width='160' height='120' fill='%23a0b4d0' rx='4'/%3E%3Ccircle cx='60' cy='50' r='20' fill='%23fff' opacity='.5'/%3E%3Cpath d='M0 80 Q40 55 80 75 T160 65 V120 H0Z' fill='%23fff' opacity='.2'/%3E%3C/svg%3E"
-            alt="Abstract blue landscape placeholder"
-            width="160"
-            height="120"
-          />
-          <div>
-            <h3>Card with image</h3>
-            <p>
-              Container ≥ 30rem <em>and</em> <code>:has(img)</code> matches —
-              <code>grid-template-columns: 10rem 1fr</code> kicks in.
-            </p>
-          </div>
-        </article>
-
-        <article>
-          <img
-            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='120' viewBox='0 0 160 120'%3E%3Crect width='160' height='120' fill='%23b4a0d0' rx='4'/%3E%3Crect x='30' y='30' width='100' height='60' rx='6' fill='%23fff' opacity='.3'/%3E%3Ccircle cx='80' cy='60' r='18' fill='%23fff' opacity='.5'/%3E%3C/svg%3E"
-            alt="Abstract purple shapes placeholder"
-            width="160"
-            height="120"
-          />
-          <div>
-            <h3>Hover me</h3>
-            <p>
-              <code>color-mix(in oklch, …, var(--accent) 8%)</code> tints the
-              background on hover. Change the accent color above to see it
-              shift.
-            </p>
-          </div>
-        </article>
-      </section>
     </main>
 
     <script>
-      const picker = document.getElementById("accent-picker");
-      const toggleBtn = document.getElementById("theme-toggle");
+      const picker = document.getElementById("accent-picker") as HTMLInputElement;
+      const toggleBtn = document.getElementById("theme-toggle") as HTMLButtonElement;
+      const autoplayBtn = document.getElementById("autoplay-toggle") as HTMLButtonElement;
+      const narrowSection = document.querySelector("section[style]") as HTMLElement;
 
-      picker!.addEventListener("input", (e) => {
+      picker.addEventListener("input", (e) => {
         document.documentElement.style.setProperty("--accent", (e.target as HTMLInputElement).value);
       });
 
-      toggleBtn!.addEventListener("click", () => {
+      toggleBtn.addEventListener("click", () => {
         const cs = document.documentElement.style.colorScheme;
-        document.documentElement.style.colorScheme =
-          cs === "dark" ? "light" : "dark";
+        document.documentElement.style.colorScheme = cs === "dark" ? "light" : "dark";
       });
+
+      // Autoplay sequence
+      const STEPS: Array<{ delay: number; run: () => void }> = [
+        {
+          delay: 1000,
+          run() {
+            document.documentElement.style.colorScheme = "light";
+            setAccent("oklch(0.7 0.15 250)", "#6b9fe4");
+            narrowSection.style.maxWidth = "26rem";
+          },
+        },
+        { delay: 1500, run() { setAccent("oklch(0.72 0.17 145)", "#4db87a"); } },
+        { delay: 1500, run() { setAccent("oklch(0.68 0.19 0)", "#e4607a"); } },
+        { delay: 1500, run() { setAccent("oklch(0.72 0.17 60)", "#d4873a"); } },
+        { delay: 2000, run() { document.documentElement.style.colorScheme = "dark"; } },
+        { delay: 1500, run() { setAccent("oklch(0.65 0.2 300)", "#9b6be4"); } },
+        { delay: 2000, run() { narrowSection.style.maxWidth = "38rem"; } },
+        { delay: 2000, run() { narrowSection.style.maxWidth = "26rem"; } },
+        { delay: 1500, run() { document.documentElement.style.colorScheme = "light"; } },
+        { delay: 1000, run() { setAccent("oklch(0.7 0.15 250)", "#6b9fe4"); } },
+      ];
+
+      function setAccent(oklchValue: string, hexApprox: string) {
+        document.documentElement.style.setProperty("--accent", oklchValue);
+        picker.value = hexApprox;
+      }
+
+      let autoplayTimer: ReturnType<typeof setTimeout> | null = null;
+      let stepIndex = 0;
+
+      function runNextStep() {
+        if (autoplayTimer === null) return;
+        const step = STEPS[stepIndex];
+        step.run();
+        stepIndex = (stepIndex + 1) % STEPS.length;
+        autoplayTimer = setTimeout(runNextStep, step.delay);
+      }
+
+      autoplayBtn.addEventListener("click", () => {
+        if (autoplayTimer !== null) {
+          clearTimeout(autoplayTimer);
+          autoplayTimer = null;
+          stepIndex = 0;
+          autoplayBtn.textContent = "▶ Autoplay";
+        } else {
+          autoplayBtn.textContent = "⏹ Stop";
+          autoplayTimer = setTimeout(runNextStep, 0);
+        }
+      });
+
+      // Start autoplay immediately on load
+      autoplayBtn.textContent = "⏹ Stop";
+      autoplayTimer = setTimeout(runNextStep, 0);
     </script>
   </body>
 </html>

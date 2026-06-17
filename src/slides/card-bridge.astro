@@ -1,0 +1,127 @@
+---
+/**
+ * card-bridge.astro
+ *
+ * Four "checkpoint" slides — one per section — showing the card CSS delta.
+ * Each slide shows only what's NEW at that checkpoint, keeping the code tight.
+ */
+import PNotes from "../components/PNotes.astro";
+interface Props {
+  section: "cascade" | "colors" | "space" | "context";
+}
+const { section } = Astro.props;
+---
+
+{section === "cascade" && (
+  <p-slide>
+    <h5 style="margin-block-end: 0.8em" class="center">
+      <span class="main-gradient">Our card — after cascade</span> 📚
+    </h5>
+    <pre class="small-line" data-label-file="card.css">
+      <code style="font-size: 0.68em;" is:raw class="language-scss">
+@layer base, components;
+
+@property --accent {
+  syntax: "&lt;color&gt;";
+  inherits: true;
+  initial-value: oklch(0.7 0.15 250);
+}
+
+@layer components {
+  article {
+    border-block-start: 4px solid var(--accent);
+    border-radius: 0 0 0.35rem 0.35rem;
+  }
+}</code>
+    </pre>
+    <PNotes>
+      <p>Cascade checkpoint: @layer controls the order, @property types --accent.</p>
+      <p>Change --accent on :root and the card border follows — no rebuild.</p>
+    </PNotes>
+  </p-slide>
+)}
+
+{section === "colors" && (
+  <p-slide>
+    <h5 style="margin-block-end: 0.8em" class="center">
+      <span class="main-gradient">Our card — after colors</span> 🧪
+    </h5>
+    <pre class="small-line" data-label-file="card.css">
+      <code style="font-size: 0.68em;" is:raw class="language-scss">
+@layer components {
+  article {
+    /* light-dark() — dark mode, no media query */
+    background: light-dark(white, oklch(0.2 0 0));
+    color:      light-dark(oklch(0.2 0 0), white);
+    border-block-start: 4px solid var(--accent);
+
+    &:hover {
+      /* color-mix() — one token, no rebuild */
+      background: color-mix(
+        in oklch, light-dark(white, oklch(0.2 0 0)), var(--accent) 8%);
+    }
+  }
+}</code>
+    </pre>
+    <PNotes>
+      <p>Colors checkpoint: light-dark() for the theme, color-mix() for the hover tint.</p>
+      <p>Change --accent → border, hover tint, everything follows. No Sass. No rebuild.</p>
+    </PNotes>
+  </p-slide>
+)}
+
+{section === "space" && (
+  <p-slide>
+    <h5 style="margin-block-end: 0.8em" class="center">
+      <span class="main-gradient">Our card — after space</span> 🌊
+    </h5>
+    <pre class="small-line" data-label-file="card.css">
+      <code style="font-size: 0.68em;" is:raw class="language-scss">
+@layer components {
+  article {
+    display: grid;
+    /* clamp() with cqi — scales with container, not viewport */
+    gap:            clamp(0.5rem,  2cqi, 1rem);
+    padding-block:  clamp(0.75rem, 3cqi, 1.5rem);
+    padding-inline: clamp(1rem,    4cqi, 2rem);
+
+    background: light-dark(white, oklch(0.2 0 0));
+    border-block-start: 4px solid var(--accent);
+  }
+}</code>
+    </pre>
+    <PNotes>
+      <p>Space checkpoint: clamp() with cqi — spacing scales with the container, not the viewport.</p>
+      <p>No breakpoints: the browser computes the right value in every context.</p>
+    </PNotes>
+  </p-slide>
+)}
+
+{section === "context" && (
+  <p-slide>
+    <h5 style="margin-block-end: 0.8em" class="center">
+      <span class="main-gradient">Our card — all layers in</span> 🏁
+    </h5>
+    <pre class="small-line" data-label-file="card.css">
+      <code style="font-size: 0.63em;" is:raw class="language-scss">
+@layer components {
+  section {
+    container: content / inline-size;
+  }
+
+  /* … article styles from previous layers … */
+
+  /* wide container AND image → two-column layout */
+  @container content (min-width: 30rem) {
+    article:has(img) {
+      grid-template-columns: 10rem 1fr;
+    }
+  }
+}</code>
+    </pre>
+    <PNotes>
+      <p>Final checkpoint: section is the container. :has(img) reacts to structure, not a class.</p>
+      <p>Same card, two contexts, zero JS. Land this — then move to the live demo.</p>
+    </PNotes>
+  </p-slide>
+)}
