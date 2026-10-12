@@ -1,0 +1,204 @@
+---
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide class="cover-internal-sub-section">
+  <h2>One more thing: WebMCP</h2>
+
+  <PNotes>
+    <p>Epilogue, "one more thing" style. No deep tech — just a heads-up.</p>
+    <p>
+      We just spent the whole talk making interfaces smarter at runtime. Now a
+      question that's a bit uncomfortable for a room of designers and
+      frontenders.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Your UI has a new user</h3>
+  <ul>
+    <li>
+      🤖 <span>Agents today </span><span class="main-sub-gradient"
+        >guess</span
+      ><span> your interface — screenshots, clicks</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🧰 <span>With WebMCP the page </span><span class="main-sub-gradient"
+        >declares</span
+      ><span> what it can do, as tools</span>
+    </li>
+    <li p-fragment p-effect="zoom">
+      🎯 <span>No guessing: the agent </span><span class="main-sub-gradient"
+        >calls the action</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Chrome's own definition: "a proposed web standard to help you build and
+      expose structured tools for AI agents".
+    </p>
+    <p>
+      Today a browser agent scrapes the DOM and simulates clicks and typing —
+      it guesses. With WebMCP the site says: here is "book a table", here are
+      its fields. The agent calls a tool instead of guessing.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Two attributes. A new user.</span> 🧰
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="booking.html">
+    <code style="font-size: 0.65em" is:raw class="language-scss">
+    &lt;form toolname="bookTable"
+          tooldescription="Book a table for dinner"&gt;</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      Two attributes turn an existing form into a tool: toolname and
+      tooldescription. The form fields become the tool's parameters.
+    </p>
+    <p>
+      This is the declarative side. There's also a JavaScript side
+      (document.modelContext.registerTool) — explain it here in your own words.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide support>
+  <h3 class="main-gradient">Where it stands</h3>
+  <ul>
+    <li>
+      🧪 <span>Proposed standard — </span><span class="main-sub-gradient"
+        >W3C Community Group draft</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      🌐 <span>Origin trial in </span><span class="main-sub-gradient"
+        >Chrome 149+</span
+      >
+    </li>
+    <li p-fragment p-effect="zoom">
+      🌱 <span>Early days — </span><span class="main-sub-gradient"
+        >watch it, try it</span
+      ><span>, don't bet on it yet</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Spec: Draft Community Group Report of the W3C Web Machine Learning
+      Community Group — explicitly not a W3C Standard, not on the standards
+      track. Editors from Microsoft and Google.
+    </p>
+    <p>
+      Chrome docs say it's "under active discussion and subject to change".
+      Local testing: chrome://flags/#enable-webmcp-testing.
+    </p>
+    <p>
+      At I/O 2026 Google showed brands experimenting with it: Expedia,
+      Booking.com, Shopify, Etsy, Target and others. Experimenting — not
+      shipped.
+    </p>
+    <p>
+      Don't claim: Firefox/Safari plans, Gemini in Chrome support (Google only
+      said "will soon").
+    </p>
+    <p>Facts done. Now the part that's opinion — say so out loud.</p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="center" autoplay timing="550">
+  <h2 class="main-gradient" style="margin-block-end: 0.5em">
+    What if nobody looks at your interface anymore?
+  </h2>
+  <p-fragment>
+    <p style="font-size: 0.7em; opacity: 0.8;">
+      No layout. No hover. No dark mode. Just <code>bookTable()</code>.
+    </p>
+  </p-fragment>
+
+  <PNotes>
+    <p>Slow down. Let the question sit — same energy as the opening hinge.</p>
+    <p>
+      Everything we built in this talk — layers, tokens, light-dark(), fluid space,
+      container queries — an agent calling bookTable() sees none of it.
+    </p>
+    <p>
+      This is the pathos moment: not a threat, an honest "what if". This is my
+      opinion, not a roadmap.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">The end of interfaces?</h3>
+  <ul>
+    <li>
+      🖼️ <span>Today the interface is </span><span class="main-sub-gradient"
+        >the only way in</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      🤖 <span>Tomorrow, maybe </span><span class="main-sub-gradient"
+        >one of the ways in</span
+      >
+    </li>
+    <li p-fragment p-effect="from left">
+      ✍️ <span>We'll design </span><span class="main-sub-gradient"
+        >intent and trust</span
+      ><span>, not just screens</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      For thirty years the screen was the only door into a product: if you
+      wanted to book a table, you had to go through our layout, our buttons,
+      our flow.
+    </p>
+    <p>
+      If agents can call the action directly, the screen stops being the only
+      door. Maybe that's the end of interfaces as we design them today.
+    </p>
+    <p>
+      But someone still has to name the actions, describe them, decide what an
+      agent may do alone and when the human must confirm, and show the human
+      what happened. That's design. Just not only pixels.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="center" autoplay timing="550">
+  <h2 class="main-gradient" style="margin-block-end: 0.3em">
+    Not the end of design
+  </h2>
+  <p-fragment>
+    <p style="font-size: 0.7em; opacity: 0.8;">
+      Maybe the end of designing only for eyes.
+    </p>
+  </p-fragment>
+
+  <PNotes>
+    <p>The closing line of the epilogue. Pause, then thank you.</p>
+    <p>
+      Soft landing for the room: the craft doesn't disappear, the audience
+      widens — humans and agents.
+    </p>
+  </PNotes>
+</p-slide>
+
+<style lang="scss">
+  [support] {
+    li {
+      margin-block-end: 0.3em;
+    }
+  }
+</style>

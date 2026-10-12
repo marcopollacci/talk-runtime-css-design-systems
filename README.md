@@ -11,6 +11,7 @@ Built on top of [P-Slides](https://github.com/MaxArt2501/p-slides)!
 # Url Slide
 
 - [11/06/2026 - CSSDay 2026](https://talk-runtime-css-design-systems.marcotalk.dev/css-day-2026)
+- [13/10/2026 - Bologna Frontend 2026](https://talk-runtime-css-design-systems.marcotalk.dev/bfe-2026)
 
 ## Building
 
