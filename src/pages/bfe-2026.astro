@@ -1,15 +1,15 @@
 ---
-import favicon from "../img/cssday-favicon.webp";
+import bfe from "../img/cropped-bfe-favicon-32x32.webp";
 import me2 from "../img/me2.png";
-import qrRating from "../img/qrrating_cssday2026_grusp.png";
-import qrslide from "../img/qrslide_cssday2026.png";
+import qrRating from "../img/qrrating_bfe2026.png";
+import qrslide from "../img/qrslide_bfe2026.png";
 import Layout from "../layouts/Layout.astro";
 import CardBridge from "../slides/card-bridge.astro";
 import Cascade from "../slides/cascade.astro";
 import Colors from "../slides/colors.astro";
 import Context from "../slides/context.astro";
 import ContrastColor from "../slides/contrast-color.astro";
-import CoverCssday2026 from "../slides/cover-cssday-2026.astro";
+import CoverBfe2026 from "../slides/cover-bfe-2026.astro";
 import Cover from "../slides/cover.astro";
 import Example from "../slides/example-bfe.astro";
 import Intro from "../slides/intro.astro";
@@ -21,8 +21,8 @@ import StyleQueries from "../slides/style-queries.astro";
 import Thanks from "../slides/thanks.astro";
 import ThreadIntro from "../slides/thread-intro.astro";
 import WebMcp from "../slides/webmcp.astro";
-const favIcon = favicon.src;
-const canRender = import.meta.env.DEV || new Date("2026-06-11") < new Date();
+const favIcon = bfe.src;
+const canRender = import.meta.env.DEV || new Date("2026-10-13") < new Date();
 const metaData = {
   title: "Less Build, More Runtime: The Modern CSS Approach to Design Systems",
   description:
@@ -33,7 +33,7 @@ const metaData = {
 ---
 
 <Layout {canRender} {favIcon} {metaData}>
-  <CoverCssday2026 />
+  <CoverBfe2026 />
   {canRender && (
     <>
       <Cover meReloaded={me2} />
