@@ -1,4 +1,5 @@
 ---
+import LiveCard from "../components/LiveCard.astro";
 import PNotes from "../components/PNotes.astro";
 ---
 
@@ -55,13 +56,16 @@ import PNotes from "../components/PNotes.astro";
     &lt;/section&gt;</code>
       </pre>
     </div>
+    <div style="flex: 1; align-self: center;" p-effect="from right">
+      <LiveCard stage="markup" />
+    </div>
   </div>
 
   <PNotes>
     <p>This is the starting point — just HTML. No styles, no build step.</p>
     <p>
-      The list on the right is the roadmap: each section adds one layer to this
-      card.
+      The card on the right is rendered live — raw, unstyled. Each section adds
+      one layer to it.
     </p>
     <p>
       At the end of each section we'll see the CSS accumulate. At the end we'll
