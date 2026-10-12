@@ -1,0 +1,103 @@
+---
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide all-map autoplay timing-fragments="1700">
+  <h3 style="margin-block-end: 1rem;" class="main-gradient center">
+    Runtime CSS features to know
+  </h3>
+
+  <dl>
+    <div timing-start="500" p-fragment p-effect="from left">
+      <dt>@layer</dt>
+      <dd>predictable cascade</dd>
+    </div>
+
+    <div timing-start="500" p-fragment p-effect="from right">
+      <dt>@property</dt>
+      <dd>typed, inheritable token</dd>
+    </div>
+
+    <div timing-start="800" p-fragment p-effect="from left">
+      <dt>oklch + color-mix</dt>
+      <dd>palette computed live</dd>
+    </div>
+
+    <div timing-start="800" p-fragment p-effect="from right">
+      <dt>light-dark()</dt>
+      <dd>dark mode, one line</dd>
+    </div>
+
+    <div timing-start="1100" p-fragment p-effect="from left">
+      <dt>clamp</dt>
+      <dd>fluid spacing, no breakpoints</dd>
+    </div>
+
+    <div timing-start="1100" p-fragment p-effect="from right">
+      <dt>logical props</dt>
+      <dd>writing-mode aware</dd>
+    </div>
+
+    <div timing-start="1300" p-fragment p-effect="from left">
+      <dt>@container</dt>
+      <dd>reacts to its container</dd>
+    </div>
+
+    <div timing-start="1300" p-fragment p-effect="from right">
+      <dt>:has()</dt>
+      <dd>reacts to its content</dd>
+    </div>
+
+    <div timing-start="1500" p-fragment p-effect="from left">
+      <dt>style queries</dt>
+      <dd>reacts to a token</dd>
+    </div>
+
+    <div timing-start="1500" p-fragment p-effect="from right">
+      <dt>contrast-color()</dt>
+      <dd>readable text, computed</dd>
+    </div>
+  </dl>
+
+  <PNotes>
+    <p>
+      This is the photographable summary. Reveal pairs as you name them, or all
+      at once if time is tight.
+    </p>
+    <p>
+      Land the headline: not one of these needed a compile step. The browser is
+      doing the runtime work.
+    </p>
+    <p>Transition into section 9 — the honest limits and the close.</p>
+  </PNotes>
+</p-slide>
+
+<style lang="scss">
+  [all-map] {
+    dl {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.4em 1.5em;
+      margin-block-start: 0.6em;
+    }
+
+    dl > div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.15em;
+    }
+
+    dt {
+      font-family: var(--talk-marco-graphik-medium, monospace);
+      font-size: 0.7em;
+      color: var(--main-sub-gradient-fallback, currentColor);
+    }
+
+    dd {
+      font-size: 0.5em;
+      opacity: 0.8;
+      margin: 0;
+    }
+  }
+</style>

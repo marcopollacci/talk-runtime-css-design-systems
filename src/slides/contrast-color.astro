@@ -1,0 +1,74 @@
+---
+import BrowserSupport from "../components/BrowserSupport.astro";
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide>
+  <h3 class="main-gradient">Readable text, computed</h3>
+  <ul>
+    <li>
+      🎨 <span>Change the </span><span class="main-sub-gradient"
+        >background token</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      🔤 <span>The text color </span><span class="main-sub-gradient"
+        >follows</span
+      ><span> — black or white</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      👀 <span>A starting point, </span><span class="main-sub-gradient"
+        >not a contrast audit</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      One more color function, newly Baseline (April 2026): contrast-color().
+      Give it a color, it returns white or black — whichever contrasts more.
+    </p>
+    <p>
+      Be honest on the third bullet: it only returns white or black, and it
+      targets WCAG AA. On mid-tone backgrounds (MDN's example: #2277d3) neither
+      is readable for small text. Use it with light or dark tokens — the
+      designer still checks the palette.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">contrast-color()</span> — one token, readable text
+    🔤
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="button.css">
+    <code style="font-size: 0.7em" is:raw class="language-scss">
+    button {
+        background: var(--accent);
+        /* white or black — whichever contrasts more */
+        color: contrast-color(var(--accent));
+    }</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      Same --accent token as the card. Change it at runtime and the button text
+      flips between black and white by itself.
+    </p>
+    <p>
+      Before: a Sass function picking the text color at build time, or a second
+      token to keep in sync by hand.
+    </p>
+  </PNotes>
+</p-slide>
+
+<BrowserSupport
+  feature="contrast-color()"
+  chrome="147"
+  firefox="146"
+  safari="26"
+  status="Baseline 2026 — newly available"
+/>

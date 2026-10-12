@@ -1,0 +1,94 @@
+---
+import BrowserSupport from "../components/BrowserSupport.astro";
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide class="cover-internal-sub-section">
+  <h2>Style queries</h2>
+
+  <PNotes>
+    <p>Container queries, but querying a custom property instead of size.</p>
+    <p>
+      Size queries ask: how much room do I have? Style queries ask: what state
+      or tone did my container expose?
+    </p>
+    <p>
+      Until a few months ago this was in my "near future" section — since May
+      2026 it works in every major engine.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Variants without extra classes</h3>
+  <ul>
+    <li p-fragment p-effect="from right">
+      🚫 <span>No </span><span class="main-sub-gradient">modifier class</span
+      ><span> just to express a variant</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      🌗 <span>The container's </span><span class="main-sub-gradient"
+        >state</span
+      ><span> drives the styling</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      The idea: the container exposes a value, like --tone: loud, and its
+      children react to it.
+    </p>
+    <p>
+      The variant becomes data in CSS, not another naming convention to keep in
+      sync.
+    </p>
+    <p>
+      After size (container queries) and content (:has()), the component now
+      also reacts to a token.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">Query a custom property</span> 🎛️
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="style-query.css">
+  <code style="font-size: 0.6em" is:raw class="language-scss">section {
+        --tone: muted; /* just data on the container */
+    }
+    /* children react to the container's property */
+    @container style(--tone: muted) {
+        article {
+            background: oklch(0.95 0.02 250);
+        }
+    }
+    @container style(--tone: loud) {
+        article {
+            background: oklch(0.7 0.2 250);
+            color: white;
+        }
+    }</code></pre>
+
+  <PNotes>
+    <p>
+      Every element is implicitly a style container — no container-type needed
+      for style queries, unlike size queries. Worth saying.
+    </p>
+    <p>
+      Gotcha to flag: the interoperable part is custom properties. Firefox 151
+      also accepts regular properties, Chrome and Safari don't — so stick to
+      custom properties.
+    </p>
+  </PNotes>
+</p-slide>
+
+<BrowserSupport
+  feature="Style queries"
+  chrome="111"
+  firefox="151"
+  safari="18"
+  status="Baseline 2026 — newly available"
+/>

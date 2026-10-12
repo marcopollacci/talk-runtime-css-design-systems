@@ -1,0 +1,326 @@
+---
+import PNotes from "../components/PNotes.astro";
+---
+
+<p-slide class="cover-internal">
+  <h1>The near future</h1>
+
+  <PNotes>
+    <p>This section is honest speculation, not "use this Monday".</p>
+    <p>
+      The point is not production readiness. The point is direction: CSS is
+      moving logic closer to values and components — conditions, functions,
+      tokens read straight from HTML.
+    </p>
+    <p>
+      Three things: if(), @function, typed attr(). Some shipping in one or two
+      engines — always check support before building on them.
+    </p>
+    <p>
+      Callback: style queries were in this section at CSS Day in June. Since
+      May they're Baseline. That's how fast this moves.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="cover-internal-sub-section">
+  <h2>if()</h2>
+
+  <PNotes>
+    <p>
+      Be precise: this is the if() function, inline in a value — not a block
+      @if.
+    </p>
+    <p>
+      It builds on what we just saw: the style() condition is the same one
+      style queries use.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Inline conditional values</h3>
+  <ul>
+    <li>
+      🔀 <span>Pick a value </span><span class="main-sub-gradient">inline</span
+      ><span>, inside one declaration</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      📏 <span>One </span><span class="main-sub-gradient">property value</span
+      ><span> at a time — not whole blocks</span>
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Frame the difference vs @container: if() sets a single value; @container
+      applies a whole rule set.
+    </p>
+    <p>
+      They are complementary, not rivals: one is inline value selection, the
+      other is conditional rule application.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">if() — a value, conditionally</span> 🔀
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="if-function.css">
+    <code style="font-size: 0.7em" is:raw class="language-scss">
+    section {
+        --tone: loud;
+    }
+
+    article {
+        background: if(
+            style(--tone: loud): oklch(0.7 0.2 250);
+            else: oklch(0.95 0.02 250)
+        );
+    }</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      Read it as: if the container exposes --tone: loud, use the loud
+      background; otherwise use the muted background.
+    </p>
+    <p>
+      Same idea as the style query slides, but now the conditional choice
+      happens inside one property value.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide support>
+  <h3 class="main-gradient">About support</h3>
+  <ul>
+    <li>
+      🧪 <span class="main-sub-gradient">if()</span><span>
+        — Chromium only, 137+</span
+      >
+    </li>
+    <li p-fragment p-effect="from right">
+      📏 <span>Inline </span><span class="main-sub-gradient">values only</span
+      ><span> — not rule blocks</span>
+    </li>
+    <li p-fragment p-effect="zoom">
+      🌱 <span>Worth </span><span class="main-sub-gradient">watching</span><span
+        >, not betting on</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Firefox and Safari don't ship it yet (MDN: limited availability,
+      experimental).
+    </p>
+    <p>
+      If someone saw an @if or @when proposal somewhere: those are spec-level
+      ideas, no browser ships them. Set the record straight kindly.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="cover-internal-sub-section">
+  <h2><span style="font-family: Arial;">@</span>function</h2>
+
+  <PNotes>
+    <p>
+      The thing most of us still use Sass for: functions. CSS is getting its
+      own.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Functions for your tokens</h3>
+  <ul>
+    <li>
+      🧮 <span>Reusable </span><span class="main-sub-gradient">logic</span
+      ><span>, defined once in CSS</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🌐 <span>Runs </span><span class="main-sub-gradient">at runtime</span
+      ><span> — with live custom properties</span>
+    </li>
+    <li p-fragment p-effect="from left">
+      🧳 <span>One less reason to </span><span class="main-sub-gradient"
+        >keep Sass around</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      A Sass function runs once, at build time, on static values. A CSS custom
+      function runs in the browser, on the live value of a token — change the
+      token, the result follows.
+    </p>
+    <p>
+      That's the whole talk in one feature: the same idea, moved from the build
+      to the browser.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">A tint function, native</span> 🧮
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="functions.css">
+    <code style="font-size: 0.65em" is:raw class="language-scss">
+    @function --tint(--color, --amount: 10%) {
+        result: color-mix(in oklch, var(--color), white var(--amount));
+    }
+
+    article:hover {
+        background: --tint(var(--accent), 15%);
+    }</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      Parameters are custom properties, --amount has a default (10%), and the
+      result descriptor is the return value. Called like any function: --tint().
+    </p>
+    <p>
+      Inside it's the color-mix() we saw in the colors section — now with a
+      name, and reusable across the whole system.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide support>
+  <h3 class="main-gradient">About support</h3>
+  <ul>
+    <li>
+      🧪 <span class="main-sub-gradient">Chromium</span><span> — 139+</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🧭 <span>Safari — </span><span class="main-sub-gradient"
+        >Technology Preview</span
+      ><span>, Firefox not yet</span>
+    </li>
+    <li p-fragment p-effect="zoom">
+      🌱 <span>Worth </span><span class="main-sub-gradient">watching</span><span
+        >, not betting on</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      MDN marks @function as experimental / limited availability. Safari has it
+      in Technology Preview only — not in stable Safari.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide class="cover-internal-sub-section">
+  <h2>Typed attr()</h2>
+
+  <PNotes>
+    <p>
+      attr() is old — but until now it only worked in content, as a string.
+      Now it can return real types: colors, lengths, numbers.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h3 class="main-gradient">Tokens straight from HTML</h3>
+  <ul>
+    <li>
+      🏷️ <span>Read an </span><span class="main-sub-gradient"
+        >HTML attribute</span
+      ><span> as a typed value</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🎨 <span>A </span><span class="main-sub-gradient">color</span><span
+        >, a length, a number — not just a string</span
+      >
+    </li>
+    <li p-fragment p-effect="from left">
+      🧩 <span>Per-instance tweaks </span><span class="main-sub-gradient"
+        >without inline styles</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      Think CMS or design tool output: the content decides the accent of one
+      card, the design system decides everything else.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide>
+  <h5 style="margin-block-end: 1em" class="center">
+    <span class="main-gradient">attr() with a type</span> 🏷️
+  </h5>
+  <pre
+    class="small-line"
+    data-label-file="card.css">
+    <code style="font-size: 0.6em" is:raw class="language-scss">
+    /* &lt;article data-accent="oklch(0.7 0.2 30)"&gt; */
+    article {
+        --accent: attr(data-accent type(&lt;color&gt;), oklch(0.7 0.15 250));
+    }</code>
+  </pre>
+
+  <PNotes>
+    <p>
+      type(&lt;color&gt;) tells the browser to parse the attribute as a color.
+      The second argument is the fallback if the attribute is missing or
+      invalid.
+    </p>
+    <p>
+      It feeds the same --accent token as the card: border, hover tint,
+      contrast-color — all follow, per instance.
+    </p>
+  </PNotes>
+</p-slide>
+
+<p-slide support>
+  <h3 class="main-gradient">About support</h3>
+  <ul>
+    <li>
+      ✅ <span class="main-sub-gradient">Chrome 133+</span><span>
+        · </span><span class="main-sub-gradient">Firefox 155+</span>
+    </li>
+    <li p-fragment p-effect="from right">
+      🧭 <span>Safari — </span><span class="main-sub-gradient"
+        >Technology Preview</span
+      >
+    </li>
+    <li p-fragment p-effect="zoom">
+      🌱 <span>Two engines out of three — </span><span
+        class="main-sub-gradient">getting close</span
+      >
+    </li>
+  </ul>
+
+  <PNotes>
+    <p>
+      The closest to Baseline of the three: shipped in Chrome and Firefox,
+      Safari has it in Technology Preview.
+    </p>
+    <p>Transition into the summary map, then the honest limits.</p>
+  </PNotes>
+</p-slide>
+
+<style lang="scss">
+  [support] {
+    li {
+      margin-block-end: 0.3em;
+    }
+  }
+</style>
