@@ -1209,9 +1209,9 @@ var Prism = (function (_self) {
 
 }(_self));
 
-if (typeof module !== 'undefined' && module.exports) {
-	module.exports = Prism;
-}
+// CommonJS export removed: it made Rolldown (Vite 8) wrap this file in a lazy
+// CJS shim, so the language components ran before Prism existed.
+// The browser global is set above via `_self.Prism = _`.
 
 // hack for components to work correctly in node.js
 if (typeof global !== 'undefined') {
