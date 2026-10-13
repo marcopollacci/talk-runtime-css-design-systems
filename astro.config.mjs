@@ -66,6 +66,9 @@ export default defineConfig({
     build: {
       rollupOptions: {
         output: {
+          // p-slides derives event names from class names
+          // (new.target.name), so the minifier must not drop them.
+          keepNames: true,
           manualChunks: (id) => {
             if (id.includes("src/vendor")) {
               return "vendor/[name]";
