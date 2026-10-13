@@ -95,37 +95,6 @@ import PNotes from "../components/PNotes.astro";
   </PNotes>
 </p-slide>
 
-<p-slide support>
-  <h3 class="main-gradient">About support</h3>
-  <ul>
-    <li>
-      🧪 <span class="main-sub-gradient">if()</span>
-      <span> - Chromium only, 137+</span>
-    </li>
-    <li p-fragment p-effect="from right">
-      📏 <span>Inline </span>
-      <span class="main-sub-gradient">values only</span>
-      <span> - not rule blocks</span>
-    </li>
-    <li p-fragment p-effect="zoom">
-      🌱 <span>Worth </span>
-      <span class="main-sub-gradient">watching</span>
-      <span>, not betting on</span>
-    </li>
-  </ul>
-
-  <PNotes>
-    <p>
-      Firefox and Safari don't ship it yet (MDN: limited availability,
-      experimental).
-    </p>
-    <p>
-      If someone saw an @if or @when proposal somewhere: those are spec-level
-      ideas, no browser ships them. Set the record straight kindly.
-    </p>
-  </PNotes>
-</p-slide>
-
 <p-slide class="cover-internal-sub-section">
   <h2>
     <span style="font-family: Arial;">@</span>function
@@ -198,33 +167,6 @@ import PNotes from "../components/PNotes.astro";
   </PNotes>
 </p-slide>
 
-<p-slide support>
-  <h3 class="main-gradient">About support</h3>
-  <ul>
-    <li>
-      🧪 <span class="main-sub-gradient">Chromium</span>
-      <span> - 139+</span>
-    </li>
-    <li p-fragment p-effect="from right">
-      🧭 <span>Safari - </span>
-      <span class="main-sub-gradient">Technology Preview</span>
-      <span>, Firefox not yet</span>
-    </li>
-    <li p-fragment p-effect="zoom">
-      🌱 <span>Worth </span>
-      <span class="main-sub-gradient">watching</span>
-      <span>, not betting on</span>
-    </li>
-  </ul>
-
-  <PNotes>
-    <p>
-      MDN marks @function as experimental / limited availability. Safari has it
-      in Technology Preview only - not in stable Safari.
-    </p>
-  </PNotes>
-</p-slide>
-
 <p-slide class="cover-internal-sub-section">
   <h2>Typed attr()</h2>
 
@@ -289,27 +231,54 @@ import PNotes from "../components/PNotes.astro";
 </p-slide>
 
 <p-slide support>
-  <h3 class="main-gradient">About support</h3>
-  <ul>
-    <li>
-      ✅ <span class="main-sub-gradient">Chrome 133+</span>
-      <span>· </span>
-      <span class="main-sub-gradient">Firefox 155+</span>
-    </li>
-    <li p-fragment p-effect="from right">
-      🧭 <span>Safari - </span>
-      <span class="main-sub-gradient">Technology Preview</span>
-    </li>
-    <li p-fragment p-effect="zoom">
-      🌱 <span>Two engines out of three - </span>
-      <span class="main-sub-gradient">getting close</span>
-    </li>
-  </ul>
+  <h3 class="main-gradient center">About support</h3>
+  <table>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Chrome · Edge</th>
+        <th>Firefox</th>
+        <th>Safari</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr p-fragment p-effect="from left">
+        <th>if()</th>
+        <td data-status="ok">137+</td>
+        <td data-status="no">-</td>
+        <td data-status="no">-</td>
+      </tr>
+      <tr p-fragment p-effect="from left">
+        <th><span style="font-family: Arial;">@</span>function</th>
+        <td data-status="ok">139+</td>
+        <td data-status="no">-</td>
+        <td data-status="warn">TP</td>
+      </tr>
+      <tr p-fragment p-effect="from left">
+        <th>typed attr()</th>
+        <td data-status="ok">133+</td>
+        <td data-status="ok">155+</td>
+        <td data-status="warn">TP</td>
+      </tr>
+    </tbody>
+  </table>
+  <p p-fragment p-effect="zoom" class="center verdict">
+    🌱 <span class="main-sub-gradient">Worth watching</span>, not betting on
+  </p>
 
   <PNotes>
     <p>
-      The closest to Baseline of the three: shipped in Chrome and Firefox,
-      Safari has it in Technology Preview.
+      if(): Chromium only. Firefox and Safari don't ship it yet (MDN: limited
+      availability, experimental). If someone saw an @if or @when proposal:
+      spec-level ideas, no browser ships them.
+    </p>
+    <p>
+      @function: experimental. Safari has it in Technology Preview only - not in
+      stable Safari.
+    </p>
+    <p>
+      Typed attr(): the closest to Baseline - Chrome and Firefox shipped,
+      Safari in Technology Preview.
     </p>
     <p>Transition into the summary map, then the honest limits.</p>
   </PNotes>
@@ -317,8 +286,48 @@ import PNotes from "../components/PNotes.astro";
 
 <style lang="scss">
   [support] {
-    li {
-      margin-block-end: 0.3em;
+    table {
+      margin: 0.6em auto 0;
+      border-collapse: collapse;
+      font-size: 0.6em;
+    }
+
+    th,
+    td {
+      padding: 0.45em 1.1em;
+      text-align: center;
+      border-block-end: 1px solid var(--hairline);
+    }
+
+    thead th {
+      font-size: 0.75em;
+      color: var(--ink-mute);
+    }
+
+    tbody th {
+      text-align: start;
+      font-family: var(--font-mono, ui-monospace, monospace);
+    }
+
+    td {
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-weight: 600;
+
+      &[data-status="ok"] {
+        color: light-dark(oklch(0.42 0.2 145), oklch(0.78 0.2 145));
+      }
+      &[data-status="warn"] {
+        color: light-dark(oklch(0.55 0.2 75), oklch(0.82 0.18 75));
+      }
+      &[data-status="no"] {
+        color: light-dark(oklch(0.5 0.22 25), oklch(0.72 0.22 25));
+        opacity: 0.75;
+      }
+    }
+
+    .verdict {
+      font-size: 0.6em;
+      margin-block: 1em 0;
     }
   }
 </style>

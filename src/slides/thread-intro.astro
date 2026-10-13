@@ -1,5 +1,6 @@
 ---
 import LiveCard from "../components/LiveCard.astro";
+import Mascot from "../components/Mascot.astro";
 import PNotes from "../components/PNotes.astro";
 ---
 
@@ -12,6 +13,8 @@ import PNotes from "../components/PNotes.astro";
     We'll build this - layer by layer - in the browser.
   </p>
 
+  <Mascot say="Hi! I'll keep score." count={0} />
+
   <PNotes>
     <p>From here on, every feature we see gets added to this one card.</p>
     <p>
@@ -20,6 +23,10 @@ import PNotes from "../components/PNotes.astro";
       tokens.
     </p>
     <p>Not isolated examples: a system being assembled live.</p>
+    <p>
+      Introduce the mascot: "it'll count how many build steps we get rid of".
+      It comes back at every checkpoint.
+    </p>
   </PNotes>
 </p-slide>
 

@@ -1,8 +1,17 @@
 ---
 import { Image } from "astro:assets";
 import BrowserSupport from "../components/BrowserSupport.astro";
+import Meme from "../components/Meme.astro";
 import PNotes from "../components/PNotes.astro";
+import WhoWins from "../components/WhoWins.astro";
 import cascadeMeme from "../img/cascade-meme.jpeg";
+import thisIsFine from "../img/memes/this-is-fine.jpg";
+
+interface Props {
+  /** memes, "Who wins?" rounds and quips - off for archived decks */
+  playful?: boolean;
+}
+const { playful = true } = Astro.props;
 ---
 
 <p-slide class="cover-internal center" autoplay>
@@ -53,6 +62,24 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
     </p>
   </PNotes>
 </p-slide>
+
+{playful && (
+  <p-slide class="center">
+    <Meme
+      src={thisIsFine}
+      alt="This is fine meme: a dog sits calmly in a burning room"
+      height="10em"
+      captions={[
+        { text: "!important × 47", x: 25, y: 12 },
+        { text: "me, shipping on a Friday", x: 72, y: 88, w: 50, size: 9 },
+      ]}
+    />
+    <PNotes>
+      <p>Don't explain the meme. Pause, let them laugh, move on.</p>
+      <p>Optional: "Raise your hand if you have a stylesheet like this."</p>
+    </PNotes>
+  </p-slide>
+)}
 
 <p-slide class="cover-internal-sub-section">
   <h2>
@@ -129,6 +156,41 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
     </p>
   </PNotes>
 </p-slide>
+
+{playful && (
+  <WhoWins
+    round={1}
+    winner="b"
+    verdict="unlayered beats every layer. Specificity gets no vote."
+    a={{
+      label: "layered + specific",
+      file: "overrides.css",
+      code: `@layer overrides {
+  nav > a[aria-current="page"] {
+    color: red;
+  }
+}`,
+    }}
+    b={{
+      label: "no layer at all",
+      file: "legacy.css",
+      code: `/* forgot to wrap it */
+a { color: blue; }`,
+    }}
+  >
+    <Fragment slot="question">
+      <code>&lt;nav&gt;&lt;a aria-current="page"&gt;</code> - what color?
+    </Fragment>
+    <p>
+      They just learned "later layer wins", so most will bet on A. That's the
+      trap.
+    </p>
+    <p>
+      The gotcha from the previous slide, now felt: normal declarations outside
+      any layer beat all layered ones. Wrap (almost) everything in a layer.
+    </p>
+  </WhoWins>
+)}
 
 <BrowserSupport
   feature="@layer"
@@ -260,6 +322,41 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   </PNotes>
 </p-slide>
 
+{playful && (
+  <WhoWins
+    round={2}
+    winner="b"
+    verdict="proximity beats source order. The closest scope root wins."
+    a={{
+      label: "declared last",
+      file: "light.css",
+      code: `@scope ([data-theme="light"]) {
+  p { color: black; }
+}`,
+    }}
+    b={{
+      label: "declared first",
+      file: "dark.css",
+      code: `@scope ([data-theme="dark"]) {
+  p { color: white; }
+}`,
+    }}
+  >
+    <Fragment slot="question">
+      <code>&lt;main data-theme="light"&gt;&lt;aside data-theme="dark"&gt;&lt;p&gt;</code>
+      - what color?
+    </Fragment>
+    <p>
+      Same specificity, A comes later in the file: old instincts say A. New
+      cascade step: scoping proximity is checked before order of appearance.
+    </p>
+    <p>
+      The dark root (aside) is one hop away from the p, the light root (main)
+      is two - so B wins. Nested themes, finally without fighting.
+    </p>
+  </WhoWins>
+)}
+
 <BrowserSupport
   feature="@scope"
   atRule
@@ -267,6 +364,7 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   firefox="146"
   safari="17.4"
   status="Baseline - newly available"
+  quip={playful ? "Firefox: fashionably late, but it came to the party." : undefined}
 />
 
 <p-slide class="cover-internal-sub-section">

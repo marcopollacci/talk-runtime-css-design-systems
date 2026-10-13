@@ -1,6 +1,14 @@
 ---
 import BrowserSupport from "../components/BrowserSupport.astro";
+import Meme from "../components/Meme.astro";
 import PNotes from "../components/PNotes.astro";
+import distracted from "../img/memes/distracted.jpg";
+
+interface Props {
+  /** memes and jokes - off for archived decks */
+  playful?: boolean;
+}
+const { playful = true } = Astro.props;
 ---
 
 <p-slide class="cover-internal">
@@ -60,6 +68,27 @@ import PNotes from "../components/PNotes.astro";
     <p>This is the slide that reframes the whole problem.</p>
   </PNotes>
 </p-slide>
+
+{playful && (
+  <p-slide class="center">
+    <Meme
+      src={distracted}
+      alt="Distracted boyfriend meme: a man turns to look at another woman while his girlfriend stares at him"
+      height="11em"
+      captions={[
+        { text: "@container", x: 30, y: 72, w: 35, size: 10 },
+        { text: "my component", x: 62, y: 12, w: 30, size: 8 },
+        { text: "@media", x: 84, y: 60, w: 25, size: 10 },
+      ]}
+    />
+    <PNotes>
+      <p>
+        Media queries did nothing wrong. They just answer a question our
+        components stopped asking.
+      </p>
+    </PNotes>
+  </p-slide>
+)}
 
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">

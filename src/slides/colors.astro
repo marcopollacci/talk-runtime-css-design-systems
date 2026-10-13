@@ -1,6 +1,14 @@
 ---
 import BrowserSupport from "../components/BrowserSupport.astro";
+import Meme from "../components/Meme.astro";
 import PNotes from "../components/PNotes.astro";
+import drake from "../img/memes/drake.jpg";
+
+interface Props {
+  /** memes and jokes - off for archived decks */
+  playful?: boolean;
+}
+const { playful = true } = Astro.props;
 ---
 
 <p-slide class="cover-internal">
@@ -91,6 +99,25 @@ import PNotes from "../components/PNotes.astro";
     </p>
   </PNotes>
 </p-slide>
+
+{playful && (
+  <p-slide class="center">
+    <Meme
+      src={drake}
+      alt="Drake meme: rejecting the top option, approving the bottom one"
+      height="11em"
+      captions={[
+        { text: "darken($brand, 15%)", x: 75, y: 22, w: 46, size: 4, look: "ink", code: true },
+        { text: "compiled once, frozen forever", x: 75, y: 34, w: 45, size: 3.6, look: "ink" },
+        { text: "color-mix(\n  in oklch,\n  var(--brand),\n  black 15%\n)", x: 75, y: 70, w: 46, size: 4, look: "ink", code: true, align: "start" },
+        { text: "computed live, from one token", x: 75, y: 86, w: 45, size: 3.6, look: "ink" },
+      ]}
+    />
+    <PNotes>
+      <p>Let the image do the talking - one beat, then move to support.</p>
+    </PNotes>
+  </p-slide>
+)}
 
 <BrowserSupport
   feature="color-mix()"

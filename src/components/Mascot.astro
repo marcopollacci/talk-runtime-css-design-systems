@@ -1,0 +1,141 @@
+---
+/**
+ * Mascot.astro
+ *
+ * The talk's running gag: the CSS mascot pops up at every card checkpoint
+ * with a one-liner and a "build steps removed" counter that keeps going up.
+ */
+import { Image } from "astro:assets";
+import cssMascot from "../img/css-mascot.png";
+
+interface Props {
+  say: string;
+  count?: number;
+  pose?: "wave" | "lean" | "party";
+  size?: "small" | "big";
+}
+
+const { say, count, pose = "wave", size = "small" } = Astro.props;
+---
+
+<aside
+  class="mascot"
+  data-pose={pose}
+  data-size={size}
+  p-effect={size === "small" ? "from right" : undefined}
+  aria-label="CSS mascot"
+>
+  <p class="bubble">
+    {say}
+    {
+      count !== undefined && (
+        <span class="counter">
+          build steps removed: <data value={count}>{count}</data>
+        </span>
+      )
+    }
+  </p>
+  <Image src={cssMascot} alt="" width={240} />
+</aside>
+
+<style lang="scss">
+  .mascot {
+    --mascot-size: 2.4em;
+    position: absolute;
+    inset-block-start: 0.4em;
+    inset-inline-end: 0.6em;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    z-index: 2;
+
+    &[data-size="big"] {
+      --mascot-size: 6em;
+      position: static;
+      justify-content: center;
+    }
+
+    :global(img) {
+      width: var(--mascot-size);
+      height: auto;
+    }
+
+    &[data-pose="lean"] :global(img) {
+      rotate: 12deg;
+    }
+  }
+
+  .bubble {
+    position: relative;
+    margin: 0;
+    padding: 0.5em 0.8em;
+    max-width: 8em;
+    font-size: 0.34em;
+    line-height: 1.25;
+    color: oklch(0.2 0 0);
+    background: white;
+    border: 2px solid oklch(0.2 0 0);
+    border-radius: 1em;
+
+    [data-size="big"] & {
+      font-size: 0.6em;
+      max-width: 15em;
+    }
+
+    /* tail pointing at the mascot */
+    &::after {
+      content: "";
+      position: absolute;
+      inset-inline-end: -0.55em;
+      inset-block-start: 50%;
+      translate: 0 -50%;
+      border: 0.5em solid transparent;
+      border-inline-start-color: oklch(0.2 0 0);
+      border-inline-end-width: 0;
+    }
+  }
+
+  .counter {
+    display: block;
+    margin-block-start: 0.3em;
+    font-family: var(--font-mono, ui-monospace, monospace);
+    font-size: 0.85em;
+    color: oklch(0.45 0.2 268);
+
+    data {
+      font-weight: 700;
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .mascot[data-pose="wave"] :global(img) {
+      animation: mascot-wave 2.4s ease-in-out infinite;
+      transform-origin: 50% 90%;
+    }
+
+    .mascot[data-pose="party"] :global(img) {
+      animation: mascot-party 0.9s ease-in-out infinite alternate;
+    }
+  }
+
+  @keyframes mascot-wave {
+    0%,
+    100% {
+      rotate: -6deg;
+    }
+    50% {
+      rotate: 6deg;
+    }
+  }
+
+  @keyframes mascot-party {
+    from {
+      translate: 0 0;
+      rotate: -8deg;
+    }
+    to {
+      translate: 0 -0.4em;
+      rotate: 8deg;
+    }
+  }
+</style>

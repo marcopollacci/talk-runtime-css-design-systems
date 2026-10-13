@@ -1,0 +1,176 @@
+---
+/**
+ * WhoWins.astro
+ *
+ * Recurring audience game: two snippets, a show of hands, then the reveal.
+ * Same title and layout every time, so the room learns the format.
+ * The highlight on the winner is driven by :has() on the revealed fragment.
+ */
+import PNotes from "./PNotes.astro";
+
+interface Contender {
+  label: string;
+  file: string;
+  code: string;
+}
+
+interface Props {
+  round: number;
+  a: Contender;
+  b: Contender;
+  winner: "a" | "b";
+  verdict: string;
+}
+
+const { round, a, b, winner, verdict } = Astro.props;
+const contenders = [
+  { side: "a", ...a },
+  { side: "b", ...b },
+] as const;
+---
+
+<p-slide who-wins data-winner={winner}>
+  <h4 class="center">
+    <span class="main-gradient">Who wins?</span> 🥊
+    <span class="round">round {round}</span>
+  </h4>
+
+  <p class="question center"><slot name="question" /></p>
+
+  <div class="contenders">
+    {
+      contenders.map(({ side, label, file, code }, i) => (
+        <>
+          {i === 1 && <span class="vs">VS</span>}
+          <div data-side={side}>
+            <p class="center">
+              <span class="tag">
+                {side.toUpperCase()} - <span class="main-sub-gradient">{label}</span>
+              </span>
+            </p>
+            <pre class="small-line" data-label-file={file}><code class="language-scss">{code}</code></pre>
+          </div>
+        </>
+      ))
+    }
+  </div>
+
+  <p-fragment p-effect="zoom">
+    <p class="verdict center">
+      🏆 <strong>{winner.toUpperCase()}</strong> - {verdict}
+    </p>
+  </p-fragment>
+
+  <PNotes>
+    <p>Show of hands: who says A? Who says B? Count out loud, then reveal.</p>
+    <slot />
+  </PNotes>
+</p-slide>
+
+<style lang="scss">
+  [who-wins] {
+    h4 {
+      margin-block: 0 0.3em;
+    }
+
+    .round {
+      font-family: var(--font-mono, ui-monospace, monospace);
+      font-size: 0.45em;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+      vertical-align: middle;
+      margin-inline-start: 0.6em;
+    }
+
+    /* headings of the game never wrap: keep question and verdict short */
+    .question,
+    .verdict {
+      white-space: nowrap;
+    }
+
+    .question {
+      font-size: 0.6em;
+      margin-block: 0 0.8em;
+
+      :global(code) {
+        font-family: var(--font-mono, ui-monospace, monospace);
+        font-size: 0.85em;
+        color: var(--ink-soft);
+      }
+    }
+
+    /* row 1: tags, row 2: code. Subgrid lines both sides up, VS sits on the code row */
+    .contenders {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      grid-template-rows: auto auto;
+      column-gap: 1.2em;
+      row-gap: 0.4em;
+    }
+
+    .vs {
+      grid-row: 2;
+      align-self: center;
+      font-family: Impact, "Anton", "Arial Black", sans-serif;
+      font-size: 1.2em;
+      color: var(--sub-to);
+    }
+
+    [data-side] {
+      display: grid;
+      grid-row: 1 / span 2;
+      grid-template-rows: subgrid;
+      transition:
+        opacity 400ms,
+        scale 400ms,
+        filter 400ms;
+
+      > p {
+        margin: 0;
+        align-self: end;
+      }
+
+      .tag {
+        font-size: 0.55em;
+        white-space: nowrap;
+      }
+
+      pre {
+        margin: 0;
+        transition: box-shadow 400ms;
+      }
+
+      code {
+        display: block;
+        padding: 0.8em 1.4em;
+        font-size: 0.55em;
+      }
+    }
+
+    .verdict {
+      font-size: 0.6em;
+      margin-block: 1em 0;
+    }
+
+    /* the reveal: the deck flips aria-hidden on the fragment, :has() does the rest */
+    &:has(p-fragment[aria-hidden="false"]) {
+      &[data-winner="a"] [data-side="a"],
+      &[data-winner="b"] [data-side="b"] {
+        scale: 1.04;
+
+        pre {
+          box-shadow:
+            0 0 0 3px var(--sub-to),
+            0 0 2em color-mix(in oklch, var(--sub-to), transparent 50%);
+        }
+      }
+
+      &[data-winner="a"] [data-side="b"],
+      &[data-winner="b"] [data-side="a"] {
+        opacity: 0.35;
+        filter: grayscale(1);
+      }
+    }
+  }
+</style>

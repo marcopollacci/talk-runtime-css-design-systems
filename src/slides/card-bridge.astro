@@ -6,6 +6,7 @@
  * Each slide shows only what's NEW at that checkpoint, keeping the code tight.
  */
 import LiveCard from "../components/LiveCard.astro";
+import Mascot from "../components/Mascot.astro";
 import PNotes from "../components/PNotes.astro";
 interface Props {
   section: "cascade" | "colors" | "space" | "context";
@@ -15,6 +16,7 @@ const { section } = Astro.props;
 
 {section === "cascade" && (
   <p-slide>
+    <Mascot say="Look ma, no build step!" count={1} pose="wave" />
     <h5 style="margin-block-end: 0.8em" class="center">
       <span class="main-gradient">Our card - after cascade</span> 📚
     </h5>
@@ -55,6 +57,7 @@ const { section } = Astro.props;
 
 {section === "colors" && (
   <p-slide>
+    <Mascot say="darken()? Never heard of her." count={2} pose="lean" />
     <h5 style="margin-block-end: 0.8em" class="center">
       <span class="main-gradient">Our card - after colors</span> 🧪
     </h5>
@@ -99,6 +102,7 @@ const { section } = Astro.props;
 
 {section === "space" && (
   <p-slide>
+    <Mascot say="Breakpoints? I just flow." count={3} pose="wave" />
     <h5 style="margin-block-end: 0.8em" class="center">
       <span class="main-gradient">Our card - after space</span> 🌊
     </h5>
@@ -140,6 +144,7 @@ const { section } = Astro.props;
 
 {section === "context" && (
   <p-slide>
+    <Mascot say="I finally know where I live." count={4} pose="lean" />
     <h5 style="margin-block-end: 0.8em" class="center">
       <span class="main-gradient">Our card - all layers in</span> 🏁
     </h5>

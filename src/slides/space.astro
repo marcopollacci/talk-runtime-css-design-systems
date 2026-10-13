@@ -1,6 +1,14 @@
 ---
 import BrowserSupport from "../components/BrowserSupport.astro";
+import Meme from "../components/Meme.astro";
 import PNotes from "../components/PNotes.astro";
+import twoButtons from "../img/memes/two-buttons.jpg";
+
+interface Props {
+  /** memes and jokes - off for archived decks */
+  playful?: boolean;
+}
+const { playful = true } = Astro.props;
 ---
 
 <p-slide class="cover-internal">
@@ -39,6 +47,28 @@ import PNotes from "../components/PNotes.astro";
     <p>Pitch clamp() as the cure on the next slide.</p>
   </PNotes>
 </p-slide>
+
+{playful && (
+  <p-slide class="center">
+    <Meme
+      src={twoButtons}
+      alt="Two buttons meme: a sweating man cannot choose between two red buttons"
+      height="12em"
+      captions={[
+        { text: "max-width:\n768px", x: 29.5, y: 16, w: 40, size: 2.3, look: "ink", code: true, rotate: -16 },
+        { text: "min-width:\n768px", x: 58.5, y: 12, w: 36, size: 2.3, look: "ink", code: true, rotate: -16 },
+        { text: "me, testing at exactly 768px", x: 50, y: 92, w: 90, size: 5.5 },
+      ]}
+    />
+    <PNotes>
+      <p>
+        The off-by-one breakpoint: at exactly 768px both match. Everyone has
+        shipped this bug.
+      </p>
+      <p>Then: "what if there were no steps at all?" - clamp().</p>
+    </PNotes>
+  </p-slide>
+)}
 
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">

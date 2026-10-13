@@ -1,5 +1,12 @@
 ---
+import Mascot from "../components/Mascot.astro";
 import PNotes from "../components/PNotes.astro";
+
+interface Props {
+  /** mascot finale - off for archived decks */
+  playful?: boolean;
+}
+const { playful = true } = Astro.props;
 ---
 
 <p-slide class="cover-internal">
@@ -188,6 +195,11 @@ import PNotes from "../components/PNotes.astro";
       Less precomputed CSS. More runtime CSS.
     </p>
   </p-fragment>
+  {playful && (
+    <p-fragment no-autoplay p-effect="zoom">
+      <Mascot say="Told you. Ship it!" count={4} pose="party" size="big" />
+    </p-fragment>
+  )}
 
   <PNotes>
     <p>
@@ -199,5 +211,9 @@ import PNotes from "../components/PNotes.astro";
       build tool", but "the browser becomes part of the system".
     </p>
     <p>This is the line they leave with. Don't rush it.</p>
+    <p>
+      Only after it lands: last click brings the mascot back for its final
+      score - 4 build steps gone.
+    </p>
   </PNotes>
 </p-slide>

@@ -7,6 +7,8 @@ interface Props {
   firefox: string;
   safari: string;
   status?: string;
+  /** optional one-liner for a laugh, shown after the status */
+  quip?: string;
   atRule?: boolean;
   chromeStatus?: "ok" | "warn" | "no";
   firefoxStatus?: "ok" | "warn" | "no";
@@ -19,6 +21,7 @@ const {
   firefox,
   safari,
   status,
+  quip,
   atRule = false,
   chromeStatus = "ok",
   firefoxStatus = "ok",
@@ -68,6 +71,12 @@ const featureSlug = (atRule ? feature.slice(1) : feature).trim();
   {status && (
     <p-fragment timing-start="1500" p-effect="from below">
       <p data-baseline>{status}</p>
+    </p-fragment>
+  )}
+
+  {quip && (
+    <p-fragment timing-start="2300" p-effect="from below">
+      <p data-quip>{quip}</p>
     </p-fragment>
   )}
 
@@ -145,5 +154,12 @@ const featureSlug = (atRule ? feature.slice(1) : feature).trim();
   [data-baseline] {
     font-size: 0.45em;
     margin-block-start: 1.5em;
+  }
+
+  [data-quip] {
+    font-size: 0.45em;
+    font-style: italic;
+    margin-block-start: 0.6em;
+    color: var(--sub-to);
   }
 </style>
