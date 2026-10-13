@@ -8,7 +8,7 @@ import PNotes from "../components/PNotes.astro";
 
   <PNotes>
     <p>
-      This is the most obvious Sass feature that is now native — everyone in the
+      This is the most obvious Sass feature that is now native - everyone in the
       room has written &:hover or &__modifier.
     </p>
     <p>The sell is simple: same syntax, no compiler, no build step.</p>
@@ -19,19 +19,17 @@ import PNotes from "../components/PNotes.astro";
   <h2 class="main-gradient">Sass syntax, without the Sass</h2>
   <ul>
     <li>
-      🪆 <span>Collocate rules </span><span class="main-sub-gradient"
-        >with their context</span
-      >
+      🪆 <span>Collocate rules </span>
+      <span class="main-sub-gradient">with their context</span>
     </li>
     <li p-fragment p-effect="from right">
-      ✂️ <span>No more </span><span class="main-sub-gradient"
-        >selector repetition</span
-      >
+      ✂️ <span>No more </span>
+      <span class="main-sub-gradient">selector repetition</span>
     </li>
     <li p-fragment p-effect="zoom">
-      🚫 <span>No build step, </span><span class="main-sub-gradient"
-        >no preprocessor</span
-      ><span> dependency</span>
+      🚫 <span>No build step, </span>
+      <span class="main-sub-gradient">no preprocessor</span>
+      <span> dependency</span>
     </li>
   </ul>
 
@@ -46,7 +44,7 @@ import PNotes from "../components/PNotes.astro";
     </p>
     <p>
       Bonus worth mentioning: you can also nest @media and @container inside a
-      rule — co-location of responsive rules was one of the hardest things to
+      rule - co-location of responsive rules was one of the hardest things to
       give up when writing plain CSS.
     </p>
   </PNotes>
@@ -54,18 +52,17 @@ import PNotes from "../components/PNotes.astro";
 
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">Nesting</span> — Sass feature, compiler required 🪆
+    <span class="main-gradient">Nesting</span> - Sass feature, compiler required
+    🪆
   </h5>
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag"
-          >Before — <span class="main-sub-gradient">build-time only</span></span
-        >
+        <span class="tag">
+          Before - <span class="main-sub-gradient">build-time only</span>
+        </span>
       </p>
-      <pre
-        class="small-line"
-        data-label-file="nav.scss">
+      <pre class="small-line" data-label-file="nav.scss">
         <code style="font-size: 0.7em" is:raw class="language-scss">
     nav {
         display: flex;
@@ -87,18 +84,16 @@ import PNotes from "../components/PNotes.astro";
     </p>
     <p>
       The problem is invisible: the browser never sees this file. It sees a
-      flat, compiled output — nesting gone, variables resolved.
+      flat, compiled output - nesting gone, variables resolved.
     </p>
   </PNotes>
 </p-slide>
 
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">Nesting — native, zero build</span> 🌐
+    <span class="main-gradient">Nesting - native, zero build</span> 🌐
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="nav.css">
+  <pre class="small-line" data-label-file="nav.css">
     <code style="font-size: 0.7em" is:raw class="language-css">
     nav {
         display: flex;
@@ -113,13 +108,13 @@ import PNotes from "../components/PNotes.astro";
     }</code></pre>
 
   <PNotes>
-    <p>Same structure as the Sass version — the browser parses it directly.</p>
+    <p>Same structure as the Sass version - the browser parses it directly.</p>
     <p>
       No repeated selector, no lifting out: the co-location benefit that was
       Sass-only until recently. @media and @container nest the same way.
     </p>
     <p>
-      color-mix replaces darken() — we'll dig into it in the colors section,
+      color-mix replaces darken() - we'll dig into it in the colors section,
       coming next. One less reason to reach for a preprocessor.
     </p>
   </PNotes>
@@ -130,5 +125,5 @@ import PNotes from "../components/PNotes.astro";
   chrome="120"
   firefox="117"
   safari="17.2"
-  status="Baseline — widely available"
+  status="Baseline - widely available"
 />

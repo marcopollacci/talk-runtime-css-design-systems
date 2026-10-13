@@ -6,7 +6,7 @@ import PNotes from "../components/PNotes.astro";
   <h1>Limits</h1>
 
   <PNotes>
-    <p>Credibility close — never oversell. Name the trade-offs plainly.</p>
+    <p>Credibility close - never oversell. Name the trade-offs plainly.</p>
     <p>
       The goal is not to pretend build-time disappears. The goal is to show
       which decisions can now move closer to the browser.
@@ -18,17 +18,19 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">Support &amp; progressive enhancement</h3>
   <ul>
     <li>
-      📊 <span>A lot of this is </span><span class="main-sub-gradient"
-        >usable today</span
-      ><span> — some parts still need care</span>
+      📊 <span>A lot of this is </span>
+      <span class="main-sub-gradient">usable today</span>
+      <span> - some parts still need care</span>
     </li>
     <li p-fragment p-effect="from right">
-      🛟 <span>Lean on </span><span class="main-sub-gradient">@supports</span
-      ><span> — enhance, don't require</span>
+      🛟 <span>Lean on </span>
+      <span class="main-sub-gradient">@supports</span>
+      <span> - enhance, don't require</span>
     </li>
     <li p-fragment p-effect="from left">
-      🧱 <span>Sensible </span><span class="main-sub-gradient">fallbacks</span
-      ><span> first, modern layer on top</span>
+      🧱 <span>Sensible </span>
+      <span class="main-sub-gradient">fallbacks</span>
+      <span> first, modern layer on top</span>
     </li>
   </ul>
 
@@ -38,7 +40,7 @@ import PNotes from "../components/PNotes.astro";
       the same: fallback first, modern CSS as enhancement.
     </p>
     <p>
-      Say it: a design system can't blindly assume the newest browser — but it
+      Say it: a design system can't blindly assume the newest browser - but it
       can reward it.
     </p>
     <p>
@@ -52,9 +54,7 @@ import PNotes from "../components/PNotes.astro";
   <h5 style="margin-block-end: 1em" class="center">
     <span class="main-gradient">Enhance, don't require</span> 🛟
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="enhance.css">
+  <pre class="small-line" data-label-file="enhance.css">
     <code style="font-size: 0.7em" is:raw class="language-scss">
     /* sensible baseline everyone gets */
     article {
@@ -89,7 +89,7 @@ import PNotes from "../components/PNotes.astro";
 
   <PNotes>
     <p>
-      Everyone expects the AI moment — make it serve the talk's thesis instead.
+      Everyone expects the AI moment - make it serve the talk's thesis instead.
     </p>
     <p>
       Two sides in two slides: the risk (unsteered, AI gives you the average of
@@ -103,19 +103,17 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">How modern is your AI's CSS?</h3>
   <ul>
     <li>
-      ✨ <span>Newer models </span><span class="main-sub-gradient"
-        >can speak modern CSS</span
-      >
+      ✨ <span>Newer models </span>
+      <span class="main-sub-gradient">can speak modern CSS</span>
     </li>
     <li p-fragment p-effect="from right">
-      🧲 <span>Vague prompts get </span><span class="main-sub-gradient"
-        >the average of the web</span
-      ><span> — still build-time</span>
+      🧲 <span>Vague prompts get </span>
+      <span class="main-sub-gradient">the average of the web</span>
+      <span> - still build-time</span>
     </li>
     <li p-fragment p-effect="from left">
-      📅 <span>Browser support moves </span><span class="main-sub-gradient"
-        >faster than training cutoffs</span
-      >
+      📅 <span>Browser support moves </span>
+      <span class="main-sub-gradient">faster than training cutoffs</span>
     </li>
   </ul>
 
@@ -126,11 +124,11 @@ import PNotes from "../components/PNotes.astro";
     </p>
     <p>
       It's gravity: with a vague prompt you get the average of the published web
-      — and that average is still build-time pipelines and precomputed shades.
+      - and that average is still build-time pipelines and precomputed shades.
       Modern CSS is in there, but it's not the default unless you ask.
     </p>
     <p>
-      Second gap: support tables move faster than training data — if() in
+      Second gap: support tables move faster than training data - if() in
       Chromium 137+ is younger than most cutoffs. "What's usable today" is still
       your call.
     </p>
@@ -145,19 +143,21 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">AI as an accelerator</h3>
   <ul>
     <li>
-      🔁 <span>Migrating </span><span class="main-sub-gradient"
-        >Sass → modern CSS</span
-      ><span> is mechanical work AI is good at</span>
+      🔁 <span>Migrating </span>
+      <span class="main-sub-gradient">Sass → modern CSS</span>
+      <span> is mechanical work AI is good at</span>
     </li>
     <li p-fragment p-effect="from right">
-      🛟 <span>Generating </span><span class="main-sub-gradient"
-        ><code>@supports</code> fallbacks</span
-      ><span> &amp; support checks</span>
+      🛟 <span>Generating </span>
+      <span class="main-sub-gradient">
+        <code>@supports</code> fallbacks
+      </span>
+      <span> &amp; support checks</span>
     </li>
     <li p-fragment p-effect="zoom">
-      👀 <span>You stay the </span><span class="main-sub-gradient"
-        >reviewer</span
-      ><span> — the browser is the judge</span>
+      👀 <span>You stay the </span>
+      <span class="main-sub-gradient">reviewer</span>
+      <span> - the browser is the judge</span>
     </li>
   </ul>
 
@@ -173,7 +173,7 @@ import PNotes from "../components/PNotes.astro";
     </p>
     <p>
       Declarative, toolchain-free CSS is easier to generate and easier to verify
-      — you review it, the browser judges it. Which leads straight into the
+      - you review it, the browser judges it. Which leads straight into the
       closing line.
     </p>
   </PNotes>
@@ -192,7 +192,7 @@ import PNotes from "../components/PNotes.astro";
   <PNotes>
     <p>
       Full circle to the opening question: "what if the browser could do most of
-      this?" — now it can do a lot more than it used to.
+      this?" - now it can do a lot more than it used to.
     </p>
     <p>
       I slightly soften the original line here: not "the browser replaces the

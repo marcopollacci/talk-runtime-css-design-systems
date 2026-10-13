@@ -4,13 +4,22 @@ import PNotes from "../components/PNotes.astro";
 
 <p-slide class="cover-internal center">
   <h2 class="main-gradient">Let's see it assembled</h2>
-  <p p-effect="from below" style="font-size: 0.7em; opacity: 0.8; margin-block-start: 0.8em;">
+  <p
+    p-effect="from below"
+    style="font-size: 0.7em; opacity: 0.8; margin-block-start: 0.8em;"
+  >
     All layers. Running in the browser. Right now.
   </p>
 
   <PNotes>
-    <p>This is the killer moment. Switch focus to the browser window with /demo open (or use the next slide's iframe).</p>
-    <p>The talk title pays off here: "Less Build, More Runtime — The Modern CSS Approach to Design Systems".</p>
+    <p>
+      This is the killer moment. Switch focus to the browser window with /demo
+      open (or use the next slide's iframe).
+    </p>
+    <p>
+      The talk title pays off here: "Less Build, More Runtime - The Modern CSS
+      Approach to Design Systems".
+    </p>
     <p>Everything we've seen so far leads to this.</p>
   </PNotes>
 </p-slide>
@@ -19,16 +28,28 @@ import PNotes from "../components/PNotes.astro";
   <iframe
     src="/demo"
     style="width: 100%; height: 88%; border: none; border-radius: 0.4rem;"
-    title="Runtime CSS Design System — live demo"
+    title="Runtime CSS Design System - live demo"
   ></iframe>
 
   <PNotes>
-    <p>SCRIPT — run IN ORDER:</p>
-    <p>1. "Look at the left column — narrow container. Cards are stacked."</p>
-    <p>2. "On the right the container is wide. :has(img) + @container trigger the two-column layout — zero modifier classes."</p>
-    <p>3. "Hover a card. See the tint? That's color-mix() in oklch — the browser computes the tint from --accent live."</p>
-    <p>4. "KILLER MOVE: change the Accent with the color picker. Border, hover tint — everything follows. ONE token. No rebuild."</p>
-    <p>5. "Toggle dark/light. No duplicated media query — light-dark() does it in one line."</p>
+    <p>SCRIPT - run IN ORDER:</p>
+    <p>1. "Look at the left column - narrow container. Cards are stacked."</p>
+    <p>
+      2. "On the right the container is wide. :has(img) + @container trigger the
+      two-column layout - zero modifier classes."
+    </p>
+    <p>
+      3. "Hover a card. See the tint? That's color-mix() in oklch - the browser
+      computes the tint from --accent live."
+    </p>
+    <p>
+      4. "KILLER MOVE: change the Accent with the color picker. Border, hover
+      tint - everything follows. ONE token. No rebuild."
+    </p>
+    <p>
+      5. "Toggle dark/light. No duplicated media query - light-dark() does it in
+      one line."
+    </p>
     <p>6. "This is the flexible design system the title promised."</p>
   </PNotes>
 </p-slide>
@@ -40,44 +61,61 @@ import PNotes from "../components/PNotes.astro";
 
   <dl>
     <div p-fragment p-effect="from left" timing-start="200">
-      <dt><code>@layer</code></dt>
+      <dt>
+        <code>@layer</code>
+      </dt>
       <dd>cascade governata</dd>
     </div>
 
     <div p-fragment p-effect="from right" timing-start="200">
-      <dt><code>@property --accent</code></dt>
+      <dt>
+        <code>@property --accent</code>
+      </dt>
       <dd>token tipizzato</dd>
     </div>
 
     <div p-fragment p-effect="from left" timing-start="500">
-      <dt><code>color-mix()</code></dt>
+      <dt>
+        <code>color-mix()</code>
+      </dt>
       <dd>palette derivata live</dd>
     </div>
 
     <div p-fragment p-effect="from right" timing-start="500">
-      <dt><code>light-dark()</code></dt>
+      <dt>
+        <code>light-dark()</code>
+      </dt>
       <dd>dark mode, una riga</dd>
     </div>
 
     <div p-fragment p-effect="from left" timing-start="800">
-      <dt><code>clamp()</code></dt>
+      <dt>
+        <code>clamp()</code>
+      </dt>
       <dd>spacing fluido</dd>
     </div>
 
     <div p-fragment p-effect="from right" timing-start="800">
-      <dt><code>@container</code></dt>
+      <dt>
+        <code>@container</code>
+      </dt>
       <dd>layout context-aware</dd>
     </div>
 
     <div p-fragment p-effect="zoom" timing-start="1100">
-      <dt><code>:has(img)</code></dt>
+      <dt>
+        <code>:has(img)</code>
+      </dt>
       <dd>struttura come stato</dd>
     </div>
   </dl>
 
   <PNotes>
     <p>Seven features. No build step for the dynamic part.</p>
-    <p>Let them reveal one by one — the audience recognises them, they've seen them in action.</p>
+    <p>
+      Let them reveal one by one - the audience recognises them, they've seen
+      them in action.
+    </p>
     <p>Last note: this is not a prototype. This is how browsers work today.</p>
   </PNotes>
 </p-slide>

@@ -7,10 +7,10 @@ import PNotes from "../components/PNotes.astro";
   <h1>Modern color approaches</h1>
 
   <PNotes>
-    <p>This is where "runtime" gets visceral — colors people can see.</p>
+    <p>This is where "runtime" gets visceral - colors people can see.</p>
     <p>Frame: we used to precompute every shade. Now the browser does it.</p>
     <p>
-      Before diving in: everyone uses #hex or rgb() — that's sRGB. Not wrong,
+      Before diving in: everyone uses #hex or rgb() - that's sRGB. Not wrong,
       but when you do math on top of it (mixes, scales, shades) sRGB doesn't
       behave like the human eye. oklch was designed for this: the numbers you
       write correspond to what you actually see.
@@ -20,19 +20,16 @@ import PNotes from "../components/PNotes.astro";
 
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">Shades</span> — compiled at build 🧪
+    <span class="main-gradient">Shades</span> - compiled at build 🧪
   </h5>
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag"
-          >Before — <span class="main-sub-gradient">compiled at build</span
-          ></span
-        >
+        <span class="tag">
+          Before - <span class="main-sub-gradient">compiled at build</span>
+        </span>
       </p>
-      <pre
-        class="small-line"
-        data-label-file="button.scss">
+      <pre class="small-line" data-label-file="button.scss">
         <code is:raw class="language-scss">
   $brand: #4060d0;
 
@@ -53,7 +50,7 @@ import PNotes from "../components/PNotes.astro";
       the shipped CSS.
     </p>
     <p>
-      The intent is dynamic — derive a hover shade from the brand color — but
+      The intent is dynamic - derive a hover shade from the brand color - but
       the output is static.
     </p>
     <p>
@@ -64,11 +61,9 @@ import PNotes from "../components/PNotes.astro";
 
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">color-mix() — shades at runtime</span> 🧪
+    <span class="main-gradient">color-mix() - shades at runtime</span> 🧪
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="color-mix.css">
+  <pre class="small-line" data-label-file="color-mix.css">
     <code style="font-size: 0.85em" is:raw class="language-scss">
     :root {
         --brand: oklch(0.7 0.15 250);
@@ -84,13 +79,15 @@ import PNotes from "../components/PNotes.astro";
     <p>This is the slide that kills the Sass color functions.</p>
     <p>
       One source token, every shade derived live. Change --brand and the whole
-      ramp follows — no rebuild.
+      ramp follows - no rebuild.
     </p>
     <p>
       Mention the interpolation space matters: "in oklch" keeps mixes clean.
     </p>
     <p>
-      Connect to the card: our card's hover uses exactly this — color-mix(in oklch, background, var(--accent) 8%). Change --accent and the hover tint updates instantly.
+      Connect to the card: our card's hover uses exactly this - color-mix(in
+      oklch, background, var(--accent) 8%). Change --accent and the hover tint
+      updates instantly.
     </p>
   </PNotes>
 </p-slide>
@@ -100,24 +97,21 @@ import PNotes from "../components/PNotes.astro";
   chrome="111"
   firefox="113"
   safari="16.2"
-  status="Baseline — widely available"
+  status="Baseline - widely available"
 />
 
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">Relative color</span> — channel by channel 🔬
+    <span class="main-gradient">Relative color</span> - channel by channel 🔬
   </h5>
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag"
-          >Before — <span class="main-sub-gradient">hardcoded variants</span
-          ></span
-        >
+        <span class="tag">
+          Before - <span class="main-sub-gradient">hardcoded variants</span>
+        </span>
       </p>
-      <pre
-        class="small-line"
-        data-label-file="variants.scss">
+      <pre class="small-line" data-label-file="variants.scss">
         <code style="font-size: 0.80em" is:raw class="language-scss">
   $brand: #4060d0;
 
@@ -134,7 +128,7 @@ import PNotes from "../components/PNotes.astro";
       values.
     </p>
     <p>
-      rgba(), lighten(), desaturate() — all computed at build time, all frozen
+      rgba(), lighten(), desaturate() - all computed at build time, all frozen
       in the output.
     </p>
     <p>Change the brand token at runtime and none of the variants follow.</p>
@@ -147,11 +141,9 @@ import PNotes from "../components/PNotes.astro";
 
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">Relative color — derive from a base</span> ♻️
+    <span class="main-gradient">Relative color - derive from a base</span> ♻️
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="relative-color.css">
+  <pre class="small-line" data-label-file="relative-color.css">
     <code style="font-size: 0.90em" is:raw class="language-scss">
     :root {
         --brand: oklch(0.7 0.15 250);
@@ -184,24 +176,21 @@ import PNotes from "../components/PNotes.astro";
   chrome="122"
   firefox="128"
   safari="18"
-  status="Baseline — newly available"
+  status="Baseline - newly available"
 />
 
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">Dark mode</span> — duplicated blocks 🌗
+    <span class="main-gradient">Dark mode</span> - duplicated blocks 🌗
   </h5>
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag"
-          >Before — <span class="main-sub-gradient">duplicated block</span
-          ></span
-        >
+        <span class="tag">
+          Before - <span class="main-sub-gradient">duplicated block</span>
+        </span>
       </p>
-      <pre
-        class="small-line"
-        data-label-file="theme.css">
+      <pre class="small-line" data-label-file="theme.css">
         <code style="font-size: 0.75em" is:raw class="language-scss">
         article {
           background: white;
@@ -236,11 +225,9 @@ import PNotes from "../components/PNotes.astro";
 
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">light-dark() — dark mode in one line</span> 🌗
+    <span class="main-gradient">light-dark() - dark mode in one line</span> 🌗
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="light-dark.css">
+  <pre class="small-line" data-label-file="light-dark.css">
     <code is:raw class="language-scss">
     :root {
         color-scheme: light dark;
@@ -253,7 +240,7 @@ import PNotes from "../components/PNotes.astro";
   </pre>
 
   <PNotes>
-    <p>color-scheme is the gotcha — without it, light-dark() does nothing.</p>
+    <p>color-scheme is the gotcha - without it, light-dark() does nothing.</p>
     <p>
       No media query, no duplicated theme block, no JS toggle wiring for the OS
       preference.
@@ -266,5 +253,5 @@ import PNotes from "../components/PNotes.astro";
   chrome="123"
   firefox="120"
   safari="17.5"
-  status="Baseline — newly available"
+  status="Baseline - newly available"
 />

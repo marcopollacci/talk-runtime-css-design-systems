@@ -9,16 +9,16 @@ import PNotes from "../components/PNotes.astro";
     <p>This section is honest speculation, not "use this Monday".</p>
     <p>
       The point is not production readiness. The point is direction: CSS is
-      moving logic closer to values and components — conditions, functions,
+      moving logic closer to values and components - conditions, functions,
       tokens read straight from HTML.
     </p>
     <p>
       Three things: if(), @function, typed attr(). Some shipping in one or two
-      engines — always check support before building on them.
+      engines - always check support before building on them.
     </p>
     <p>
-      Callback: style queries were in this section at CSS Day in June. Since
-      May they're Baseline. That's how fast this moves.
+      Callback: style queries were in this section at CSS Day in June. Since May
+      they're Baseline. That's how fast this moves.
     </p>
   </PNotes>
 </p-slide>
@@ -28,12 +28,12 @@ import PNotes from "../components/PNotes.astro";
 
   <PNotes>
     <p>
-      Be precise: this is the if() function, inline in a value — not a block
+      Be precise: this is the if() function, inline in a value - not a block
       @if.
     </p>
     <p>
-      It builds on what we just saw: the style() condition is the same one
-      style queries use.
+      It builds on what we just saw: the style() condition is the same one style
+      queries use.
     </p>
   </PNotes>
 </p-slide>
@@ -42,12 +42,14 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">Inline conditional values</h3>
   <ul>
     <li>
-      🔀 <span>Pick a value </span><span class="main-sub-gradient">inline</span
-      ><span>, inside one declaration</span>
+      🔀 <span>Pick a value </span>
+      <span class="main-sub-gradient">inline</span>
+      <span>, inside one declaration</span>
     </li>
     <li p-fragment p-effect="from left">
-      📏 <span>One </span><span class="main-sub-gradient">property value</span
-      ><span> at a time — not whole blocks</span>
+      📏 <span>One </span>
+      <span class="main-sub-gradient">property value</span>
+      <span> at a time - not whole blocks</span>
     </li>
   </ul>
 
@@ -65,11 +67,9 @@ import PNotes from "../components/PNotes.astro";
 
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">if() — a value, conditionally</span> 🔀
+    <span class="main-gradient">if() - a value, conditionally</span> 🔀
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="if-function.css">
+  <pre class="small-line" data-label-file="if-function.css">
     <code style="font-size: 0.7em" is:raw class="language-scss">
     section {
         --tone: loud;
@@ -99,18 +99,18 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">About support</h3>
   <ul>
     <li>
-      🧪 <span class="main-sub-gradient">if()</span><span>
-        — Chromium only, 137+</span
-      >
+      🧪 <span class="main-sub-gradient">if()</span>
+      <span> - Chromium only, 137+</span>
     </li>
     <li p-fragment p-effect="from right">
-      📏 <span>Inline </span><span class="main-sub-gradient">values only</span
-      ><span> — not rule blocks</span>
+      📏 <span>Inline </span>
+      <span class="main-sub-gradient">values only</span>
+      <span> - not rule blocks</span>
     </li>
     <li p-fragment p-effect="zoom">
-      🌱 <span>Worth </span><span class="main-sub-gradient">watching</span><span
-        >, not betting on</span
-      >
+      🌱 <span>Worth </span>
+      <span class="main-sub-gradient">watching</span>
+      <span>, not betting on</span>
     </li>
   </ul>
 
@@ -127,7 +127,9 @@ import PNotes from "../components/PNotes.astro";
 </p-slide>
 
 <p-slide class="cover-internal-sub-section">
-  <h2><span style="font-family: Arial;">@</span>function</h2>
+  <h2>
+    <span style="font-family: Arial;">@</span>function
+  </h2>
 
   <PNotes>
     <p>
@@ -141,24 +143,25 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">Functions for your tokens</h3>
   <ul>
     <li>
-      🧮 <span>Reusable </span><span class="main-sub-gradient">logic</span
-      ><span>, defined once in CSS</span>
+      🧮 <span>Reusable </span>
+      <span class="main-sub-gradient">logic</span>
+      <span>, defined once in CSS</span>
     </li>
     <li p-fragment p-effect="from right">
-      🌐 <span>Runs </span><span class="main-sub-gradient">at runtime</span
-      ><span> — with live custom properties</span>
+      🌐 <span>Runs </span>
+      <span class="main-sub-gradient">at runtime</span>
+      <span> - with live custom properties</span>
     </li>
     <li p-fragment p-effect="from left">
-      🧳 <span>One less reason to </span><span class="main-sub-gradient"
-        >keep Sass around</span
-      >
+      🧳 <span>One less reason to </span>
+      <span class="main-sub-gradient">keep Sass around</span>
     </li>
   </ul>
 
   <PNotes>
     <p>
       A Sass function runs once, at build time, on static values. A CSS custom
-      function runs in the browser, on the live value of a token — change the
+      function runs in the browser, on the live value of a token - change the
       token, the result follows.
     </p>
     <p>
@@ -172,9 +175,7 @@ import PNotes from "../components/PNotes.astro";
   <h5 style="margin-block-end: 1em" class="center">
     <span class="main-gradient">A tint function, native</span> 🧮
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="functions.css">
+  <pre class="small-line" data-label-file="functions.css">
     <code style="font-size: 0.65em" is:raw class="language-scss">
     @function --tint(--color, --amount: 10%) {
         result: color-mix(in oklch, var(--color), white var(--amount));
@@ -191,7 +192,7 @@ import PNotes from "../components/PNotes.astro";
       result descriptor is the return value. Called like any function: --tint().
     </p>
     <p>
-      Inside it's the color-mix() we saw in the colors section — now with a
+      Inside it's the color-mix() we saw in the colors section - now with a
       name, and reusable across the whole system.
     </p>
   </PNotes>
@@ -201,24 +202,25 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">About support</h3>
   <ul>
     <li>
-      🧪 <span class="main-sub-gradient">Chromium</span><span> — 139+</span>
+      🧪 <span class="main-sub-gradient">Chromium</span>
+      <span> - 139+</span>
     </li>
     <li p-fragment p-effect="from right">
-      🧭 <span>Safari — </span><span class="main-sub-gradient"
-        >Technology Preview</span
-      ><span>, Firefox not yet</span>
+      🧭 <span>Safari - </span>
+      <span class="main-sub-gradient">Technology Preview</span>
+      <span>, Firefox not yet</span>
     </li>
     <li p-fragment p-effect="zoom">
-      🌱 <span>Worth </span><span class="main-sub-gradient">watching</span><span
-        >, not betting on</span
-      >
+      🌱 <span>Worth </span>
+      <span class="main-sub-gradient">watching</span>
+      <span>, not betting on</span>
     </li>
   </ul>
 
   <PNotes>
     <p>
       MDN marks @function as experimental / limited availability. Safari has it
-      in Technology Preview only — not in stable Safari.
+      in Technology Preview only - not in stable Safari.
     </p>
   </PNotes>
 </p-slide>
@@ -228,8 +230,8 @@ import PNotes from "../components/PNotes.astro";
 
   <PNotes>
     <p>
-      attr() is old — but until now it only worked in content, as a string.
-      Now it can return real types: colors, lengths, numbers.
+      attr() is old - but until now it only worked in content, as a string. Now
+      it can return real types: colors, lengths, numbers.
     </p>
   </PNotes>
 </p-slide>
@@ -238,19 +240,18 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">Tokens straight from HTML</h3>
   <ul>
     <li>
-      🏷️ <span>Read an </span><span class="main-sub-gradient"
-        >HTML attribute</span
-      ><span> as a typed value</span>
+      🏷️ <span>Read an </span>
+      <span class="main-sub-gradient">HTML attribute</span>
+      <span> as a typed value</span>
     </li>
     <li p-fragment p-effect="from right">
-      🎨 <span>A </span><span class="main-sub-gradient">color</span><span
-        >, a length, a number — not just a string</span
-      >
+      🎨 <span>A </span>
+      <span class="main-sub-gradient">color</span>
+      <span>, a length, a number - not just a string</span>
     </li>
     <li p-fragment p-effect="from left">
-      🧩 <span>Per-instance tweaks </span><span class="main-sub-gradient"
-        >without inline styles</span
-      >
+      🧩 <span>Per-instance tweaks </span>
+      <span class="main-sub-gradient">without inline styles</span>
     </li>
   </ul>
 
@@ -266,9 +267,7 @@ import PNotes from "../components/PNotes.astro";
   <h5 style="margin-block-end: 1em" class="center">
     <span class="main-gradient">attr() with a type</span> 🏷️
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="card.css">
+  <pre class="small-line" data-label-file="card.css">
     <code style="font-size: 0.6em" is:raw class="language-scss">
     /* &lt;article data-accent="oklch(0.7 0.2 30)"&gt; */
     article {
@@ -284,7 +283,7 @@ import PNotes from "../components/PNotes.astro";
     </p>
     <p>
       It feeds the same --accent token as the card: border, hover tint,
-      contrast-color — all follow, per instance.
+      contrast-color - all follow, per instance.
     </p>
   </PNotes>
 </p-slide>
@@ -293,18 +292,17 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">About support</h3>
   <ul>
     <li>
-      ✅ <span class="main-sub-gradient">Chrome 133+</span><span>
-        · </span><span class="main-sub-gradient">Firefox 155+</span>
+      ✅ <span class="main-sub-gradient">Chrome 133+</span>
+      <span>· </span>
+      <span class="main-sub-gradient">Firefox 155+</span>
     </li>
     <li p-fragment p-effect="from right">
-      🧭 <span>Safari — </span><span class="main-sub-gradient"
-        >Technology Preview</span
-      >
+      🧭 <span>Safari - </span>
+      <span class="main-sub-gradient">Technology Preview</span>
     </li>
     <li p-fragment p-effect="zoom">
-      🌱 <span>Two engines out of three — </span><span
-        class="main-sub-gradient">getting close</span
-      >
+      🌱 <span>Two engines out of three - </span>
+      <span class="main-sub-gradient">getting close</span>
     </li>
   </ul>
 

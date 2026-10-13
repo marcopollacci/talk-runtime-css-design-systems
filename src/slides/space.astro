@@ -7,7 +7,7 @@ import PNotes from "../components/PNotes.astro";
   <h1>Space &amp; fluidity</h1>
 
   <PNotes>
-    <p>Shift from color to spacing — same principle, browser does the math.</p>
+    <p>Shift from color to spacing - same principle, browser does the math.</p>
     <p>Not just colors: layout values can become dynamic too.</p>
     <p>The enemy here: hard-coded breakpoints and stepped scales.</p>
   </PNotes>
@@ -17,26 +17,23 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">Death by breakpoints</h3>
   <ul>
     <li>
-      📐 <span>Fixed steps = </span><span class="main-sub-gradient"
-        >awkward in-between sizes</span
-      >
+      📐 <span>Fixed steps = </span>
+      <span class="main-sub-gradient">awkward in-between sizes</span>
     </li>
     <li p-fragment p-effect="from right">
-      🔁 <span>Every step needs </span><span class="main-sub-gradient"
-        >another media query</span
-      >
+      🔁 <span>Every step needs </span>
+      <span class="main-sub-gradient">another media query</span>
     </li>
     <li p-fragment p-effect="zoom">
-      🌊 <span>What we want: </span><span class="main-sub-gradient"
-        >continuous scaling</span
-      >
+      🌊 <span>What we want: </span>
+      <span class="main-sub-gradient">continuous scaling</span>
     </li>
   </ul>
 
   <PNotes>
     <p>Everyone has a _typography.scss with five breakpoints. Get the nod.</p>
     <p>
-      The problem is not media queries themselves — the problem is using them to
+      The problem is not media queries themselves - the problem is using them to
       fake continuous behavior with hard-coded jumps.
     </p>
     <p>Pitch clamp() as the cure on the next slide.</p>
@@ -45,19 +42,16 @@ import PNotes from "../components/PNotes.astro";
 
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">Type scale</span> — stepped by breakpoints 🌊
+    <span class="main-gradient">Type scale</span> - stepped by breakpoints 🌊
   </h5>
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag"
-          >Before — <span class="main-sub-gradient">media query steps</span
-          ></span
-        >
+        <span class="tag">
+          Before - <span class="main-sub-gradient">media query steps</span>
+        </span>
       </p>
-      <pre
-        class="small-line"
-        data-label-file="type.css">
+      <pre class="small-line" data-label-file="type.css">
         <code style="font-size: 0.85em" is:raw class="language-scss">
         p { font-size: 2rem; }
 
@@ -87,15 +81,13 @@ import PNotes from "../components/PNotes.astro";
 
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">clamp() — fluid type, no breakpoints</span> 🌊
+    <span class="main-gradient">clamp() - fluid type, no breakpoints</span> 🌊
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="clamp.css">
+  <pre class="small-line" data-label-file="clamp.css">
     <code is:raw class="language-scss">
     /* clamp(MIN, PREFERRED, MAX) */
     p {
-        font-size: clamp(2rem, calc(5vw + 1rem), 4rem);
+        font-size: clamp(2rem, 5vw + 1rem, 4rem);
     }
 
     /* one declaration replaces a stack of media queries */
@@ -110,9 +102,9 @@ import PNotes from "../components/PNotes.astro";
       2rem, try to grow it fluidly using 5vw + 1rem, but never exceed 4rem.
     </p>
     <p>
-      The middle argument is the fluid part — it uses the viewport. As the
-      screen grows, the text grows. As the screen shrinks, the text shrinks.
-      But it always stays within the defined limits.
+      The middle argument is the fluid part - it uses the viewport. As the
+      screen grows, the text grows. As the screen shrinks, the text shrinks. But
+      it always stays within the defined limits.
     </p>
     <p>
       This is why we don't use a bare vw value: text could become too small on
@@ -128,20 +120,18 @@ import PNotes from "../components/PNotes.astro";
   chrome="79"
   firefox="75"
   safari="13.1"
-  status="Baseline — widely available"
+  status="Baseline - widely available"
 />
 
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
     <span class="main-gradient">A fluid scale from one ratio</span> 🎚️
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="scale.css">
+  <pre class="small-line" data-label-file="scale.css">
     <code style="font-size: 0.90em" is:raw class="language-scss">
     :root {
         --ratio: 1.25;
-        --step-0: clamp(1rem, calc(0.9rem + 0.5vw), 1.25rem);
+        --step-0: clamp(1rem, 0.9rem + 0.5vw, 1.25rem);
         --step-1: calc(var(--step-0) * var(--ratio));
         --step-2: calc(var(--step-1) * var(--ratio));
         --step-3: calc(var(--step-2) * var(--ratio));
@@ -157,12 +147,14 @@ import PNotes from "../components/PNotes.astro";
       The base step is fluid, and the whole modular scale derives from one
       ratio.
     </p>
-    <p>Change --ratio or --step-0 and the whole system reflows — at runtime.</p>
+    <p>Change --ratio or --step-0 and the whole system reflows - at runtime.</p>
     <p>
       Same idea as color tokens: derived values, but computed directly by CSS.
     </p>
     <p>
-      Connect to the card: in our card padding-block and gap use clamp() with cqi units (container query inline). Spacing scales with the container, not the viewport — zero breakpoints.
+      Connect to the card: in our card padding-block and gap use clamp() with
+      cqi units (container query inline). Spacing scales with the container, not
+      the viewport - zero breakpoints.
     </p>
   </PNotes>
 </p-slide>

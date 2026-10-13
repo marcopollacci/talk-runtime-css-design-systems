@@ -6,7 +6,7 @@
  * CSS is cumulative: each stage enables its own rules plus all previous ones
  * (classes l1…l4 on the wrapper). Values mirror card-bridge.astro 1:1.
  *
- * Note: rules are unlayered on purpose — the deck CSS is unlayered and would
+ * Note: rules are unlayered on purpose - the deck CSS is unlayered and would
  * beat anything inside @layer components.
  */
 interface Props {
@@ -16,7 +16,10 @@ const { stage } = Astro.props;
 
 const levels = ["markup", "cascade", "colors", "space", "context"];
 const level = levels.indexOf(stage);
-const classes = ["live", ...Array.from({ length: level }, (_, i) => `l${i + 1}`)];
+const classes = [
+  "live",
+  ...Array.from({ length: level }, (_, i) => `l${i + 1}`),
+];
 
 // colors → show light-dark() in both schemes; context → narrow vs wide container
 const frames =
@@ -37,25 +40,23 @@ const img =
 ---
 
 <div class:list={classes} data-stage={stage}>
-  {
-    frames.map(({ scheme, width }) => (
-      <section style={`color-scheme: ${scheme}; max-width: ${width};`}>
-        <article>
-          <img src={img} alt="" width="160" height="120" />
-          <div>
-            <h3>Card title</h3>
-            <p>Card description</p>
-          </div>
-        </article>
-        <article>
-          <div>
-            <h3>Text-only card</h3>
-            <p>No image</p>
-          </div>
-        </article>
-      </section>
-    ))
-  }
+  {frames.map(({ scheme, width }) => (
+    <section style={`color-scheme: ${scheme}; max-width: ${width};`}>
+      <article>
+        <img src={img} alt="" width="160" height="120" />
+        <div>
+          <h3>Card title</h3>
+          <p>Card description</p>
+        </div>
+      </article>
+      <article>
+        <div>
+          <h3>Text-only card</h3>
+          <p>No image</p>
+        </div>
+      </article>
+    </section>
+  ))}
 </div>
 
 <style is:global>
@@ -67,7 +68,7 @@ const img =
 </style>
 
 <style lang="scss">
-  /* stage 0 — just markup: neutralise deck styles, keep browser-ish defaults */
+  /* stage 0 - just markup: neutralise deck styles, keep browser-ish defaults */
   .live {
     display: flex;
     flex-direction: column;
@@ -110,13 +111,13 @@ const img =
     }
   }
 
-  /* stage 1 — cascade */
+  /* stage 1 - cascade */
   .l1 article {
     border-block-start: 4px solid var(--accent);
     border-radius: 0 0 0.35rem 0.35rem;
   }
 
-  /* stage 2 — colors */
+  /* stage 2 - colors */
   .l2 article {
     background: light-dark(white, oklch(0.2 0 0));
     color: light-dark(oklch(0.2 0 0), white);
@@ -130,7 +131,7 @@ const img =
     }
   }
 
-  /* stage 3 — space */
+  /* stage 3 - space */
   .l3 article {
     display: grid;
     gap: clamp(0.5rem, 2cqi, 1rem);
@@ -138,7 +139,7 @@ const img =
     padding-inline: clamp(1rem, 4cqi, 2rem);
   }
 
-  /* stage 4 — context */
+  /* stage 4 - context */
   .l4 section {
     container: content / inline-size;
   }

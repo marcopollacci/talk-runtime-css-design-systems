@@ -6,7 +6,7 @@ import PNotes from "../components/PNotes.astro";
   <h2>One more thing: WebMCP</h2>
 
   <PNotes>
-    <p>Epilogue, "one more thing" style. No deep tech — just a heads-up.</p>
+    <p>Epilogue, "one more thing" style. No deep tech - just a heads-up.</p>
     <p>
       We just spent the whole talk making interfaces smarter at runtime. Now a
       question that's a bit uncomfortable for a room of designers and
@@ -19,19 +19,18 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">Your UI has a new user</h3>
   <ul>
     <li>
-      🤖 <span>Agents today </span><span class="main-sub-gradient"
-        >guess</span
-      ><span> your interface — screenshots, clicks</span>
+      🤖 <span>Agents today </span>
+      <span class="main-sub-gradient">guess</span>
+      <span> your interface - screenshots, clicks</span>
     </li>
     <li p-fragment p-effect="from right">
-      🧰 <span>With WebMCP the page </span><span class="main-sub-gradient"
-        >declares</span
-      ><span> what it can do, as tools</span>
+      🧰 <span>With WebMCP the page </span>
+      <span class="main-sub-gradient">declares</span>
+      <span> what it can do, as tools</span>
     </li>
     <li p-fragment p-effect="zoom">
-      🎯 <span>No guessing: the agent </span><span class="main-sub-gradient"
-        >calls the action</span
-      >
+      🎯 <span>No guessing: the agent </span>
+      <span class="main-sub-gradient">calls the action</span>
     </li>
   </ul>
 
@@ -41,9 +40,9 @@ import PNotes from "../components/PNotes.astro";
       expose structured tools for AI agents".
     </p>
     <p>
-      Today a browser agent scrapes the DOM and simulates clicks and typing —
-      it guesses. With WebMCP the site says: here is "book a table", here are
-      its fields. The agent calls a tool instead of guessing.
+      Today a browser agent scrapes the DOM and simulates clicks and typing - it
+      guesses. With WebMCP the site says: here is "book a table", here are its
+      fields. The agent calls a tool instead of guessing.
     </p>
   </PNotes>
 </p-slide>
@@ -52,12 +51,10 @@ import PNotes from "../components/PNotes.astro";
   <h5 style="margin-block-end: 1em" class="center">
     <span class="main-gradient">Two attributes. A new user.</span> 🧰
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="booking.html">
+  <pre class="small-line" data-label-file="booking.html">
     <code style="font-size: 0.65em" is:raw class="language-scss">
-    &lt;form toolname="bookTable"
-          tooldescription="Book a table for dinner"&gt;</code>
+    &lt;form </code><code p-fragment p-effect="highlight" style="font-size: 0.65em" is:raw class="language-scss">toolname</code><code style="font-size: 0.65em" is:raw class="language-scss">="bookTable"</code><code style="font-size: 0.65em" is:raw class="language-scss">
+          </code><code p-fragment p-effect="highlight" style="font-size: 0.65em" is:raw class="language-scss">tooldescription</code><code style="font-size: 0.65em" is:raw class="language-scss">="Book a table for dinner"</code><code style="font-size: 0.65em" is:raw class="language-scss">&gt;</code>
   </pre>
 
   <PNotes>
@@ -67,7 +64,7 @@ import PNotes from "../components/PNotes.astro";
     </p>
     <p>
       This is the declarative side. There's also a JavaScript side
-      (document.modelContext.registerTool) — explain it here in your own words.
+      (document.modelContext.registerTool) - explain it here in your own words.
     </p>
   </PNotes>
 </p-slide>
@@ -76,26 +73,24 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">Where it stands</h3>
   <ul>
     <li>
-      🧪 <span>Proposed standard — </span><span class="main-sub-gradient"
-        >W3C Community Group draft</span
-      >
+      🧪 <span>Proposed standard - </span>
+      <span class="main-sub-gradient">W3C Community Group draft</span>
     </li>
     <li p-fragment p-effect="from right">
-      🌐 <span>Origin trial in </span><span class="main-sub-gradient"
-        >Chrome 149+</span
-      >
+      🌐 <span>Origin trial in </span>
+      <span class="main-sub-gradient">Chrome 149+</span>
     </li>
     <li p-fragment p-effect="zoom">
-      🌱 <span>Early days — </span><span class="main-sub-gradient"
-        >watch it, try it</span
-      ><span>, don't bet on it yet</span>
+      🌱 <span>Early days - </span>
+      <span class="main-sub-gradient">watch it, try it</span>
+      <span>, don't bet on it yet</span>
     </li>
   </ul>
 
   <PNotes>
     <p>
       Spec: Draft Community Group Report of the W3C Web Machine Learning
-      Community Group — explicitly not a W3C Standard, not on the standards
+      Community Group - explicitly not a W3C Standard, not on the standards
       track. Editors from Microsoft and Google.
     </p>
     <p>
@@ -104,14 +99,14 @@ import PNotes from "../components/PNotes.astro";
     </p>
     <p>
       At I/O 2026 Google showed brands experimenting with it: Expedia,
-      Booking.com, Shopify, Etsy, Target and others. Experimenting — not
+      Booking.com, Shopify, Etsy, Target and others. Experimenting - not
       shipped.
     </p>
     <p>
       Don't claim: Firefox/Safari plans, Gemini in Chrome support (Google only
       said "will soon").
     </p>
-    <p>Facts done. Now the part that's opinion — say so out loud.</p>
+    <p>Facts done. Now the part that's opinion - say so out loud.</p>
   </PNotes>
 </p-slide>
 
@@ -126,10 +121,10 @@ import PNotes from "../components/PNotes.astro";
   </p-fragment>
 
   <PNotes>
-    <p>Slow down. Let the question sit — same energy as the opening hinge.</p>
+    <p>Slow down. Let the question sit - same energy as the opening hinge.</p>
     <p>
-      Everything we built in this talk — layers, tokens, light-dark(), fluid space,
-      container queries — an agent calling bookTable() sees none of it.
+      Everything we built in this talk - layers, tokens, light-dark(), fluid
+      space, container queries - an agent calling bookTable() sees none of it.
     </p>
     <p>
       This is the pathos moment: not a threat, an honest "what if". This is my
@@ -142,27 +137,25 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">The end of interfaces?</h3>
   <ul>
     <li>
-      🖼️ <span>Today the interface is </span><span class="main-sub-gradient"
-        >the only way in</span
-      >
+      🖼️ <span>Today the interface is </span>
+      <span class="main-sub-gradient">the only way in</span>
     </li>
     <li p-fragment p-effect="from right">
-      🤖 <span>Tomorrow, maybe </span><span class="main-sub-gradient"
-        >one of the ways in</span
-      >
+      🤖 <span>Tomorrow, maybe </span>
+      <span class="main-sub-gradient">one of the ways in</span>
     </li>
     <li p-fragment p-effect="from left">
-      ✍️ <span>We'll design </span><span class="main-sub-gradient"
-        >intent and trust</span
-      ><span>, not just screens</span>
+      ✍️ <span>We'll design </span>
+      <span class="main-sub-gradient">intent and trust</span>
+      <span>, not just screens</span>
     </li>
   </ul>
 
   <PNotes>
     <p>
       For thirty years the screen was the only door into a product: if you
-      wanted to book a table, you had to go through our layout, our buttons,
-      our flow.
+      wanted to book a table, you had to go through our layout, our buttons, our
+      flow.
     </p>
     <p>
       If agents can call the action directly, the screen stops being the only
@@ -190,7 +183,7 @@ import PNotes from "../components/PNotes.astro";
     <p>The closing line of the epilogue. Pause, then thank you.</p>
     <p>
       Soft landing for the room: the craft doesn't disappear, the audience
-      widens — humans and agents.
+      widens - humans and agents.
     </p>
   </PNotes>
 </p-slide>

@@ -15,7 +15,7 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
     style="--image-start-size: 8em; border-radius: 0.3em; --fragment-duration: 2.5s;"
   />
   <PNotes>
-    <p>This is the architectural heart of the talk — slow down here.</p>
+    <p>This is the architectural heart of the talk - slow down here.</p>
     <p>
       Three at-rules, one idea: stop fighting the cascade, start governing it.
     </p>
@@ -26,22 +26,20 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   <h2 class="main-gradient">The cascade is implicit</h2>
   <ul>
     <li>
-      🥊 <span>Specificity </span><span class="main-sub-gradient">wars</span>
+      🥊 <span>Specificity </span>
+      <span class="main-sub-gradient">wars</span>
     </li>
     <li p-fragment p-effect="from right">
-      🚨 <span class="main-sub-gradient">!important</span><span>
-        as a band-aid</span
-      >
+      🚨 <span class="main-sub-gradient">!important </span>
+      <span>as a band-aid</span>
     </li>
     <li p-fragment p-effect="from left">
-      🏷️ <span>Naming conventions to </span><span class="main-sub-gradient"
-        >simulate isolation</span
-      >
+      🏷️ <span>Naming conventions to </span>
+      <span class="main-sub-gradient">simulate isolation</span>
     </li>
     <li p-fragment p-effect="zoom">
-      🎯 <span>What we actually want: </span><span class="main-sub-gradient"
-        >explicit control</span
-      >
+      🎯 <span>What we actually want: </span>
+      <span class="main-sub-gradient">explicit control</span>
     </li>
   </ul>
 
@@ -51,13 +49,15 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
       moving on.
     </p>
     <p>
-      The last bullet is the thread for the whole section — say it deliberately.
+      The last bullet is the thread for the whole section - say it deliberately.
     </p>
   </PNotes>
 </p-slide>
 
 <p-slide class="cover-internal-sub-section">
-  <h2><span style="font-family: Arial;">@</span>layer</h2>
+  <h2>
+    <span style="font-family: Arial;">@</span>layer
+  </h2>
 
   <PNotes>
     <p>First lever: control WHERE a rule sits in the cascade.</p>
@@ -68,13 +68,14 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   <h3 class="main-gradient">Stratify specificity</h3>
   <ul>
     <li>
-      📚 <span>Declare the </span><span class="main-sub-gradient"
-        >layer order</span
-      ><span> once</span>
+      📚 <span>Declare the </span>
+      <span class="main-sub-gradient">layer order</span>
+      <span> once</span>
     </li>
     <li p-fragment p-effect="from right">
-      🏆 <span>Later layers </span><span class="main-sub-gradient">win</span
-      ><span></span>
+      🏆 <span>Later layers </span>
+      <span class="main-sub-gradient">win</span>
+      <span></span>
     </li>
     <li p-fragment p-effect="from left">
       🧱 <span class="main-sub-gradient">base → components → overrides</span>
@@ -94,14 +95,13 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
 
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient"
-      ><span style="font-family: Arial;">@</span>layer — order is everything</span
-    > 📚
+    <span class="main-gradient">
+      <span style="font-family: Arial;">@</span>layer - order is everything
+    </span>{" "}
+    📚
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="layers.css">
-    <code style="font-size: 0.7em;" is:raw class="language-scss">/* declare the order once — this is the entire API */
+  <pre class="small-line" data-label-file="layers.css">
+    <code style="font-size: 0.7em;" is:raw class="language-scss">/* declare the order once - this is the entire API */
     @layer reset, base, components, overrides;
 
     @layer base {
@@ -124,7 +124,7 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
       expect it to win.
     </p>
     <p>
-      Reveal the overrides layer — point at it. Order beats specificity. Let it
+      Reveal the overrides layer - point at it. Order beats specificity. Let it
       land.
     </p>
   </PNotes>
@@ -136,11 +136,13 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   chrome="99"
   firefox="97"
   safari="15.4"
-  status="Baseline — widely available"
+  status="Baseline - widely available"
 />
 
 <p-slide class="cover-internal-sub-section">
-  <h2><span style="font-family: Arial;">@</span>scope</h2>
+  <h2>
+    <span style="font-family: Arial;">@</span>scope
+  </h2>
 
   <PNotes>
     <p>Second lever: control WHERE in the DOM a rule applies.</p>
@@ -151,19 +153,16 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   <h3 class="main-gradient">Isolation without naming</h3>
   <ul>
     <li>
-      🎯 <span>Styles apply </span><span class="main-sub-gradient"
-        >only inside a subtree</span
-      >
+      🎯 <span>Styles apply </span>
+      <span class="main-sub-gradient">only inside a subtree</span>
     </li>
     <li p-fragment p-effect="from right">
-      🚫 <span>No BEM, no </span><span class="main-sub-gradient"
-        >invented conventions</span
-      >
+      🚫 <span>No BEM, no </span>
+      <span class="main-sub-gradient">invented conventions</span>
     </li>
     <li p-fragment p-effect="from left">
-      🍩 <span class="main-sub-gradient">Donut scope</span><span>
-        — set a lower boundary</span
-      >
+      🍩 <span class="main-sub-gradient">Donut scope</span>
+      <span>: set a lower boundary</span>
     </li>
   </ul>
 
@@ -173,7 +172,7 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
       names.
     </p>
     <p>
-      Land the donut scope bullet last — it's the surprising one. "You can also
+      Land the donut scope bullet last - it's the surprising one. "You can also
       say where the scope stops." Sets up the code slide.
     </p>
   </PNotes>
@@ -181,32 +180,29 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
 
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">Scoping</span> — naming vs the platform 🎯
+    <span class="main-gradient">Scoping</span> - naming vs the platform 🎯
   </h5>
 
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag"
-          >Before — <span class="main-sub-gradient">simulated via naming</span
-          ></span
-        >
+        <span class="tag">
+          Before - <span class="main-sub-gradient">simulated via naming</span>
+        </span>
       </p>
-      <pre
-        class="small-line"
-        data-label-file="section.scss">
+      <pre class="small-line" data-label-file="section.scss">
         <code style="font-size: 0.55em" is:raw class="language-scss">
         /* the convention IS the isolation */
-        section {
+        .section {
           padding: 1rem;
           color: green;
 
-          h2 { color: red; }
+          &__title { color: red; }
 
-          p { margin: 0; color: blue; }
+          &__text { margin: 0; color: blue; }
 
           /* footer paragraphs must manually opt out */
-          footer p { margin: revert; color: revert; }
+          &__text--footer { margin: revert; color: revert; }
         }</code>
       </pre>
     </div>
@@ -230,15 +226,14 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
 
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient"
-      ><span style="font-family: Arial;">@</span>scope — locality by design</span
-    > 🎯
+    <span class="main-gradient">
+      <span style="font-family: Arial;">@</span>scope - locality by design
+    </span>{" "}
+    🎯
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="section.css">
+  <pre class="small-line" data-label-file="section.css">
     <code style="font-size: 0.7em;" is:raw class="language-scss">
-    /* applies only inside section — no section__title needed */
+    /* applies only inside section - no section__title needed */
     @scope (section) {
         :scope { padding: 1rem; color: green; } /* the scope root itself */
         h2 { color: red; } /* only h2 inside the section */
@@ -253,13 +248,13 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   </pre>
 
   <PNotes>
-    <p>:scope is the scope root itself — explain it in one sentence.</p>
+    <p>:scope is the scope root itself - explain it in one sentence.</p>
     <p>
       Donut scope (the "to" boundary) is the killer feature for slot-based
       components.
     </p>
     <p>
-      If someone asks about overlapping scopes: proximity wins — the closer
+      If someone asks about overlapping scopes: proximity wins - the closer
       scope root takes precedence. New cascade rule.
     </p>
   </PNotes>
@@ -271,11 +266,13 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   chrome="118"
   firefox="146"
   safari="17.4"
-  status="Baseline — newly available"
+  status="Baseline - newly available"
 />
 
 <p-slide class="cover-internal-sub-section">
-  <h2><span style="font-family: Arial;">@</span>property</h2>
+  <h2>
+    <span style="font-family: Arial;">@</span>property
+  </h2>
 
   <PNotes>
     <p>Third lever: control WHAT a variable means and how it inherits.</p>
@@ -286,32 +283,32 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   <h3 class="main-gradient">Typed custom properties</h3>
   <ul>
     <li>
-      🏷️ <span>Give a variable a real </span><span class="main-sub-gradient"
-        >type</span
-      >
+      🏷️ <span>Give a variable a real </span>
+      <span class="main-sub-gradient">type</span>
     </li>
     <li p-fragment p-effect="from right">
-      🎬 <span>Suddenly </span><span class="main-sub-gradient">animatable</span
-      ><span> gradients, angles</span>
+      🎬 <span>Suddenly </span>
+      <span class="main-sub-gradient">animatable</span>
+      <span> gradients, angles</span>
     </li>
     <li p-fragment p-effect="from left">
-      🛡️ <span>Invalid values </span><span class="main-sub-gradient"
-        >fall back</span
-      ><span>, don't break</span>
+      🛡️ <span>Invalid values </span>
+      <span class="main-sub-gradient">fall back</span>
+      <span>, don't break</span>
     </li>
     <li p-fragment p-effect="zoom">
-      🧬 <span>Explicit </span><span class="main-sub-gradient">inheritance</span
-      >
+      🧬 <span>Explicit </span>
+      <span class="main-sub-gradient">inheritance</span>
     </li>
   </ul>
 
   <PNotes>
     <p>
-      The "animatable" point is the wow moment — a plain --var can't be
+      The "animatable" point is the wow moment - a plain --var can't be
       transitioned, a typed one can.
     </p>
     <p>
-      "Fall back" is the safety net — invalid values don't silently break the
+      "Fall back" is the safety net - invalid values don't silently break the
       layout. Mention it as the boring but important bullet.
     </p>
     <p>
@@ -323,14 +320,12 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
 
 <p-slide>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient"
-      ><span style="font-family: Arial;">@</span>property — variables with a
-      type</span
-    > 🏷️
+    <span class="main-gradient">
+      <span style="font-family: Arial;">@</span>property - variables with a type
+    </span>{" "}
+    🏷️
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="property.css">
+  <pre class="small-line" data-label-file="property.css">
   <code style="font-size: 0.55em;" is:raw class="language-scss">@property --num {
         syntax: "&lt;integer&gt;";
         initial-value: 0;
@@ -354,11 +349,13 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
       controlled propagation.
     </p>
     <p>
-      The animation on --num is the payoff — without @property the browser has
+      The animation on --num is the payoff - without @property the browser has
       no idea how to interpolate a custom property, it just snaps.
     </p>
     <p>
-      Connect to the card: in our card we use @property for --accent (type color, inherits true). Change --accent on :root and everything recolors — border, hover tint, all of it — no rebuild.
+      Connect to the card: in our card we use @property for --accent (type
+      color, inherits true). Change --accent on :root and everything recolors -
+      border, hover tint, all of it - no rebuild.
     </p>
   </PNotes>
 </p-slide>
@@ -369,7 +366,7 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   chrome="85"
   firefox="128"
   safari="16.4"
-  status="Baseline — newly available"
+  status="Baseline - newly available"
 />
 
 <p-slide cascade-recap>
@@ -377,37 +374,43 @@ import cascadeMeme from "../img/cascade-meme.jpeg";
   <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5em;">
     <div p-effect="from left">
       <h4>
-        <span class="main-sub-gradient"
-          ><span style="font-family: Arial;">@</span>layer</span
-        >
+        <span class="main-sub-gradient">
+          <span style="font-family: Arial;">@</span>layer
+        </span>
       </h4>
-      <p>where in the <strong>cascade</strong></p>
+      <p>
+        where in the <strong>cascade</strong>
+      </p>
     </div>
     <div p-effect="zoom">
       <h4>
-        <span class="main-sub-gradient"
-          ><span style="font-family: Arial;">@</span>scope</span
-        >
+        <span class="main-sub-gradient">
+          <span style="font-family: Arial;">@</span>scope
+        </span>
       </h4>
-      <p>where in the <strong>DOM</strong></p>
+      <p>
+        where in the <strong>DOM</strong>
+      </p>
     </div>
     <div p-effect="from right">
       <h4>
-        <span class="main-sub-gradient"
-          ><span style="font-family: Arial;">@</span>property</span
-        >
+        <span class="main-sub-gradient">
+          <span style="font-family: Arial;">@</span>property
+        </span>
       </h4>
-      <p>what a <strong>variable</strong> means</p>
+      <p>
+        what a <strong>variable</strong> means
+      </p>
     </div>
   </div>
 
   <PNotes>
     <p>This is the slide they should photograph. Hold on it.</p>
     <p>
-      Tie the bow: three at-rules, one principle — we decide how styles
+      Tie the bow: three at-rules, one principle - we decide how styles
       propagate instead of discovering it at runtime.
     </p>
-    <p>Transition into the next section — native nesting.</p>
+    <p>Transition into the next section - native nesting.</p>
   </PNotes>
 </p-slide>
 

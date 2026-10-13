@@ -2,7 +2,7 @@
 /**
  * card-bridge.astro
  *
- * Four "checkpoint" slides — one per section — showing the card CSS delta.
+ * Four "checkpoint" slides - one per section - showing the card CSS delta.
  * Each slide shows only what's NEW at that checkpoint, keeping the code tight.
  */
 import LiveCard from "../components/LiveCard.astro";
@@ -16,7 +16,7 @@ const { section } = Astro.props;
 {section === "cascade" && (
   <p-slide>
     <h5 style="margin-block-end: 0.8em" class="center">
-      <span class="main-gradient">Our card — after cascade</span> 📚
+      <span class="main-gradient">Our card - after cascade</span> 📚
     </h5>
     <div class="code-live">
       <pre class="small-line" data-label-file="card.css">
@@ -41,9 +41,14 @@ const { section } = Astro.props;
       </div>
     </div>
     <PNotes>
-      <p>On the right: the card rendered live, with only the CSS up to this checkpoint.</p>
-      <p>Cascade checkpoint: @layer controls the order, @property types --accent.</p>
-      <p>Change --accent on :root and the card border follows — no rebuild.</p>
+      <p>
+        On the right: the card rendered live, with only the CSS up to this
+        checkpoint.
+      </p>
+      <p>
+        Cascade checkpoint: @layer controls the order, @property types --accent.
+      </p>
+      <p>Change --accent on :root and the card border follows - no rebuild.</p>
     </PNotes>
   </p-slide>
 )}
@@ -51,20 +56,20 @@ const { section } = Astro.props;
 {section === "colors" && (
   <p-slide>
     <h5 style="margin-block-end: 0.8em" class="center">
-      <span class="main-gradient">Our card — after colors</span> 🧪
+      <span class="main-gradient">Our card - after colors</span> 🧪
     </h5>
     <div class="code-live">
       <pre class="small-line" data-label-file="card.css">
         <code style="font-size: 0.55em;" is:raw class="language-scss">
 @layer components {
   article {
-    /* light-dark() — dark mode, no media query */
+    /* light-dark() - dark mode, no media query */
     background: light-dark(white, oklch(0.2 0 0));
     color:      light-dark(oklch(0.2 0 0), white);
     border-block-start: 4px solid var(--accent);
 
     &:hover {
-      /* color-mix() — one token, no rebuild */
+      /* color-mix() - one token, no rebuild */
       background: color-mix(
         in oklch, light-dark(white, oklch(0.2 0 0)), var(--accent) 8%);
     }
@@ -76,9 +81,18 @@ const { section } = Astro.props;
       </div>
     </div>
     <PNotes>
-      <p>On the right: the card rendered live, with only the CSS up to this checkpoint.</p>
-      <p>Colors checkpoint: light-dark() for the theme, color-mix() for the hover tint.</p>
-      <p>Change --accent → border, hover tint, everything follows. No Sass. No rebuild.</p>
+      <p>
+        On the right: the card rendered live, with only the CSS up to this
+        checkpoint.
+      </p>
+      <p>
+        Colors checkpoint: light-dark() for the theme, color-mix() for the hover
+        tint.
+      </p>
+      <p>
+        Change --accent → border, hover tint, everything follows. No Sass. No
+        rebuild.
+      </p>
     </PNotes>
   </p-slide>
 )}
@@ -86,7 +100,7 @@ const { section } = Astro.props;
 {section === "space" && (
   <p-slide>
     <h5 style="margin-block-end: 0.8em" class="center">
-      <span class="main-gradient">Our card — after space</span> 🌊
+      <span class="main-gradient">Our card - after space</span> 🌊
     </h5>
     <div class="code-live">
       <pre class="small-line" data-label-file="card.css">
@@ -94,7 +108,7 @@ const { section } = Astro.props;
 @layer components {
   article {
     display: grid;
-    /* clamp() with cqi — scales with container, not viewport */
+    /* clamp() with cqi - scales with container, not viewport */
     gap:            clamp(0.5rem,  2cqi, 1rem);
     padding-block:  clamp(0.75rem, 3cqi, 1.5rem);
     padding-inline: clamp(1rem,    4cqi, 2rem);
@@ -109,9 +123,17 @@ const { section } = Astro.props;
       </div>
     </div>
     <PNotes>
-      <p>On the right: the card rendered live, with only the CSS up to this checkpoint.</p>
-      <p>Space checkpoint: clamp() with cqi — spacing scales with the container, not the viewport.</p>
-      <p>No breakpoints: the browser computes the right value in every context.</p>
+      <p>
+        On the right: the card rendered live, with only the CSS up to this
+        checkpoint.
+      </p>
+      <p>
+        Space checkpoint: clamp() with cqi - spacing scales with the container,
+        not the viewport.
+      </p>
+      <p>
+        No breakpoints: the browser computes the right value in every context.
+      </p>
     </PNotes>
   </p-slide>
 )}
@@ -119,7 +141,7 @@ const { section } = Astro.props;
 {section === "context" && (
   <p-slide>
     <h5 style="margin-block-end: 0.8em" class="center">
-      <span class="main-gradient">Our card — all layers in</span> 🏁
+      <span class="main-gradient">Our card - all layers in</span> 🏁
     </h5>
     <div class="code-live">
       <pre class="small-line" data-label-file="card.css">
@@ -144,9 +166,18 @@ const { section } = Astro.props;
       </div>
     </div>
     <PNotes>
-      <p>On the right: the card rendered live, with only the CSS up to this checkpoint.</p>
-      <p>Final checkpoint: section is the container. :has(img) reacts to structure, not a class.</p>
-      <p>Same card, two contexts, zero JS. Land this — then move to the live demo.</p>
+      <p>
+        On the right: the card rendered live, with only the CSS up to this
+        checkpoint.
+      </p>
+      <p>
+        Final checkpoint: section is the container. :has(img) reacts to
+        structure, not a class.
+      </p>
+      <p>
+        Same card, two contexts, zero JS. Land this - then move to the live
+        demo.
+      </p>
     </PNotes>
   </p-slide>
 )}

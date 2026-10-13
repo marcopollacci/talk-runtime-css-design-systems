@@ -30,16 +30,16 @@ const featureSlug = (atRule ? feature.slice(1) : feature).trim();
 
 <p-slide autoplay class="center" data-browser-support>
   <h4 class="main-gradient">
-    {
-      atRule ? (
-        <>
-          <!-- prettier-ignore -->
-          <span data-at-char>@</span>{featureSlug}
-        </>
-      ) : (
-        feature
-      )
-    } — browser support
+    {atRule ? (
+      <>
+        <!-- prettier-ignore -->
+        <span data-at-char>@</span>
+        {featureSlug}
+      </>
+    ) : (
+      feature
+    )}{" "}
+    - browser support
   </h4>
 
   <div data-browser-grid>
@@ -65,13 +65,11 @@ const featureSlug = (atRule ? feature.slice(1) : feature).trim();
     </p-fragment>
   </div>
 
-  {
-    status && (
-      <p-fragment timing-start="1500" p-effect="from below">
-        <p data-baseline>{status}</p>
-      </p-fragment>
-    )
-  }
+  {status && (
+    <p-fragment timing-start="1500" p-effect="from below">
+      <p data-baseline>{status}</p>
+    </p-fragment>
+  )}
 
   <PNotes>
     <p>Ship it. All major engines support it.</p>

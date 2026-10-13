@@ -8,7 +8,7 @@ import PNotes from "../components/PNotes.astro";
 
   <PNotes>
     <p>
-      The shift: a component shouldn't care about the viewport — it should care
+      The shift: a component shouldn't care about the viewport - it should care
       about the space it's actually given.
     </p>
     <p>
@@ -34,19 +34,17 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">The viewport is the wrong question</h3>
   <ul>
     <li>
-      📺 <span>Media queries ask about the </span><span
-        class="main-sub-gradient">screen</span
-      >
+      📺 <span>Media queries ask about the </span>
+      <span class="main-sub-gradient">screen</span>
     </li>
     <li p-fragment p-effect="from right">
-      🧩 <span>But content lives in a </span><span class="main-sub-gradient"
-        >sidebar, a grid, a modal…</span
-      >
+      🧩 <span>But content lives in a </span>
+      <span class="main-sub-gradient">sidebar, a grid, a modal…</span>
     </li>
     <li p-fragment p-effect="zoom">
-      📦 <span>Ask about the </span><span class="main-sub-gradient"
-        >container</span
-      ><span> instead</span>
+      📦 <span>Ask about the </span>
+      <span class="main-sub-gradient">container</span>
+      <span> instead</span>
     </li>
   </ul>
 
@@ -71,14 +69,11 @@ import PNotes from "../components/PNotes.astro";
   <div class="cols">
     <div p-effect="from left">
       <p class="center">
-        <span class="tag"
-          >Before — <span class="main-sub-gradient">viewport breakpoints</span
-          ></span
-        >
+        <span class="tag">
+          Before - <span class="main-sub-gradient">viewport breakpoints</span>
+        </span>
       </p>
-      <pre
-        class="small-line"
-        data-label-file="article.css">
+      <pre class="small-line" data-label-file="article.css">
         <code style="font-size: 0.75em" is:raw class="language-scss">
         article {
           display: grid;
@@ -114,9 +109,7 @@ import PNotes from "../components/PNotes.astro";
   <h5 style="margin-block-end: 1em" class="center">
     <span class="main-gradient">Query the container, not the viewport</span> 📦
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="article.css">
+  <pre class="small-line" data-label-file="article.css">
 <code style="font-size: 0.6em" is:raw class="language-scss">    /* 1. make the parent a query container */
     section {
         container: content / inline-size;
@@ -140,15 +133,17 @@ import PNotes from "../components/PNotes.astro";
       container-type.
     </p>
     <p>
-      inline-size means we query the container's inline dimension — usually its
+      inline-size means we query the container's inline dimension - usually its
       width in horizontal writing modes.
     </p>
     <p>
-      The payoff: drop this article in a narrow sidebar or a wide main column —
+      The payoff: drop this article in a narrow sidebar or a wide main column -
       it lays itself out correctly, no viewport breakpoint involved.
     </p>
     <p>
-      Connect to the card: in our card section is the container. The card in a narrow column stays stacked; in a wide column + :has(img) the two-column layout kicks in. Same card, two contexts, zero JS.
+      Connect to the card: in our card section is the container. The card in a
+      narrow column stays stacked; in a wide column + :has(img) the two-column
+      layout kicks in. Same card, two contexts, zero JS.
     </p>
   </PNotes>
 </p-slide>
@@ -158,14 +153,14 @@ import PNotes from "../components/PNotes.astro";
   chrome="105"
   firefox="110"
   safari="16"
-  status="Baseline — widely available"
+  status="Baseline - widely available"
 />
 
 <p-slide class="cover-internal-sub-section">
   <h2>:has()</h2>
 
   <PNotes>
-    <p>The long-awaited parent selector — conditional logic in pure CSS.</p>
+    <p>The long-awaited parent selector - conditional logic in pure CSS.</p>
     <p>
       Container queries read the outside. :has() lets the component react to
       what is inside.
@@ -177,19 +172,18 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">Conditional logic, no modifier classes</h3>
   <ul>
     <li>
-      ⬆️ <span>Style a parent </span><span class="main-sub-gradient"
-        >based on its children</span
-      >
+      ⬆️ <span>Style a parent </span>
+      <span class="main-sub-gradient">based on its children</span>
     </li>
     <li p-fragment p-effect="from right">
-      🏷️ <span>No more </span><span class="main-sub-gradient"
-        >modifier classes</span
-      ><span> toggling in JS</span>
+      🏷️ <span>No more </span>
+      <span class="main-sub-gradient">modifier classes</span>
+      <span> toggling in JS</span>
     </li>
     <li p-fragment p-effect="zoom">
-      🧠 <span>The DOM </span><span class="main-sub-gradient">is</span><span>
-        the state</span
-      >
+      🧠 <span>The DOM </span>
+      <span class="main-sub-gradient">is </span>
+      <span>the state</span>
     </li>
   </ul>
 
@@ -207,7 +201,7 @@ import PNotes from "../components/PNotes.astro";
 
 <p-slide b-a>
   <h5 style="margin-block-end: 1em" class="center">
-    <span class="main-gradient">:has() — the parent reacts</span> 🧠
+    <span class="main-gradient">:has() - the parent reacts</span> 🧠
   </h5>
 
   <div style="display: flex; gap: 1.5rem; align-items: stretch;">
@@ -215,10 +209,7 @@ import PNotes from "../components/PNotes.astro";
       p-effect="from left"
       style="flex: 1; display: flex; flex-direction: column;"
     >
-      <pre
-        style="flex: 1;"
-        class="small-line"
-        data-label-file="article.html">
+      <pre style="flex: 1;" class="small-line" data-label-file="article.html">
         <code style="font-size: 0.55em" is:raw class="language-scss">
         &lt;article>
           &lt;img src="cover.jpg" alt="" />
@@ -239,10 +230,7 @@ import PNotes from "../components/PNotes.astro";
     </div>
 
     <p-fragment style="flex: 1; display: flex; flex-direction: column;">
-      <pre
-        style="flex: 1;"
-        class="small-line"
-        data-label-file="has.css">
+      <pre style="flex: 1;" class="small-line" data-label-file="has.css">
       <code style="font-size: 0.6em" is:raw class="language-scss">
     /* an article that contains an image gets media layout */
     article:has(img) {
@@ -267,7 +255,7 @@ import PNotes from "../components/PNotes.astro";
     <p>Three flavors: structural, state and quantity.</p>
     <p>Structural: the article reacts to the presence of an image.</p>
     <p>
-      State: the fieldset reacts to an invalid input — live form validation
+      State: the fieldset reacts to an invalid input - live form validation
       styling with zero JS.
     </p>
     <p>
@@ -276,7 +264,7 @@ import PNotes from "../components/PNotes.astro";
     </p>
     <p>
       If asked about performance: modern browsers optimize it well, but keep
-      selectors intentional — don't use :has() as a global catch-all.
+      selectors intentional - don't use :has() as a global catch-all.
     </p>
   </PNotes>
 </p-slide>
@@ -286,5 +274,5 @@ import PNotes from "../components/PNotes.astro";
   chrome="105"
   firefox="121"
   safari="15.4"
-  status="Baseline — widely available"
+  status="Baseline - widely available"
 />

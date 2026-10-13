@@ -13,7 +13,7 @@ import PNotes from "../components/PNotes.astro";
       or tone did my container expose?
     </p>
     <p>
-      Until a few months ago this was in my "near future" section — since May
+      Until a few months ago this was in my "near future" section - since May
       2026 it works in every major engine.
     </p>
   </PNotes>
@@ -23,13 +23,14 @@ import PNotes from "../components/PNotes.astro";
   <h3 class="main-gradient">Variants without extra classes</h3>
   <ul>
     <li p-fragment p-effect="from right">
-      🚫 <span>No </span><span class="main-sub-gradient">modifier class</span
-      ><span> just to express a variant</span>
+      🚫 <span>No </span>
+      <span class="main-sub-gradient">modifier class</span>
+      <span> just to express a variant</span>
     </li>
     <li p-fragment p-effect="from left">
-      🌗 <span>The container's </span><span class="main-sub-gradient"
-        >state</span
-      ><span> drives the styling</span>
+      🌗 <span>The container's </span>
+      <span class="main-sub-gradient">state</span>
+      <span> drives the styling</span>
     </li>
   </ul>
 
@@ -53,9 +54,7 @@ import PNotes from "../components/PNotes.astro";
   <h5 style="margin-block-end: 1em" class="center">
     <span class="main-gradient">Query a custom property</span> 🎛️
   </h5>
-  <pre
-    class="small-line"
-    data-label-file="style-query.css">
+  <pre class="small-line" data-label-file="style-query.css">
   <code style="font-size: 0.6em" is:raw class="language-scss">section {
         --tone: muted; /* just data on the container */
     }
@@ -74,12 +73,12 @@ import PNotes from "../components/PNotes.astro";
 
   <PNotes>
     <p>
-      Every element is implicitly a style container — no container-type needed
+      Every element is implicitly a style container - no container-type needed
       for style queries, unlike size queries. Worth saying.
     </p>
     <p>
       Gotcha to flag: the interoperable part is custom properties. Firefox 151
-      also accepts regular properties, Chrome and Safari don't — so stick to
+      also accepts regular properties, Chrome and Safari don't - so stick to
       custom properties.
     </p>
   </PNotes>
@@ -90,5 +89,5 @@ import PNotes from "../components/PNotes.astro";
   chrome="111"
   firefox="151"
   safari="18"
-  status="Baseline 2026 — newly available"
+  status="Baseline 2026 - newly available"
 />
