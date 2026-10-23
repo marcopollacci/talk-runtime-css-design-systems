@@ -19,7 +19,7 @@
   "devDependencies": {
     "@types/node": "^26.6.5",
     "husky": "^9.1.7",
-    "sass": "^1.105.1",
+    "sass": "^1.105.2",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.1",
     "sharp": "^0.35.5",
